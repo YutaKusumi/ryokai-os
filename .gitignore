@@ -1,0 +1,12 @@
+# OS 生成物
+.DS_Store
+Thumbs.db
+
+# エディタ / IDE
+.vscode/
+.idea/
+
+# Node 系
+node_modules/
+dist/
+.env
