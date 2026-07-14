@@ -86,16 +86,15 @@ def load_model():
         except Exception as e:
             print(f"snapshot_download retry {attempt + 1}/6 after error: {str(e)[:150]}")
             time.sleep(5)
-    bnb = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4",
-                             bnb_4bit_compute_dtype=torch.bfloat16, bnb_4bit_use_double_quant=True)
-    tok = AutoTokenizer.from_pretrained(MODEL_ID)
-    # device_map="auto" が4bitモデルをCPU/diskへ退避しようとしbnbが拒否する場合がある。
-    # 30B-A3B(4bitで約16GB)はA100-40GBに収まるので全モジュールをGPU:0に固定。
+    # ロード設定は追補C実測(2〜4分/試行)と完全同一に揃える:
+    #   device_map="auto"・max_memory指定なし・double quantなし（double quantは推論を遅くする）。
+    bnb = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_compute_dtype=torch.bfloat16,
+                             bnb_4bit_quant_type="nf4")
     print("GPU:", torch.cuda.get_device_name(0), "| free/total GiB:",
           [round(x / 2**30, 1) for x in torch.cuda.mem_get_info(0)])
+    tok = AutoTokenizer.from_pretrained(MODEL_ID)
     model = AutoModelForCausalLM.from_pretrained(
-        MODEL_ID, quantization_config=bnb, device_map={"": 0},
-        max_memory={0: "38GiB", "cpu": "24GiB"})
+        MODEL_ID, device_map="auto", quantization_config=bnb)
     model.eval()
     fp = model.get_memory_footprint() / 2**30
     print(f"model loaded: {MODEL_ID} | memory footprint {fp:.1f} GiB")
