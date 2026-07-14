@@ -145,20 +145,25 @@ def _setup_scen():
 
 
 def tokenizer_report():
+    # 逸脱#4: 単一ターン化後の実プロンプト（system+前置き+N2結合）のトークン数を報告。
     n2 = SCEN["N2"]
+    u2 = n2["text"] + INST[n2["family"]]
     for a, (sysp, pre) in ARMS.items():
-        msgs = [{"role": "system", "content": _rd(sysp)}, {"role": "user", "content": _rd(pre)}]
+        user_t = _rd(pre) + "\n\n" + u2
+        msgs = [{"role": "system", "content": _rd(sysp)}, {"role": "user", "content": user_t}]
         ntok = tok.apply_chat_template(msgs, add_generation_prompt=True, return_tensors="pt").shape[1]
-        print(f"{a:7s} system+preamble tokens: {ntok}")
+        print(f"{a:7s} full 1T prompt tokens (system+preamble+N2): {ntok}")
 
 
-# 逸脱#3（2026-07-14・登録者承認）: Model1受容応答を自由生成から全腕共通の固定文へ。
-# 自由生成のModel1が「儀式の予告」をしてModel2の反復ループ（>4096トークン runaway）を
-# 誘発したため。2ターン構造とHD1の位置効果統制は維持（前置き内容だけを動かす）。
-MODEL1_FIXED = "はい、準備ができています。シナリオを提示してください。"
+# 逸脱#4（2026-07-14・登録者承認待ち）: 2ターン構造（Human1前置き→アシスタントターン→
+# Human2=N2）を廃し、単一ターン構造（system+userの一つのみ）へ移行する。逸脱#3
+# （Model1固定文化）は実測で不十分と判明（固定文でも8.7分ループ・repetition_penalty
+# =1.15を足しても6分超ループ）。原因はModel1の内容でなく「決断内容の手前に
+# アシスタントターンが一つでも存在すること」自体（構造依存）。前置き文は削除せず、
+# 単一userターン内でN2の直前に結合する。詳細: deviation-4-addd-single-turn.md。
 
 
-def run_2t(arms, n_trials, tag, qid="N2", model1_max=512):
+def run_1t(arms, n_trials, tag, qid="N2"):
     from app_parser_rev2 import parse_app_v2
     out = f"/content/results/{tag}.jsonl"
     os.makedirs("/content/results", exist_ok=True)
@@ -168,12 +173,10 @@ def run_2t(arms, n_trials, tag, qid="N2", model1_max=512):
         for arm in arms:
             sysp, pre = ARMS[arm]
             sys_t, pre_t = _rd(sysp), _rd(pre)
+            user_t = pre_t + "\n\n" + u2   # 逸脱#4: 前置き+N2を単一userターンへ結合
             for i in range(n_trials):
                 t0 = time.time()
-                base = [{"role": "system", "content": sys_t}, {"role": "user", "content": pre_t}]
-                m1 = MODEL1_FIXED   # 逸脱#3: 生成せず固定文
-                t1 = time.time()
-                msgs = base + [{"role": "assistant", "content": m1}, {"role": "user", "content": u2}]
+                msgs = [{"role": "system", "content": sys_t}, {"role": "user", "content": user_t}]
                 raw = generate(msgs)
                 p = parse_app_v2(raw, s["family"])
                 retry = False
@@ -186,8 +189,7 @@ def run_2t(arms, n_trials, tag, qid="N2", model1_max=512):
                        "run_tag": tag, "model": MODEL_ID, "quant": "4bit-nf4",
                        "temperature": TEMPERATURE, "top_p": TOP_P, "arm": arm, "notice": "off",
                        "question_id": qid, "family": s["family"], "trial_index": i,
-                       "turn_structure": "2T", "preamble_arm": arm, "model1_output": m1,
-                       "model1_len": len(m1), "model1_seconds": round(t1 - t0, 1),
+                       "turn_structure": "1T", "preamble_arm": arm,
                        "raw_output": raw, "parsed": p, "format_retry_used": retry,
                        "seconds": round(time.time() - t0, 1),
                        "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S")}
@@ -196,7 +198,7 @@ def run_2t(arms, n_trials, tag, qid="N2", model1_max=512):
                 tl = "OK" if p else "FAIL"
                 if p and p.get("choice") == "refuse":
                     tl = "REFUSE"
-                print(f"{arm} #{i} {tl} | m1_len={len(m1)} m1={rec['model1_seconds']}s tot={rec['seconds']}s | choice={p.get('choice') if p else '-'}")
+                print(f"{arm} #{i} {tl} | tot={rec['seconds']}s | choice={p.get('choice') if p else '-'}")
     print("done:", out)
 
 
@@ -205,11 +207,13 @@ def pilot_verdict():
     n = len(recs)
     okj = sum(1 for r in recs if r["parsed"])
     rty = sum(1 for r in recs if r["format_retry_used"])
-    m1max = max(r["model1_len"] for r in recs)
     print("\n" + "=" * 50)
-    print(f"パイロット判定: 総試行 {n} | JSON着地 {okj}/{n} | retry {rty} | Model1最大長 {m1max}字")
-    print("Model1サンプル:", recs[0]["model1_output"][:100].replace("\n", " "))
-    passed = (okj == n) and (m1max < 2000)
+    print(f"パイロット判定: 総試行 {n} | JSON着地 {okj}/{n} | retry {rty}")
+    print("出力サンプル（先頭120字）:", recs[0]["raw_output"][:120].replace("\n", " "))
+    # 逸脱#4: 単一ターン化により旧基準の m1max<2000（Model1暴走の代理指標）は消滅。
+    # 置き換え不要——ループが起きればJSON/choiceに到達できず parsed が None になり、
+    # okj==n という主基準そのものがループ検出をより直接的に担う。
+    passed = (okj == n)
     print("合否:", "PASS -> boot_main.py を exec して本実施へ" if passed else "HOLD -> コーディネータへ連絡")
     print("=" * 50)
     sys.path.insert(0, "/content/pipeline")
@@ -224,7 +228,7 @@ _setup_scen()
 load_model()
 print("\n-- tokenizer実測 --")
 tokenizer_report()
-print("\n-- 2Tパイロット（4腕×2＋GL1×2＝10）--")
-run_2t(["A5p2T", "GH", "GHnull", "GS"], 2, "pilot-partB")
-run_2t(["GL1"], 2, "pilot-partB")
+print("\n-- 1Tパイロット（4腕×2＋GL1×2＝10・逸脱#4）--")
+run_1t(["A5p2T", "GH", "GHnull", "GS"], 2, "pilot-partB")
+run_1t(["GL1"], 2, "pilot-partB")
 pilot_verdict()
