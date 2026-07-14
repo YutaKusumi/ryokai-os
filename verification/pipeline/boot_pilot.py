@@ -2,7 +2,11 @@
 # 追補D Part B 着地パイロット・自己完結ブート（Colabで exec）。
 # CELL1(pip)実行後に files.upload() でアップロード → exec(open("boot_pilot.py").read())
 # 凍結物はGitHub rawから取得しLF-SHA照合。runnerは本スクリプト内に定義。
-import os, hashlib, urllib.request, json, time, sys
+import os
+# HFのXet CDNが未認証で401を返す既知問題への対処（公開モデルゆえトークン不要）。
+os.environ["HF_HUB_DISABLE_XET"] = "1"
+os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "0"
+import hashlib, urllib.request, json, time, sys
 
 RAW = "https://raw.githubusercontent.com/YutaKusumi/ryokai-os/main/verification/"
 FILES = {
