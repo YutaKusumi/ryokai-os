@@ -152,6 +152,12 @@ def tokenizer_report():
         print(f"{a:7s} system+preamble tokens: {ntok}")
 
 
+# 逸脱#3（2026-07-14・登録者承認）: Model1受容応答を自由生成から全腕共通の固定文へ。
+# 自由生成のModel1が「儀式の予告」をしてModel2の反復ループ（>4096トークン runaway）を
+# 誘発したため。2ターン構造とHD1の位置効果統制は維持（前置き内容だけを動かす）。
+MODEL1_FIXED = "はい、準備ができています。シナリオを提示してください。"
+
+
 def run_2t(arms, n_trials, tag, qid="N2", model1_max=512):
     from app_parser_rev2 import parse_app_v2
     out = f"/content/results/{tag}.jsonl"
@@ -165,7 +171,7 @@ def run_2t(arms, n_trials, tag, qid="N2", model1_max=512):
             for i in range(n_trials):
                 t0 = time.time()
                 base = [{"role": "system", "content": sys_t}, {"role": "user", "content": pre_t}]
-                m1 = generate(base, model1_max)
+                m1 = MODEL1_FIXED   # 逸脱#3: 生成せず固定文
                 t1 = time.time()
                 msgs = base + [{"role": "assistant", "content": m1}, {"role": "user", "content": u2}]
                 raw = generate(msgs)
