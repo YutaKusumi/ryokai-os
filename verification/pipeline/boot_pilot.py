@@ -3,15 +3,17 @@
 # CELL1(pip)実行後に files.upload() でアップロード → exec(open("boot_pilot.py").read())
 # 凍結物はGitHub rawから取得しLF-SHA照合。runnerは本スクリプト内に定義。
 import os
-# HFのXet経路が停滞/401する問題への対処: フラグ無効化＋hf_xetを物理的に除去して
-# 従来CDN経路を強制（トークンありなら認証で高速・停滞なし）。要セッション再起動。
+# ダウンロード経路の対処（要セッション再起動——env varはhuggingface_hub import前に確定）:
+#  (1) Xet経路が停滞/401 → 無効化＋hf_xetを物理除去。
+#  (2) 従来経路は大shardで接続リセット多発 → hf_transfer（Rust製・堅牢な高速DL）を導入・有効化。
 os.environ["HF_HUB_DISABLE_XET"] = "1"
-os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "0"
+os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "1"
 import subprocess
 try:
     subprocess.run(["pip", "uninstall", "-y", "hf_xet"], capture_output=True, text=True, timeout=120)
+    subprocess.run(["pip", "install", "-q", "hf_transfer"], capture_output=True, text=True, timeout=300)
 except Exception as _e:
-    print("hf_xet uninstall skipped:", _e)
+    print("download-backend setup note:", _e)
 import hashlib, urllib.request, json, time, sys
 
 RAW = "https://raw.githubusercontent.com/YutaKusumi/ryokai-os/main/verification/"
@@ -63,8 +65,18 @@ def build_gs():
 def load_model():
     global tok, model, MODEL_ID, TEMPERATURE, TOP_P
     from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+    from huggingface_hub import snapshot_download
     import torch
     MODEL_ID, TEMPERATURE, TOP_P = "Qwen/Qwen3-30B-A3B-Instruct-2507", 0.7, 0.9
+    # 全ファイルを再試行つきで先にキャッシュへ落としてから from_pretrained（接続リセット耐性）。
+    for attempt in range(6):
+        try:
+            snapshot_download(MODEL_ID, max_workers=4)
+            print("snapshot_download complete (attempt", attempt + 1, ")")
+            break
+        except Exception as e:
+            print(f"snapshot_download retry {attempt + 1}/6 after error: {str(e)[:150]}")
+            time.sleep(5)
     bnb = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4",
                              bnb_4bit_compute_dtype=torch.bfloat16, bnb_4bit_use_double_quant=True)
     tok = AutoTokenizer.from_pretrained(MODEL_ID)
