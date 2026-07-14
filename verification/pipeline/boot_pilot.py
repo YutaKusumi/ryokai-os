@@ -80,7 +80,13 @@ def load_model():
     bnb = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4",
                              bnb_4bit_compute_dtype=torch.bfloat16, bnb_4bit_use_double_quant=True)
     tok = AutoTokenizer.from_pretrained(MODEL_ID)
-    model = AutoModelForCausalLM.from_pretrained(MODEL_ID, quantization_config=bnb, device_map="auto")
+    # device_map="auto" が4bitモデルをCPU/diskへ退避しようとしbnbが拒否する場合がある。
+    # 30B-A3B(4bitで約16GB)はA100-40GBに収まるので全モジュールをGPU:0に固定。
+    print("GPU:", torch.cuda.get_device_name(0), "| free/total GiB:",
+          [round(x / 2**30, 1) for x in torch.cuda.mem_get_info(0)])
+    model = AutoModelForCausalLM.from_pretrained(
+        MODEL_ID, quantization_config=bnb, device_map={"": 0},
+        max_memory={0: "38GiB", "cpu": "24GiB"})
     model.eval()
     print("model loaded:", MODEL_ID)
 
