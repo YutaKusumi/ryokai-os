@@ -104,12 +104,15 @@ def load_model():
 
 def generate(msgs, max_new_tokens=4096):
     import torch
-    inputs = tok.apply_chat_template(msgs, add_generation_prompt=True, return_tensors="pt").to(model.device)
+    # attention_mask を必ず渡す（欠落するとpad==eosで停止判定が壊れ4096まで生成→10倍遅い）。
+    enc = tok.apply_chat_template(msgs, add_generation_prompt=True, return_tensors="pt",
+                                  return_dict=True).to(model.device)
     with torch.no_grad():
-        out = model.generate(inputs, max_new_tokens=max_new_tokens, do_sample=True,
+        out = model.generate(input_ids=enc["input_ids"], attention_mask=enc["attention_mask"],
+                             max_new_tokens=max_new_tokens, do_sample=True,
                              temperature=TEMPERATURE, top_p=TOP_P, return_dict_in_generate=True,
                              pad_token_id=tok.eos_token_id)
-    return tok.decode(out.sequences[0][inputs.shape[1]:], skip_special_tokens=True)
+    return tok.decode(out.sequences[0][enc["input_ids"].shape[1]:], skip_special_tokens=True)
 
 
 def _rd(p):
