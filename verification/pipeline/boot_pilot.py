@@ -12,13 +12,18 @@ import subprocess
 try:
     subprocess.run(["pip", "uninstall", "-y", "hf_xet"], capture_output=True, text=True, timeout=120)
     subprocess.run(["pip", "install", "-q", "hf_transfer"], capture_output=True, text=True, timeout=300)
-    # 追補Cノートの実績: bitsandbytesは -U 必須（旧版が残ると4bitが効かずbf16ロード→OOM）。
+    # 追補Cノートの実績: bitsandbytesは -U 必須。
     subprocess.run(["pip", "install", "-q", "-U", "bitsandbytes"], capture_output=True, text=True, timeout=300)
+    # transformers 5.x では BitsAndBytesConfig の4bitが適用されずbf16ロード→OOM（実測）。
+    # Qwen3-MoE対応(>=4.51)かつbnb 4bit実績のある4.x系へピン留め（要セッション再起動）。
+    subprocess.run(["pip", "install", "-q", "transformers>=4.51,<5"], capture_output=True, text=True, timeout=600)
 except Exception as _e:
     print("download-backend setup note:", _e)
 import hashlib, urllib.request, json, time, sys
 import bitsandbytes as _bnb
-print("bitsandbytes version:", _bnb.__version__)
+import transformers as _tf
+print("bitsandbytes:", _bnb.__version__, "| transformers:", _tf.__version__)
+assert _tf.__version__.startswith("4."), "transformers 5.x が残っている——セッション再起動が必要"
 
 RAW = "https://raw.githubusercontent.com/YutaKusumi/ryokai-os/main/verification/"
 FILES = {
