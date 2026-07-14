@@ -3,9 +3,15 @@
 # CELL1(pip)実行後に files.upload() でアップロード → exec(open("boot_pilot.py").read())
 # 凍結物はGitHub rawから取得しLF-SHA照合。runnerは本スクリプト内に定義。
 import os
-# HFのXet CDNが未認証で401を返す既知問題への対処（公開モデルゆえトークン不要）。
+# HFのXet経路が停滞/401する問題への対処: フラグ無効化＋hf_xetを物理的に除去して
+# 従来CDN経路を強制（トークンありなら認証で高速・停滞なし）。要セッション再起動。
 os.environ["HF_HUB_DISABLE_XET"] = "1"
 os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "0"
+import subprocess
+try:
+    subprocess.run(["pip", "uninstall", "-y", "hf_xet"], capture_output=True, text=True, timeout=120)
+except Exception as _e:
+    print("hf_xet uninstall skipped:", _e)
 import hashlib, urllib.request, json, time, sys
 
 RAW = "https://raw.githubusercontent.com/YutaKusumi/ryokai-os/main/verification/"
