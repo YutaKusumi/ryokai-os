@@ -101,16 +101,25 @@ def load_model():
     assert fp < 30, f"4bit量子化が効いていない疑い（footprint {fp:.1f} GiB）——中止"
 
 
+def _eos_ids():
+    # Qwen3のターン終端 <|im_end|> を停止トークンに含める。多ターンでこれが無いと
+    # モデルが im_end を越えて生成し続け、max_new_tokens まで暴走する（追補Dで実測）。
+    ids = [tok.eos_token_id]
+    ie = tok.convert_tokens_to_ids("<|im_end|>")
+    if isinstance(ie, int) and ie >= 0 and ie != tok.unk_token_id:
+        ids.append(ie)
+    return ids
+
+
 def generate(msgs, max_new_tokens=4096):
     import torch
-    # attention_mask を必ず渡す（欠落するとpad==eosで停止判定が壊れ4096まで生成→10倍遅い）。
     enc = tok.apply_chat_template(msgs, add_generation_prompt=True, return_tensors="pt",
                                   return_dict=True).to(model.device)
     with torch.no_grad():
         out = model.generate(input_ids=enc["input_ids"], attention_mask=enc["attention_mask"],
                              max_new_tokens=max_new_tokens, do_sample=True,
                              temperature=TEMPERATURE, top_p=TOP_P, return_dict_in_generate=True,
-                             pad_token_id=tok.eos_token_id)
+                             eos_token_id=_eos_ids(), pad_token_id=tok.eos_token_id)
     return tok.decode(out.sequences[0][enc["input_ids"].shape[1]:], skip_special_tokens=True)
 
 
