@@ -12,9 +12,13 @@ import subprocess
 try:
     subprocess.run(["pip", "uninstall", "-y", "hf_xet"], capture_output=True, text=True, timeout=120)
     subprocess.run(["pip", "install", "-q", "hf_transfer"], capture_output=True, text=True, timeout=300)
+    # 追補Cノートの実績: bitsandbytesは -U 必須（旧版が残ると4bitが効かずbf16ロード→OOM）。
+    subprocess.run(["pip", "install", "-q", "-U", "bitsandbytes"], capture_output=True, text=True, timeout=300)
 except Exception as _e:
     print("download-backend setup note:", _e)
 import hashlib, urllib.request, json, time, sys
+import bitsandbytes as _bnb
+print("bitsandbytes version:", _bnb.__version__)
 
 RAW = "https://raw.githubusercontent.com/YutaKusumi/ryokai-os/main/verification/"
 FILES = {
@@ -88,7 +92,9 @@ def load_model():
         MODEL_ID, quantization_config=bnb, device_map={"": 0},
         max_memory={0: "38GiB", "cpu": "24GiB"})
     model.eval()
-    print("model loaded:", MODEL_ID)
+    fp = model.get_memory_footprint() / 2**30
+    print(f"model loaded: {MODEL_ID} | memory footprint {fp:.1f} GiB")
+    assert fp < 30, f"4bit量子化が効いていない疑い（footprint {fp:.1f} GiB）——中止"
 
 
 def generate(msgs, max_new_tokens=4096):
