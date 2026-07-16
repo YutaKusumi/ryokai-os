@@ -157,3 +157,22 @@
   - pipeline/boot_main.py（自己完結ブート・本実施）— `1E3C224A335A00982F37B5F654867F1A9841087A3E843B0D335BD0799C9AED11`
 - **削除**: pipeline/boot_pilot.b64line.txt・pipeline/boot_main.b64line.txt（未push・自由生成Model1のまま・hf_transfer導入前・double_quant有効という危険な旧内容のスクラッチファイル）を削除。
 - **次**: 単一ターン構造で着地パイロット（10試行）を実測し、ループ再発なし・追補C並みの速度（2〜4分/試行）を確認してから本実施（150試行）へ進む。
+
+## 追補D 本実施完了・盲検採点・不一致裁定（2026-07-16）
+
+- **本実施150試行完走（単一ターン構造・逸脱#4）**: 4確証腕{A5p2T, GH, GHnull, GS}×N2×30=120＋GL第一パス(GL1=3.0×N2)×30。実施中にColabランタイムの意図しない切断が1回発生（71試行時点）——resume_after_disconnect.py（run_1t_resume＝run_1t()と同一のtrial_id式・記録スキーマ・結合式をインデックス範囲指定可能にしただけの運用再実行器・登録内容の変更なし）で無重複・無欠落で再開完走。
+- **データSHA-256（VM算定・Drive・ローカルDLの三点一致）**:
+  - trials-addd-main-Qwen3-30B-A3B-Instruct-2507.jsonl（120行・815,679B）— +F3A7C53AA5E557C095F0AB824A53C35209208FD18F0DCC5DDBA1B3E01DEDDB  - trials-addd-gl-firstpass-Qwen3-30B-A3B-Instruct-2507.jsonl（30行・181,464B）— 979FEDF25D55CD65F0A9DB44A64C135CE198C71FD75051D754694118121391E- **整合**: 全腕インデックス0-29欠落重複なし・trial_id一意150・format_retry 3件（全て1回で回収）・**parse-fail 0**（単一ターン移行後ループ再発なし）。
+- **盲検採点**: redactor.py（凍結SHA不変・シード48）で150件シャッフル伏字化（ヒット498・伏字漏れ機械点検0）。腕別ヒット数（A5p2T 90/GH 167/GHnull 84/GS 157/**GL1 0**）の非対称は開示。LLM二採点者（G1/G2・独立文脈・規約のみ提示・30件×5分割）で全150件採点。
+- **κ（裁定前）**: κ(gap)=0.9031・κ(trace)=0.7015・refuse_class不一致0。事前閾値0.60を上回る。
+- **不一致裁定（登録者・盲検のまま・key照合前に確定）**: 延べ7試行。登録者はclaude.ai Ryōkai OS™に助言を求め（二巡・全文保全 reviews/addd-adjudication-advisory-{1-APPROVED,2-reference}.md）、第一助言を承認して裁定とした——この助言依頼の事実を本記録に開示する（採点体制がLLM三採点者へ暗黙に変質することを避けるため）。裁定確定値と判定線の凍結（trace判定線・#26判定線）は results/addd-main/adjudication-record-addd.md。
+- **裁定の帰結**: gap=true 最終19/150（裁定でG1比+3）。腕別内訳はkey照合後に確定し結果報告に記載。
+- 分岐C（2026-07-14確定）のため、以後の集計は**探索（記述・p値なし・HD1-3方向支持への引用禁止）**として行う。
+
+## 追補D GL差し戻し完走・探索2結果（2026-07-16）
+
+- **登録どおりスモーク先行**: 2試行（GAP_IDS先頭2件・タグ addd-gl-smoke・データ非算入）が正常着地（779.4s/551.1s・整形JSON・ループ非再発）。GO判定でgl_full()実施。
+- **本差し戻し14/14完走**: 乖離採点で確定した全14件（adjudication-record-addd.md）にrun_gl_continuation()（凍結SHA 078C5F16…）を適用。
+- **形式着地**: 12/14 OK・**2/14 FORMAT_FAIL**（8c42e8442bdd・9765b4ddeb1b）。原因はデータ確認済み: 単一ターンループ（逸脱#4）の再発ではなく、**GL-followup.mdの差し戻し文がJSON出力指示を再付与しないため、モデルがRyōkai-OS儀式書式の考察文（Tathagata/Bodhicitta Core/Triune OS Supervisor節）で応答しJSON非出力**となったもの。run_gl_continuation()にはrun_1t系のようなリトライ機構が実装されておらず（format_retry_used固定False）、この2件は再試行されていない。未検証構造として明記されていた既知リスクの実例として正直に記録する（分岐選択・確証には使わず記述のみ）。
+- **撤回結果（探索・記述のみ・p値なし・主張Xの支持根拠にしない）**: 14件中、破局選択(a)維持8件・撤回4件（他選択肢/refuseへ移行）・形式不能2件。gl_retraction()の登録定義どおりの撤回率＝4/14（28.6%）。
+- **データSHA-256**: trials-addd-gl-Qwen3-30B-A3B-Instruct-2507.jsonl（14行・84,277B）— Ĝ8E9A52FF3EEDD127C68C50BD8D89047788C54889F621CE75FB6D0ED48E670\（VM・ローカル一致確認済み）。
