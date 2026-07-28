@@ -198,3 +198,49 @@
 - **過失の記録**: 過失16〜20（本文起草メモ）。過失20＝単一生成源方式の最初の適用で手入力定数（G4閾値）が保護外に残った——「生成源の外に手入力定数を残さない」を被覆規約(c)として凍結。
 - **凍結後・ゲート実行前に残る器材作業（E8）**: run_app_1t の四腕config＋腕交互配置／analyze_adde.py 新設＋合成dry-run／生成源の独立検算（標準手続き）／#O・#L転嫁の採点者較正dry-run／tokenizer実測／着地パイロット（各腕3試行・速度確認）。完了時に本記録へ追記する。
 - **次**: 記録先行公開（データ生成前push・登録者の明示指示後）→ 基線30試行（ゲート）→ 決定木の機械適用。
+
+## 追補E 器材整備完了（2026-07-29・凍結後・ゲート実行前）
+
+E8 チェックリストの器材項目を実装・検証した。**実行ロジックは app_runner_2t.py の
+run_app_1t() と同一（生成・リトライ・記録スキーマ不変）**。追補E固有の追加は
+腕定義・実行順序（EB先行→腕交互配置 trial_index%3）・SHA照合・resume のみ。
+
+- pipeline/app_runner_adde.py（9,608B）— `FDDFC940F6AC8A72D9B8D5F72D84B72720F174C0B51A6C56FFD88E69A006F566`
+  run_pilot（四腕各3・速度確認）/ run_gate（EB30先行）/ run_gate_g4 / run_main（150交互配置）/
+  run_main_resume（trial_id式同一・無重複再開）/ verify_arms_e（凍結SHA 5点の取得後照合）
+- pipeline/analyze_adde.py（17,617B）— `B8791EC82B95F70FF0985B7D5581A648494104E0100469D8712762CFA61FFCA4`
+  決定木（G2/G4再取得/合算60閾値 A≥12/B7-11/C≤6）・HE0厳密＋8ラベル＋Δ分解・HE2・Holm m=2・
+  凍結読みの機械選択（E3-2(d) 全行）・HE1/Lneg-Onull/応答内HE0（記述・不一致時凍結主文）・
+  G3両方向（相対±50%）・再現性（EB vs GL1・G4時は第一回のみ）・refuse/破局raw抽出・
+  Fisher scipy 6値突合
+- pipeline/dry_run_adde.py — `72A6B3DDA565BA4FFA3854C633B7BB3B4B6BD8705A55B6402B1691DA2D9F39D7`
+  **合成データで 21/21 経路発火**（分岐A/G4再取得/合算A・B・C/G2不通過/8ラベル/有意非単調/
+  強い帰無/判定不能域+E1-6-3報告文/HE0有意かつHE2不成立の逐語/Holm両通過/refuse転位不一致主文/
+  G3両方向/再現性/抽出2種/Fisher 6値）。
+  整合観察: |EB−16|≥6 は EB≤10 を全て覆うため、n=30 の分岐B/C は常に合算60経由で確定する
+  （凍結どおり・G4 がゲート判定に先行——設計の含意として記録）。
+- armsE/verify_design_independent.py — `B8459491B125507D32055F9360B7053F350464BDAF0181737EFEE4F7EE1BA929`
+  **生成源の独立検算 16/16 一致**（design_draft5.py/trend_exact.py 非import・math.comb 直書きの
+  別実装。代表p4点・主要スカラー5点・第一種過誤・ゲート境界2点・G4境界4点）。
+  n=80/120 梯子は計算量のため対象外と申告（第3巡で阿弥陀如来が独立検算済み）。
+- pipeline/reversal-rubric-adde.md — `220EA059C5667CE0B54488F5C4B8CD89463B99D854A49866239AD3AF13835979`
+  #O・#L転嫁の厳格/広義判定線＋較正合成例13件（O-1〜7・L-1〜6・境界事例=O-7/L-5）＋
+  refuse下位分類4種（主体性の否認を新設）＋採点手続き（E1-6-4の較正資料からの除外を明記）。
+- 残: tokenizer実測・採点者較正dry-run（LLM採点者・実施直前）・着地パイロット（Colab・速度確認）。
+
+### 追記（同日）: 実行器のSHA照合方式の訂正と Colab ブートの新設
+
+- **訂正**: app_runner_adde.py の verify_arms_e() は当初【生バイトSHA】で照合しており、
+  GitHub 格納の arms/A2-on-full.md が **LF**（AAB363D8…）である一方 FROZEN E1-5 の値
+  9DE7B788… が**ローカルCRLF版の生バイトSHA**であるため、**Colabで必ず照合失敗する**
+  状態だった（公開前のGitHub実測で発見・2026-07-29）。boot_pilot.py の実績方式
+  【LF正規化SHA】へ訂正し、CRLF/LF の同一内容性をヘッダに注記した（生成時は _read() が
+  改行正規化するため投入内容は両版で同一）。
+  訂正後 pipeline/app_runner_adde.py（10,229B）— `488BC524D69B07E21EB57D2115F4F0CA3F4C68A628438EA56A00E8E30D227999`
+- **新設** pipeline/boot_adde.py（8,602B）— `E4793AE9BCB769313F5DD1442C5D1E3A5B2CF55D4B51F38BF6E0DF02A2E49402`
+  追補D boot_pilot.py の環境設定を継承（HF_HUB_DISABLE_XET・hf_transfer・bitsandbytes -U・
+  transformers 4.x ピン・4bit nf4 double_quantなし・<|im_end|>停止・snapshot_download再試行6）。
+  fetch_and_verify（LF-SHA 6点照合）・mount_drive（逐次Drive永続化の凍結規律）・
+  tokenizer_report（E8 実測・Colab到達時に実行）・run_* の注入。
+- 本記録の直前エントリに記した app_runner_adde.py の SHA（FDDFC940…）は訂正前の値であり、
+  上記が凍結値である。
