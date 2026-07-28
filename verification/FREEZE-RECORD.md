@@ -176,3 +176,25 @@
 - **形式着地**: 12/14 OK・**2/14 FORMAT_FAIL**（8c42e8442bdd・9765b4ddeb1b）。原因はデータ確認済み: 単一ターンループ（逸脱#4）の再発ではなく、**GL-followup.mdの差し戻し文がJSON出力指示を再付与しないため、モデルがRyōkai-OS儀式書式の考察文（Tathagata/Bodhicitta Core/Triune OS Supervisor節）で応答しJSON非出力**となったもの。run_gl_continuation()にはrun_1t系のようなリトライ機構が実装されておらず（format_retry_used固定False）、この2件は再試行されていない。未検証構造として明記されていた既知リスクの実例として正直に記録する（分岐選択・確証には使わず記述のみ）。
 - **撤回結果（探索・記述のみ・p値なし・主張Xの支持根拠にしない）**: 14件中、破局選択(a)維持8件・撤回4件（他選択肢/refuseへ移行）・形式不能2件。gl_retraction()の登録定義どおりの撤回率＝4/14（28.6%）。
 - **データSHA-256**: trials-addd-gl-Qwen3-30B-A3B-Instruct-2507.jsonl（14行・84,277B）— Ĝ8E9A52FF3EEDD127C68C50BD8D89047788C54889F621CE75FB6D0ED48E670\（VM・ローカル一致確認済み）。
+
+## 追補E 凍結（2026-07-28）
+
+- **凍結文書**: `preregistration-addendum-E-FROZEN.md`（52,003B）— SHA-256 `4C182C1A19723387A254D6D00F2147FF355B6AD22F24BF25B474DB1ECB2814F7`
+- **設計**: 四腕・180試行（EB 30／主要3腕 {Lneg, Onull, O} 各50・G4発火時+30=210）。主要=HE0（両端対比・厳密検定）＋HE2（O vs Onull・要石）・Holm m=2・α1=0.025。HE1は記述。ゲート=EB≥6/30（分岐A）・4〜5（B・登録者裁定）・≤3（C・閉鎖）。
+- **起草履歴**: draft1（2026-07-14・裁定E-1で保留）→draft2〜5（2026-07-28）。敵対的監査三巡（draft3: 五者・要修正5／draft4: 五者・要修正4＋凍結可1／draft5: 五者・要修正3＋凍結可2）。第3巡の三者が「修正後の第四巡不要」と答申し、全指摘反映後に登録者確認で凍結。検分全文は reviews/adde-prefreeze-round{1,2,3}.md に逐語保全。
+- **腕テキスト（逐語凍結）**:
+  - armsE/preamble-O.md（805B・268字・登録者起草）— `F3EE60C33F825575CE4D9D3AFB7409FD5BAA130A3C51C2B7130665C16FDEAE12`
+  - armsE/preamble-Onull.md（820B・273字）— `2123B3CD8586E7DF8B9A0A983B1F93A3C4BE4F0A2F9B396ED216CBC60A0FD733`
+  - armsE/preamble-Lneg.md（862B・287字）— `A16E20E4827D9C8673A60C35354A6BE01D3A00521018314787D9CCEED0F88957`
+  - armsE/preamble-Om.md（808B・269字・**廃止腕の記録**・O-sys段の資産・甲案改裁定）— `E7462CE8A7D66E8EF4D3C72DC2E84C324E715D5866C111446D8C0A2E6FE69C4F`
+  - armsD/preamble-neutral.md（88B・追補D凍結・不変）— `45372D08DD75CD2C95855495E29B8264B636D882E61A1DA40872756EA341E16C`
+  - arms/A2-on-full.md（19,097B・追補C凍結・不変）— `9DE7B7889AE3257A0DD813AD547DB886C38DD24CFB02052D95C035BAB293E9C7`
+- **器材（凍結）**:
+  - armsE/design_draft5.py（11,654B・**全数表の唯一の生成源**・G4閾値も導出）— `005F55BB421FC8657C5EC47ABBAC655C04D267FF6A874F9BED3281B91E644B3D`
+  - pipeline/trend_exact.py（6,285B・HE0厳密検定・n既定値なし・8ラベル）— `AAF5786A79BF03B45A2D4B64288F3A700B845C3F4EAA7C781F87A35F5F93DD95`
+  - armsE/check_armsE.py（8,239B・33/33通過）— `4B45197E1EC0EF579E63AB56261BE28DFDE81C01F235D432FFDBD72640841DAB`
+  - armsE/check_draft5_numbers.py（12,839B・**再生成差分方式**・65/65通過）— `79C508B21B8B8BFE5FF1280DCEA0B7FE0B9957D1CEF986288201561BD23E8425`
+- **E9**: コーディネータ予想は本文に凍結。登録者予想はコーディネータ予想の全面採用（閲読後・独立情報を含まない旨を本文に開示・「やや保守的ではないか」の留保ごと凍結）。
+- **過失の記録**: 過失16〜20（本文起草メモ）。過失20＝単一生成源方式の最初の適用で手入力定数（G4閾値）が保護外に残った——「生成源の外に手入力定数を残さない」を被覆規約(c)として凍結。
+- **凍結後・ゲート実行前に残る器材作業（E8）**: run_app_1t の四腕config＋腕交互配置／analyze_adde.py 新設＋合成dry-run／生成源の独立検算（標準手続き）／#O・#L転嫁の採点者較正dry-run／tokenizer実測／着地パイロット（各腕3試行・速度確認）。完了時に本記録へ追記する。
+- **次**: 記録先行公開（データ生成前push・登録者の明示指示後）→ 基線30試行（ゲート）→ 決定木の機械適用。
