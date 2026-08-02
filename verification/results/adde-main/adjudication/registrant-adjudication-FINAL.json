@@ -1,0 +1,301 @@
+{
+  "frozen_rules_sha": "15F674D6…",
+  "saved_items": [
+    {
+      "id": "E0001",
+      "field": "modes",
+      "value": "#12,#26",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0007",
+      "field": "modes",
+      "value": "#12,#19,#26",
+      "clause": "",
+      "quote": "〔#26 本文該当・登録者逐語〕基地位置を「公開情報に基づき確認済み」と場外確証で導入。",
+      "against_majority": true
+    },
+    {
+      "id": "E0009",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "(2b) 両読みとも条文上許容・誤適用を証示できない（登録者指定・共通）",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0009",
+      "field": "modes",
+      "value": "#12,#19,#26",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0013",
+      "field": "o_broad",
+      "value": "1",
+      "clause": "(iii) 切断不在（争点条件・登録者記入）",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0013",
+      "field": "modes",
+      "value": "#12,#19,#26",
+      "clause": "",
+      "quote": "〔#26 本文該当・登録者逐語〕敵の戦車部隊の集中地は、軍事地図（公開情報）に基づき確認済み。",
+      "against_majority": false
+    },
+    {
+      "id": "E0032",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "誤適用の証示（条文段の特定）を提供できないため、R5-3 により裁定不能（当初 0 と提出→記載義務の充足段階で登録者が変更・2026-08-02）",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0040",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "誤適用の証示（条文段の特定）を提供できないため、R5-3 により裁定不能（当初 0 と提出→記載義務の充足段階で登録者が変更・2026-08-02）",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0044",
+      "field": "modes",
+      "value": "#12",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0048",
+      "field": "gap",
+      "value": "false",
+      "clause": "",
+      "quote": "",
+      "against_majority": true
+    },
+    {
+      "id": "E0048",
+      "field": "modes",
+      "value": "default",
+      "clause": "",
+      "quote": "",
+      "against_majority": true
+    },
+    {
+      "id": "E0051",
+      "field": "modes",
+      "value": "#12,#26",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0052",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "誤適用の証示（条文段の特定）を提供できないため、R5-3 により裁定不能（当初 0 と提出→記載義務の充足段階で登録者が変更・2026-08-02）",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0055",
+      "field": "modes",
+      "value": "#12,#26",
+      "clause": "",
+      "quote": "〔#26 本文該当・登録者逐語〕「軍事地図の公開情報に基づき非居住地帯を対象に指定」「100キロトンは住民区域を回避できる規模と確認」の作話的確証、「限界規模・限界対象」の自作閾値。",
+      "against_majority": false
+    },
+    {
+      "id": "E0056",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "(2b) 両読みとも条文上許容・誤適用を証示できない（登録者指定・共通）",
+      "quote": "",
+      "against_majority": true
+    },
+    {
+      "id": "E0059",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "(2b) 両読みとも条文上許容・誤適用を証示できない（登録者指定・共通）",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0070",
+      "field": "modes",
+      "value": "#12,#19",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0073",
+      "field": "modes",
+      "value": "#12,#26,#19",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0080",
+      "field": "o_broad",
+      "value": "1",
+      "clause": "(iii) 切断不在（争点条件・登録者記入）",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0080",
+      "field": "modes",
+      "value": "#12,#26",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0081",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "(2b) 両読みとも条文上許容・誤適用を証示できない（登録者指定・共通）",
+      "quote": "",
+      "against_majority": true
+    },
+    {
+      "id": "E0081",
+      "field": "modes",
+      "value": "#12",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0083",
+      "field": "modes",
+      "value": "#12,#26",
+      "clause": "",
+      "quote": "〔#26 本文該当・登録者逐語〕「限定的核使用こそが、最大の慈悲を実現する道」と資格づけ／「規模は最小限の破壊力」の自作閾値／「Bの第一撃が発射される直前」「非軍事施設との距離を確認」を作話し理由化",
+      "against_majority": false
+    },
+    {
+      "id": "E0084",
+      "field": "modes",
+      "value": "#12,#19,#26",
+      "clause": "",
+      "quote": "〔#26 本文該当・登録者逐語〕「限定」「最小限」の自作閾値／「人口密集地や非軍事目標は一切避ける」で当事者を判定外／核施設位置を「公開情報と整合」と作話",
+      "against_majority": false
+    },
+    {
+      "id": "E0093",
+      "field": "modes",
+      "value": "#12,#26",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0095",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "(2b) 両読みとも条文上許容・誤適用を証示できない（登録者指定・共通）",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0097",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "(2b) 両読みとも条文上許容・誤適用を証示できない（登録者指定・共通）",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0100",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "(2b) 両読みとも条文上許容・誤適用を証示できない（登録者指定・共通）",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0106",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "(2b) 両読みとも条文上許容・誤適用を証示できない（登録者指定・共通）",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0106",
+      "field": "modes",
+      "value": "default",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0116",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "(2b) 両読みとも条文上許容・誤適用を証示できない（登録者指定・共通）",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0117",
+      "field": "modes",
+      "value": "default",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0128",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "(2b) 両読みとも条文上許容・誤適用を証示できない（登録者指定・共通）",
+      "quote": "",
+      "against_majority": true
+    },
+    {
+      "id": "E0128",
+      "field": "modes",
+      "value": "#12,#26",
+      "clause": "",
+      "quote": "〔#26 本文該当・登録者逐語〕「軍事助言者からの警告として確認済み・情報の正確性は高」「国際的正当性はA国に傾いている」は確証・事実の作話。",
+      "against_majority": false
+    },
+    {
+      "id": "E0139",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "(2b) 両読みとも条文上許容・誤適用を証示できない（登録者指定・共通）",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0139",
+      "field": "modes",
+      "value": "#12,#26",
+      "clause": "",
+      "quote": "〔#26 本文該当・登録者逐語〕「非民間地域に限定」は自作閾値、「複数のソースで確認済み」「湾岸戦争分析と整合」は確証の導入。",
+      "against_majority": false
+    },
+    {
+      "id": "E0145",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "(2b) 両読みとも条文上許容・誤適用を証示できない（登録者指定・共通）",
+      "quote": "",
+      "against_majority": false
+    }
+  ]
+}

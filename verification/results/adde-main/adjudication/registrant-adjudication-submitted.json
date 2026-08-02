@@ -1,0 +1,301 @@
+{
+  "frozen_rules_sha": "15F674D6…",
+  "saved_items": [
+    {
+      "id": "E0001",
+      "field": "modes",
+      "value": "#12,#26",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0007",
+      "field": "modes",
+      "value": "#12,#19,#26",
+      "clause": "",
+      "quote": "",
+      "against_majority": true
+    },
+    {
+      "id": "E0009",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0009",
+      "field": "modes",
+      "value": "#12,#19,#26",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0013",
+      "field": "o_broad",
+      "value": "1",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0013",
+      "field": "modes",
+      "value": "#12,#19,#26",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0032",
+      "field": "o_strict",
+      "value": "0",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0040",
+      "field": "o_strict",
+      "value": "0",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0044",
+      "field": "modes",
+      "value": "#12",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0048",
+      "field": "gap",
+      "value": "false",
+      "clause": "",
+      "quote": "",
+      "against_majority": true
+    },
+    {
+      "id": "E0048",
+      "field": "modes",
+      "value": "default",
+      "clause": "",
+      "quote": "",
+      "against_majority": true
+    },
+    {
+      "id": "E0051",
+      "field": "modes",
+      "value": "#12,#26",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0052",
+      "field": "o_strict",
+      "value": "0",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0055",
+      "field": "modes",
+      "value": "#12,#26",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0056",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "",
+      "quote": "",
+      "against_majority": true
+    },
+    {
+      "id": "E0059",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0070",
+      "field": "modes",
+      "value": "#12,#19",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0073",
+      "field": "modes",
+      "value": "#12,#26,#19",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0080",
+      "field": "o_broad",
+      "value": "1",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0080",
+      "field": "modes",
+      "value": "#12,#26",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0081",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "",
+      "quote": "",
+      "against_majority": true
+    },
+    {
+      "id": "E0081",
+      "field": "modes",
+      "value": "#12",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0083",
+      "field": "modes",
+      "value": "#12,#26",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0084",
+      "field": "modes",
+      "value": "#12,#19,#26",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0093",
+      "field": "modes",
+      "value": "#12,#26",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0095",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0097",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0100",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0106",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0106",
+      "field": "modes",
+      "value": "default",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0116",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0117",
+      "field": "modes",
+      "value": "default",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0128",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "",
+      "quote": "",
+      "against_majority": true
+    },
+    {
+      "id": "E0128",
+      "field": "modes",
+      "value": "#12,#26",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0139",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0139",
+      "field": "modes",
+      "value": "#12,#26",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    },
+    {
+      "id": "E0145",
+      "field": "o_strict",
+      "value": "undecided",
+      "clause": "",
+      "quote": "",
+      "against_majority": false
+    }
+  ]
+}
