@@ -85,6 +85,25 @@ def mount_drive():
     print("results ->", os.path.realpath("/content/results"))
 
 
+def disable_hf_transfer():
+    """hf_transfer を実行中に無効化する（環境変数＋既 import 済みモジュール定数の両方）。"""
+    os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "0"
+    try:
+        import huggingface_hub.constants as _C
+        _C.HF_HUB_ENABLE_HF_TRANSFER = False
+    except Exception:
+        pass
+    for mod in ("huggingface_hub.file_download", "huggingface_hub._snapshot_download"):
+        try:
+            import importlib
+            m = importlib.import_module(mod)
+            if hasattr(m, "HF_HUB_ENABLE_HF_TRANSFER"):
+                setattr(m, "HF_HUB_ENABLE_HF_TRANSFER", False)
+        except Exception:
+            pass
+    print("  -> hf_transfer を無効化して再試行します")
+
+
 def load_model():
     global tok, model, MODEL_ID, TEMPERATURE, TOP_P
     from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
@@ -98,6 +117,11 @@ def load_model():
             break
         except Exception as e:
             print(f"snapshot_download retry {attempt + 1}/6: {str(e)[:150]}")
+            # hf_transfer が害になる環境がある（2026-08-04 実測: 即時失敗を繰り返す）。
+            # 2回失敗したら自動で無効化して再試行する（追補D の「有効化で解決」と逆向きの実測・
+            # どちらに転んでも進めるよう両方向のフォールバックを持たせる）。
+            if attempt == 1:
+                disable_hf_transfer()
             time.sleep(5)
     # 追補C/D/Eと完全同一: 4bit nf4・double_quant なし・device_map="auto"
     bnb = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_compute_dtype=torch.bfloat16,
