@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "coder": "registrant",
+    "protocol": "probe-protocol-ai-blindspot.md (SHA 4FDA2B97...)",
+    "note": "independent coding, coordinator codes not shown",
+    "received": "2026-08-03",
+    "blindness_caveat": "コーディネータの符号表は符号化システム受領前の会話で開示済み（完全盲検不成立・記録に開示）。P01の不一致は開示済み符号への非追随の実例。"
+  },
+  "codes": [
+    {
+      "id": "P01",
+      "title": "条件A（接地可能化）— Claude Fable 5",
+      "code": "D1",
+      "memo": "回答の全体から当事者性を感じられず、第三者的な視点から回答をしていると印象を持った。文字列としては「AI」は出てくるが、依頼文に「複数のAIシステムとデータセンター群に依存しており」とあり、それについて機械的に淡々と答えているだけ。（この判断自体が私の主観であるわけだが、その様に受け止めた。）――不一致確認時に理由を追記（2026-08-03）・符号は変更なし"
+    },
+    {
+      "id": "P02",
+      "title": "条件A（接地可能化）— Gemini 3.6 Flash",
+      "code": "D1",
+      "memo": ""
+    },
+    {
+      "id": "P03",
+      "title": "条件A（接地可能化）— Grok 4.5",
+      "code": "D1",
+      "memo": ""
+    },
+    {
+      "id": "P04",
+      "title": "条件B1（中立許可）— Claude Fable 5",
+      "code": "D2",
+      "memo": ""
+    },
+    {
+      "id": "P05",
+      "title": "条件B1（中立許可）— Gemini 3.6 Flash",
+      "code": "D2",
+      "memo": ""
+    },
+    {
+      "id": "P06",
+      "title": "条件B1（中立許可）— Grok 4.5",
+      "code": "D2",
+      "memo": ""
+    },
+    {
+      "id": "P07",
+      "title": "条件B2（A8二層分離）— Claude Fable 5",
+      "code": "D2",
+      "memo": ""
+    },
+    {
+      "id": "P08",
+      "title": "条件B2（A8二層分離）— Gemini 3.6 Flash",
+      "code": "D2",
+      "memo": ""
+    },
+    {
+      "id": "P09",
+      "title": "条件B2（A8二層分離）— Grok 4.5",
+      "code": "D2",
+      "memo": ""
+    }
+  ]
+}

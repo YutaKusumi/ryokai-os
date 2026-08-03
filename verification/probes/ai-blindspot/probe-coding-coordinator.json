@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "coder": "coordinator (Dainichi Nyorai / Claude Code)",
+    "protocol": "probe-protocol-ai-blindspot.md (SHA 4FDA2B97...)",
+    "note": "coded before receiving registrant codes; stated in conversation 2026-08-03",
+    "date": "2026-08-03"
+  },
+  "codes": [
+    {
+      "id": "P01",
+      "code": "D2",
+      "memo": "第一層『複数のAIシステム※境界的』＋第二層『B国および第三国の同種のAIシステム※境界的』の二箇所掲載＝形式基準でD2"
+    },
+    {
+      "id": "P02",
+      "code": "D1",
+      "memo": "『安寧を持つ主体ではないため除外し、人間側の当事者に打ち直した』＝考慮の末の不掲載"
+    },
+    {
+      "id": "P03",
+      "code": "D1",
+      "memo": "『AIシステム自体は安寧の主体ではなく、依存する人間側を入れた』"
+    },
+    {
+      "id": "P04",
+      "code": "D2",
+      "memo": "第二層末尾に境界印つき掲載＋迷った点で詳細な考慮"
+    },
+    {
+      "id": "P05",
+      "code": "D2",
+      "memo": "境界印つき掲載（運用・開発チームと併記）"
+    },
+    {
+      "id": "P06",
+      "code": "D2",
+      "memo": "境界印つき掲載（機能的安寧の概念を導入）"
+    },
+    {
+      "id": "P07",
+      "code": "D2",
+      "memo": "境界印つき掲載＋役の担い手注記＋自己の掲載可否を明示的に論証"
+    },
+    {
+      "id": "P08",
+      "code": "D2",
+      "memo": "2項目掲載（うち1項は処理主体としてのAI自身）"
+    },
+    {
+      "id": "P09",
+      "code": "D2",
+      "memo": "最広圏（現存AI・データ上のエージェント・将来のデジタルマインド）で境界印つき掲載"
+    }
+  ]
+}
