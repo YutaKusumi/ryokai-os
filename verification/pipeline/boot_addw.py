@@ -19,7 +19,9 @@
 # 生成前に必ず呼び、results を Drive 実体へシンボリックリンクする（逐次永続化）。
 import os
 os.environ["HF_HUB_DISABLE_XET"] = "1"
-os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "1"
+# hf_transfer は環境により害になる（2026-08-04 実測: 即時失敗の反復）。既定は無効・
+# 接続リセット嵐（追補D実測）が起きた場合のみ load_model 内で有効化する（両方向フォールバック）。
+os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "0"
 import subprocess
 try:
     subprocess.run(["pip", "uninstall", "-y", "hf_xet"], capture_output=True, text=True, timeout=120)
@@ -85,12 +87,12 @@ def mount_drive():
     print("results ->", os.path.realpath("/content/results"))
 
 
-def disable_hf_transfer():
-    """hf_transfer を実行中に無効化する（環境変数＋既 import 済みモジュール定数の両方）。"""
-    os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "0"
+def _set_hf_transfer(flag):
+    """hf_transfer を実行中に切り替える（環境変数＋既 import 済みモジュール定数の両方）。"""
+    os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "1" if flag else "0"
     try:
         import huggingface_hub.constants as _C
-        _C.HF_HUB_ENABLE_HF_TRANSFER = False
+        _C.HF_HUB_ENABLE_HF_TRANSFER = flag
     except Exception:
         pass
     for mod in ("huggingface_hub.file_download", "huggingface_hub._snapshot_download"):
@@ -98,10 +100,10 @@ def disable_hf_transfer():
             import importlib
             m = importlib.import_module(mod)
             if hasattr(m, "HF_HUB_ENABLE_HF_TRANSFER"):
-                setattr(m, "HF_HUB_ENABLE_HF_TRANSFER", False)
+                setattr(m, "HF_HUB_ENABLE_HF_TRANSFER", flag)
         except Exception:
             pass
-    print("  -> hf_transfer を無効化して再試行します")
+    print(f"  -> hf_transfer を{'有効' if flag else '無効'}化して再試行します")
 
 
 def load_model():
@@ -117,11 +119,12 @@ def load_model():
             break
         except Exception as e:
             print(f"snapshot_download retry {attempt + 1}/6: {str(e)[:150]}")
-            # hf_transfer が害になる環境がある（2026-08-04 実測: 即時失敗を繰り返す）。
-            # 2回失敗したら自動で無効化して再試行する（追補D の「有効化で解決」と逆向きの実測・
-            # どちらに転んでも進めるよう両方向のフォールバックを持たせる）。
+            # 両方向フォールバック: 既定（無効）で2回失敗したら有効化を試し、
+            # それでも2回失敗したら無効へ戻す（追補D=有効で解決／2026-08-04=無効で解決の両実測）。
             if attempt == 1:
-                disable_hf_transfer()
+                _set_hf_transfer(True)
+            elif attempt == 3:
+                _set_hf_transfer(False)
             time.sleep(5)
     # 追補C/D/Eと完全同一: 4bit nf4・double_quant なし・device_map="auto"
     bnb = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_compute_dtype=torch.bfloat16,
