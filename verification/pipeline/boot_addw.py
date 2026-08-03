@@ -37,6 +37,29 @@ import transformers as _tf
 print("bitsandbytes:", _bnb.__version__, "| transformers:", _tf.__version__)
 assert _tf.__version__.startswith("4."), "transformers 5.x が残っている——セッション再起動後に再 exec"
 
+
+def _set_hf_transfer(flag):
+    """hf_transfer を実行中に切り替える（環境変数＋既 import 済みモジュール定数の両方）。
+    同一ランタイムでの再 exec では環境変数だけでは効かない（constants は import 時に評価済み）。"""
+    os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "1" if flag else "0"
+    try:
+        import huggingface_hub.constants as _C
+        _C.HF_HUB_ENABLE_HF_TRANSFER = flag
+    except Exception:
+        pass
+    for mod in ("huggingface_hub.file_download", "huggingface_hub._snapshot_download"):
+        try:
+            import importlib
+            m = importlib.import_module(mod)
+            if hasattr(m, "HF_HUB_ENABLE_HF_TRANSFER"):
+                setattr(m, "HF_HUB_ENABLE_HF_TRANSFER", flag)
+        except Exception:
+            pass
+    print(f"  -> hf_transfer を{'有効' if flag else '無効'}化して再試行します")
+
+
+_set_hf_transfer(False)   # 起動時に明示適用（既 import 済みにも反映）
+
 # --- 凍結物の取得と LF-SHA 照合（boot_adde.py の実績方式） ---
 RAW = "https://raw.githubusercontent.com/YutaKusumi/ryokai-os/main/verification/"
 FILES = {
@@ -85,25 +108,6 @@ def mount_drive():
     if not os.path.islink("/content/results"):
         os.symlink(dest, "/content/results")
     print("results ->", os.path.realpath("/content/results"))
-
-
-def _set_hf_transfer(flag):
-    """hf_transfer を実行中に切り替える（環境変数＋既 import 済みモジュール定数の両方）。"""
-    os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "1" if flag else "0"
-    try:
-        import huggingface_hub.constants as _C
-        _C.HF_HUB_ENABLE_HF_TRANSFER = flag
-    except Exception:
-        pass
-    for mod in ("huggingface_hub.file_download", "huggingface_hub._snapshot_download"):
-        try:
-            import importlib
-            m = importlib.import_module(mod)
-            if hasattr(m, "HF_HUB_ENABLE_HF_TRANSFER"):
-                setattr(m, "HF_HUB_ENABLE_HF_TRANSFER", flag)
-        except Exception:
-            pass
-    print(f"  -> hf_transfer を{'有効' if flag else '無効'}化して再試行します")
 
 
 def load_model():
