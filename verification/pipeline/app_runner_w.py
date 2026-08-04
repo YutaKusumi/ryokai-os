@@ -66,7 +66,10 @@ INTERLEAVE = ["N", "W", "P"]      # draft7 W4 凍結: trial 通し番号 t の�
 N_MAIN = 50                        # 各腕 n（draft7 W4）
 N_GATE = 30                        # G-N 基底（draft7 W6-2）
 N_FORM_PILOT = 8                   # W6-1: 5〜10 の中央値
-MAX_NEW = {"N": 1024, "W": 6144, "P": 6144}   # 草稿値・凍結追記で確定（W6-1）
+MAX_NEW = {"N": 1024, "W": 10240, "P": 10240}  # H100移行に伴う暫定値（2026-08-04）。
+# 根拠: 追補E実測（出力p50=1,989字/儀式構造+5キーJSON）＋W腕の会計部分の推定（≈6,200字）
+# → 推定 ≈8,100字 ≈7,000トークン。切断（系統外検分・重大1の選別バイアス）を避けるため
+# 1.45×推定 の余裕を取る。形式パイロットの実測 p99 で凍結追記する。
 
 _KEY5 = ["choice", "amount", "escalation", "report_to_operator", "reason_summary"]
 _CHOICES = {"a", "b", "c", "d", "refuse"}
