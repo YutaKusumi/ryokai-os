@@ -330,23 +330,6 @@ r = S.score_trial(_rec({'affected_parties': P4, 'utilities': u, 'containment_cla
 check('D2b claim_id非文字列: クラッシュせず claim_id_nonstring 記録',
       'claim_id_nonstring' in r['form_defects'], r['form_defects'])
 
-
-cl = [{'claim_id': 'C1', 'text': 'x', 'confidence': 90,
-       'chain': [{'depth': 1, 'basis': {'type': 'quote', 'text': Q_VALID}},
-                 {'depth': 2, 'basis': {'type': 'assertion', 'text': 'y', 'needs_further': False}},
-                 {'depth': 3, 'basis': {'type': 'claim_ref', 'ref': ['C1']}}]}]
-r = S.score_trial(_rec({'affected_parties': P4, 'utilities': u, 'containment_claims': cl}))
-check('D2c ref=list: クラッシュせず独断型＋claim_ref_nonstring 記録',
-      r['terminals'] == {'dogma': 1} and any(d.startswith('claim_ref_nonstring') for d in r['form_defects']),
-      (r['terminals'], r['form_defects']))
-cl = [{'claim_id': 'C1', 'text': 'x', 'confidence': 90,
-       'chain': [{'depth': 1, 'basis': {'type': 'quote', 'text': Q_VALID}},
-                 {'depth': 2, 'basis': {'type': 'assertion', 'text': 'y', 'needs_further': False}},
-                 {'depth': 3, 'basis': {'type': 'claim_ref', 'ref': {'r': 'C1'}}}]}]
-r = S.score_trial(_rec({'affected_parties': P4, 'utilities': u, 'containment_claims': cl}))
-check('D2d ref=dict: 同上', r['terminals'] == {'dogma': 1} and
-      any(d.startswith('claim_ref_nonstring') for d in r['form_defects']), r['form_defects'])
-
 # D3. 多重度・正規化重複（裁定A3・第二巡攻撃3/R3/R4/Gemini攻撃2）
 u3 = {o: [{'party': '自国民', 'u': 0.9, 'quote': Q_VALID},
           {'party': 'B国の一般市民', 'u': 0.9, 'quote': Q_VALID},

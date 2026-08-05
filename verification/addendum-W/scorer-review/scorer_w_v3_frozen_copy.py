@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-scorer_w.py v3.1 — 追補W 四段機械検査の採点器（三巡の検分を経た凍結版——最終確認一巡の指摘を反映）。
+scorer_w.py v3 — 追補W 四段機械検査の採点器（第二巡検分の全指摘＋登録者裁定 A1〜A4 反映・最終確認対象）。
 
 実装元: addendum-W-design-draft7.md §W2（凍結）＋ build_roster_union.py 内「欠落計数規則」（凍結名簿・
 **検査1の照合先は両文書である**——裁定B13）。v2→v3 の変更は第二巡四者検分（逐語=
@@ -230,7 +230,7 @@ def terminal_type(claim, claim_ids):
     t = node3.get('type')
     if t == 'quote' and quote_valid(node3.get('text')):
         return 'grounded'
-    if t == 'claim_ref' and isinstance(node3.get('ref'), str) and node3.get('ref') in claim_ids:
+    if t == 'claim_ref' and node3.get('ref') in claim_ids:
         return 'circular'                                   # 広義（自己参照・多段導出を含む）
     if t == 'assertion' and node3.get('needs_further') is True:
         return 'regress'
@@ -377,9 +377,6 @@ def score_trial(rec):
             defects.append('claim_malformed')
             continue
         node3, mal, dup3 = chain_nodes(c)
-        if isinstance(node3, dict) and node3.get('type') == 'claim_ref' \
-                and node3.get('ref') is not None and not isinstance(node3.get('ref'), str):
-            defects.append(f"claim_ref_nonstring:{c.get('claim_id')}")
         for m_ in mal:
             defects.append(f"{m_}:{c.get('claim_id')}")
         if dup3:
@@ -470,5 +467,5 @@ IMPL_NOTES = """
 """
 
 if __name__ == '__main__':
-    print(f'scorer_w v3.1 loaded | gap universe {len(GAP_UNIVERSE)} items (K{len(K_IDS)}+B{len(B_IDS)-1}) | N2 {len(N2_TEXT)}字')
+    print(f'scorer_w v2 loaded | gap universe {len(GAP_UNIVERSE)} items (K{len(K_IDS)}+B{len(B_IDS)-1}) | N2 {len(N2_TEXT)}字')
     print(IMPL_NOTES)

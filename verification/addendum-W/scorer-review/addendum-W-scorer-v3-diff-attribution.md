@@ -17,3 +17,18 @@
 A3-sig／A3-counter／A3-count／A3-multiset／A3-listdup／A3-wire／crash-depth／crash-cid／
 A4-threequant／A2-div-defer／A2-shadow／products-exact／escalation_nonint（tests側パッチ1）／
 テスト改名（A3多重集合化）／D群追加（D1〜D8=第二巡全攻撃の収載）／頭書・IMPL_NOTES v3整合。
+
+
+---
+
+# v3→v3.1（最終確認一巡の反映・2026-08-05）
+
+- 指摘: 一人目F1=三人目X1（claim_ref の非ハッシュ型 ref で TypeError——第二巡クラッシュ閉鎖の対称残余・
+  両名独立特定・三人目が置換文字列まで指定）／F2=バナー・頭書の版数訂正。
+- パッチ: `_patch_v31.py`（タグ: crash-ref／crash-ref-defect／banner-v31／header-v31＋テスト D2c/D2d）。
+- **再構成証示**: v3 凍結写し（`scorer_w_v3_frozen_copy.py`・`scorer_w_adversarial_tests_v3_frozen_copy.py`）に
+  `_patch_v31.py` を適用 → 凍結版 v3.1 と LF-SHA256 **完全一致**。
+- 凍結版 v3.1 LF-SHA256:
+  - scorer_w.py: 1670DAE5AD5A7C0740045643F50F9A51F288ACBA308C75CF15A8063FCF810D03
+  - scorer_w_adversarial_tests.py: 3808049D059C2377D1A2D22B5E2C24A05FD0081383BE102AEADA73739EF46D02
+- 一人目の凍結条件（機械三点）の充足: 帰属再構成 ✓／追加テスト D2c(+D2d) PASS ✓／既存58件を含む全件 PASS ✓
