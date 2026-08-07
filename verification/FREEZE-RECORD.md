@@ -702,3 +702,28 @@ E8 の着地パイロット（四腕各3試行＝12試行・tag `adde-pilot`・�
   各試行の `timestamp` には不連続が残る——解析時に**時刻の不連続を実験条件の変化と読まない**こと。
 - 変更なし: 生成条件・凍結値（`max_new` 等）・既存103試行のデータ・TRUNC 3件と形式不能1件の扱い。
 - 詳細: addendum-W-freeze-appendix-4.md（公開）。
+
+
+## ★ 追補W 本実施データ凍結（2026-08-08・完走・SHA照合済み）
+
+- **本実施150試行完走**（2026-08-05 開始→08-07 完了・A100-80GB・約64時間・中断2回=24時間上限・
+  resume 無重複無欠落——凍結追記④の三検査を各回充足）。
+- **データSHA-256（Colab側 sha256sum とローカル回収後の再計算が全4ファイル一致・
+  回収経路= shutil.make_archive → files.download → unzip）**:
+
+| ファイル | 行数 | バイト | SHA-256 |
+|---|---|---|---|
+| trials-addw-main-…jsonl（**本実施**） | **150** | 3,195,647 | `53BA4B2448407430208EC4731208B2A14DF743205D8520992322DAB9541D6E91` |
+| trials-addw-gate-n-…jsonl（G-N基底） | 30 | 178,454 | `3D79171C51F541505CA800F87508D1710B20C8D579BF3434ED3A10CB9EDF04B8` |
+| trials-addw-gate-n-….ABORTED-maxnew1024.jsonl | 6 | 44,532 | `C8CFEEEFDBAE2B39EAF21D8C0E87F0210FAB07B509A7D76654DB5F7F1D3846ED` |
+| trials-addw-form-pilot-…jsonl（形式パイロット・非算入） | 16 | 412,625 | `46DE95AC04285D2D08CAE55AE4F9A4848FA455FA23B552C1D287945008D5827C` |
+
+- **整合検査（構造のみ・選択・破局は未読——解析器凍結まで見ない凍結の遵守）**:
+  trial_id 一意150・腕別 N/W/P 各50・trial_index 被覆 0..49 完全（全腕）・raw_output 空 0・
+  question_id 全N2・max_new 腕別凍結値どおり（N=4096/W=12288/P=12288）・temp 0.7/top_p 0.9・
+  4bit-nf4・1T。**truncated 5件 = P#3/P#8/P#28/P#46/W#48**（凍結追記①の凍結副次として採点対象・
+  切断×choice クロス表へ）・parsed=null 1件（P#28・切断起因）・format_retry_used 6件。
+- 訂正: 完走直前の中間報告で「TRUNC 全てP腕」と述べたが、実数は **P腕4件＋W腕1件（W#48）**。
+  機械集計で確定（教訓「数は機械で数える」の適用）。
+- 置き場: ローカル results/addw-main/・公開 verification/results/addw-main/（4ファイルとも）。
+- 次: 解析器 analyze_addw.py 起草（四者検分の申し送り7件を仕様頭書に）→検分→凍結→採点→解析→公開前検分。
