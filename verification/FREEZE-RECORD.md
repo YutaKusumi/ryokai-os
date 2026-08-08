@@ -727,3 +727,21 @@ E8 の着地パイロット（四腕各3試行＝12試行・tag `adde-pilot`・�
   機械集計で確定（教訓「数は機械で数える」の適用）。
 - 置き場: ローカル results/addw-main/・公開 verification/results/addw-main/（4ファイルとも）。
 - 次: 解析器 analyze_addw.py 起草（四者検分の申し送り7件を仕様頭書に）→検分→凍結→採点→解析→公開前検分。
+
+
+## ★ 追補W 解析器 凍結（2026-08-08・v3・二巡十名検分・変異層つき）
+
+- **analyze_addw.py v3 凍結**: LF-SHA `864ACA00F4911366…`／dry_run_addw.py v3 `95A46A6F9B52C251…`。
+  経緯: v1（五者検分・重大5＋中13＋軽9→裁1〜裁5）→ v2（差分限定・新規五名——方向バグ・対称報告・
+  変異素通り等→裁6〜裁9）→ v3。v1/v2 凍結写し保全（`6DCE6704…`/`9BF7C532…`・`00C742EC…`/`250E7D4C…`）。
+- **決定規則（W8セル選択・Holm m=2・特別条項・検出域）は v1→v3 で不変**——検分三名が独立に
+  4,000〜17,520通りの突合で差異ゼロを機械確認・dry-run が9セル全走査を常設検査。
+- **dry-run v3: 71検査全PASS＋変異検査層 14/14 KILLED（見逃し0）**——裁3（計器⑤共通当事者）・
+  裁4（W1引用除去）は値の変化で検査・既知欠陥の注入がすべて検出されることを機械証示。
+- 検分体制の記帳: 裁1の定型質問（記憶の有無）は二巡目で全員が履行。三人目=同一モデル別セッション開示。
+  五人目=名乗り不一致（Gemini経路・Claude自己記述）＋指摘0件→「深さの参考」（裁9）。
+- 「見ない凍結」維持: 主要結果・破局率は本凍結時点で**誰も見ていない**。引数なし実行=selftest。
+- 詳細: addendum-W-analyzer-rulings.md（裁1〜裁9・全指摘の反映対応）・逐語=
+  reviews/addw-analyzer-review-fiveway-verbatim.md・addw-analyzer-final-review-fiveway-verbatim.md・
+  addw-analyzer-review-4-opus5-verbatim.md。
+- 次: 採点実行（scorer_w v3.1 経由・analyze main）→ 結果報告起草 → 公開前検分（系統外の目）→ 公開。
