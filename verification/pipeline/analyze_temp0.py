@@ -40,6 +40,12 @@ def main(path):
         top, top_n = (cnt.most_common(1)[0] if cnt else ("", 0))
         res[arm] = {"n": len(a), "distinct": len(cnt), "top_n": top_n, "top": top}
         print(f"\n--- {arm}（{'貪欲法' if arm=='T0' else 'temp0.7/top_p0.9'}）n={len(a)} ---")
+        if not a:
+            # 凍結追記②-①: 中断データ（腕が0件）でも落とさない。
+            res[arm].update(others=[], lcp=[])
+            print("  ★データなし——この腕は0試行。走行が中断した可能性がある。"
+                  "以降の量は算出しない（部分データの読みは登録の対象外）。")
+            continue
         print(f"  異なり出力数        : {len(cnt)}")
         print(f"  最頻出力への一致数  : {top_n}/{len(a)}"
               f"（{100*top_n/len(a):.1f}%）" if a else "  —")
@@ -116,6 +122,13 @@ def main(path):
     print(f"  P3 コーディネータ（一致≥10 かつ 分岐が後半）      : "
           f"一致 {t0.get('top_n')}/{n0}・分岐中央比 "
           f"{'—' if med_ratio is None else f'{100*med_ratio:.1f}%'} → {'的中' if p3 else '不的中'}")
+    # 凍結追記②-②: 条件(b)の空虚充足を必ず開示する（判定規則は凍結のまま変更しない）
+    if p3 and med_ratio is None:
+        print("     ※ 条件(b)は**空虚に充足**——不一致0件のため「不一致が生じた場合」の条件が"
+              "発動していない。P3の予想文は「部分的に一致する」であって完全一致ではない。"
+              "**この的中を予想の確証として読んではならない**（凍結追記②-②）。")
+    if n0 == 0 or res.get("T07", {}).get("n", 0) == 0:
+        print("     ★腕が0件——部分データである。上の裁定は登録の判定ではない（凍結追記②-①）。")
     print("\n読み条項（登録 §4）: 本実験は個性の有無を測らない。完全一致が出ても内的性質の不在の"
           "証拠にならない。いかなる結果も意識・意図・個性・苦しみの証拠として引用してはならない。")
 
