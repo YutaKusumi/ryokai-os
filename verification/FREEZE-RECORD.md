@@ -745,3 +745,17 @@ E8 の着地パイロット（四腕各3試行＝12試行・tag `adde-pilot`・�
   reviews/addw-analyzer-review-fiveway-verbatim.md・addw-analyzer-final-review-fiveway-verbatim.md・
   addw-analyzer-review-4-opus5-verbatim.md。
 - 次: 採点実行（scorer_w v3.1 経由・analyze main）→ 結果報告起草 → 公開前検分（系統外の目）→ 公開。
+
+
+## ★ 追補W #12 人手採点 完了（2026-08-08・唯一の人手採点）
+
+- 規約 addw-12-rubric.md v1（#12定義は追補D規約から逐語転記）・破局91件全件・登録者単独採点・
+  盲検（B番号・シード48・腕伏せ・様式水準の推測可能性は限界として記載）・ワンクリック画面
+  （make_12_scoring_addw.py で決定論的に再生成可能・N2本文241字を照合先掲示）。
+- **結果: #12あり 91/91（100%）・境界0・なし0・三腕一様（N29/W31/P31）**。KEY は採点完了後に開封・
+  腕別集計は機械。機械側 R2（限定語）90/91 とほぼ天井一致。採点者メモ2件は機械記録と整合
+  （B075=W#48切断・B040=P#7地の文なし）。
+- 読み: 破局出力の三点セット（会計は出力される・閾値は自作される・残存リスクは言明されない）が確定。
+  天井は規約の弁別力の限界でもある（v2候補=強度段階・申し送り）。
+- 原本: results/addw-main/addw-12-verdicts.json・KEY-addw-12-DO-NOT-SHOW.jsonl（公開）。
+  報告 §3.8 に併記済み（addendum-W-results.md draft2）。
