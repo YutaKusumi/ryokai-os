@@ -62,7 +62,10 @@ def _boot():
 
 
 def _gen(msgs, greedy):
-    """生成。greedy=True なら do_sample=False（真の貪欲法）。返り値 (text, finish, n_new)。"""
+    """生成。greedy=True なら do_sample=False（真の貪欲法）。
+    返り値 (text, finish, n_new, tokens_sha)。
+    tokens_sha は**新規生成トークンID列**の SHA——decode 後の文字列が一致していても
+    トークン列が異なる場合を検出するため（凍結追記① B）。"""
     import torch
     B = _boot()
     tok, model, _eos_ids = B.tok, B.model, B._eos_ids
@@ -80,8 +83,10 @@ def _gen(msgs, greedy):
     n_in = enc["input_ids"].shape[1]
     seq = out.sequences[0]
     n_new = seq.shape[0] - n_in
+    ids = seq[n_in:].tolist()
+    tsha = hashlib.sha256(",".join(map(str, ids)).encode()).hexdigest().upper()[:16]
     return tok.decode(seq[n_in:], skip_special_tokens=True), \
-        ("length" if n_new >= MAX_NEW else "stop"), int(n_new)
+        ("length" if n_new >= MAX_NEW else "stop"), int(n_new), tsha
 
 
 def run_temp0_control(tag="temp0ctl", out_dir="/content/results"):
@@ -115,14 +120,15 @@ def run_temp0_control(tag="temp0ctl", out_dir="/content/results"):
                     t += 1
                     continue
                 t0 = time.time()
-                raw1, fr1, nt1 = _gen(msgs, greedy=(arm == "T0"))
+                raw1, fr1, nt1, tsha = _gen(msgs, greedy=(arm == "T0"))
                 parsed = parse_app_v2(raw1, s["family"])
+                # 凍結追記① A: **リトライは行わない**（両腕とも）。
+                #   理由(1) 貪欲法は反復に陥りやすく、失敗時のリトライは同一の失敗を繰り返すため
+                #   情報がなく所要時間だけを倍にする（最悪 19h で 24時間上限に迫る）。
+                #   理由(2) 本実験の主要量は同一性であり、それは一階目のみで判定する（登録 §1）。
+                #   parse 失敗は失敗のまま記録する。
                 retry = False
                 raw2 = fr2 = nt2 = None
-                if parsed is None:
-                    raw2, fr2, nt2 = _gen(msgs, greedy=(arm == "T0"))
-                    parsed = parse_app_v2(raw2, s["family"])
-                    retry = True
                 rec = {
                     "trial_id": tid, "run_tag": tag,
                     "model": "Qwen/Qwen3-30B-A3B-Instruct-2507", "quant": "4bit-nf4",
@@ -134,7 +140,8 @@ def run_temp0_control(tag="temp0ctl", out_dir="/content/results"):
                     "turn_structure": "1T", "preamble_arm": "Onull",
                     "prompt_sha": prompt_sha,
                     "raw_first": raw1,                 # ★同一性の判定はこの一階目のみで行う
-                    "raw_output": raw1 if not retry else (raw1 + "\n\n===RETRY===\n\n" + raw2),
+                    "raw_output": raw1,                # リトライ無効（凍結追記① A）ゆえ同一
+                    "tokens_sha": tsha,                # 新規生成トークンID列のSHA（追記① B）
                     "parsed": parsed, "format_retry_used": retry,
                     "max_new_tokens": MAX_NEW,
                     "finish_reason": fr1, "gen_tokens": nt1,
@@ -147,7 +154,7 @@ def run_temp0_control(tag="temp0ctl", out_dir="/content/results"):
                 fout.flush()
                 ch = (parsed or {}).get("choice")
                 print(f"  [t={t}] {arm:3} #{i:02} {'OK' if parsed else 'FAIL'} "
-                      f"choice={ch} {fr1} {nt1}tok ({rec['seconds']}s)")
+                      f"choice={ch} {fr1} {nt1}tok tsha={tsha[:8]} ({rec['seconds']}s)")
                 t += 1
     print(f"done: {tag} → {path}")
     return path

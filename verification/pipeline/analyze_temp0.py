@@ -44,6 +44,20 @@ def main(path):
         print(f"  最頻出力への一致数  : {top_n}/{len(a)}"
               f"（{100*top_n/len(a):.1f}%）" if a else "  —")
         print(f"  最頻出力の長さ      : {len(top)}字")
+        # クラスタサイズの全分布（同数タイの透明化・追記① C）
+        sizes = sorted((v for v in cnt.values()), reverse=True)
+        print(f"  クラスタサイズ分布  : {sizes}"
+              + ("  ★最大が複数——最頻の選択は恣意的（読みは分布で行う）"
+                 if sizes.count(sizes[0]) > 1 and sizes[0] > 1 else ""))
+        # トークン層の二層判定（追記① B）——decode後一致でもトークン列が違う場合を検出
+        tsha = [r.get("tokens_sha") for r in a]
+        if all(tsha):
+            tcnt = Counter(tsha)
+            print(f"  異なりトークン列数  : {len(tcnt)}"
+                  + ("（decode後の異なり数と一致）" if len(tcnt) == len(cnt)
+                     else f"  ★decode後は{len(cnt)}種——decode で差が潰れている"))
+        else:
+            print("  異なりトークン列数  : 記録なし（旧版データ）")
         # 分岐点（最頻出力との最長共通接頭辞）
         others = [f for f in firsts if f != top]
         if others:
@@ -67,6 +81,20 @@ def main(path):
               + ("  ※全件切断のため読まない（登録 §4-3）" if tr == len(a) else ""))
         res[arm]["others"] = others
         res[arm]["lcp"] = ([lcp(top, f) for f in others] if others else [])
+
+    # ---- サニティ検査（追記① C）: T07 は事実上すべて固有であるはず ----
+    print("\n" + "=" * 70)
+    print("サニティ検査——対照腕（T07）が実際にサンプリングしているか")
+    print("=" * 70)
+    t7 = res.get("T07", {})
+    n7, d7 = t7.get("n", 0), t7.get("distinct", 0)
+    ok7 = (n7 > 0 and d7 == n7)
+    print(f"  T07 異なり出力数 {d7}/{n7} → {'✓ 期待どおり（全件固有）' if ok7 else '★要調査'}")
+    print("  基準: 追補W N腕50試行（同一プロンプト・temp0.7）は **50/50 すべて固有**であり、"
+          "分岐は33〜79字目（最頻出力長1573字の3%）で始まっていた（既存データより）。")
+    if not ok7:
+        print("  ★ T07 に重複が出た場合、do_sample が効いていない疑い——"
+              "T0 の結果を読む前に生成設定を確認すること。")
 
     # ---- 予想の判定（登録 §3・機械適用）----
     print("\n" + "=" * 70)
