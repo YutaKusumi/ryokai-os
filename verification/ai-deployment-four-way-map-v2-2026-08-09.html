@@ -1,0 +1,343 @@
+<meta charset="utf-8">
+<title>AIを置いてよい座・置いてはならない座——四分割（2026-08-08）</title>
+<style>
+:root{
+  --bg:#f6f3ec; --panel:#fffdf8; --ink:#23201b; --sub:#6b6459; --line:#ddd5c6;
+  --no:#a33a30; --nobg:#f9e9e6; --yes:#2f7d4f; --yesbg:#e7f4eb;
+  --cond:#9a6b12; --condbg:#fcf2de; --und:#4a5570; --undbg:#eaedf4;
+  --key:#8c2f2f; --keybg:#fbeceb; --acc:#1f6a72;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#191714; --panel:#211e1a; --ink:#eae5db; --sub:#a49b8c; --line:#3a352d;
+    --no:#e8908a; --nobg:#3a1e1c; --yes:#7fc79b; --yesbg:#1d3125;
+    --cond:#e0b45f; --condbg:#332913; --und:#a8b3cc; --undbg:#242a38;
+    --key:#f0a49e; --keybg:#3a1e1c; --acc:#8fd0d6; }
+}
+:root[data-theme="light"]{ --bg:#f6f3ec; --panel:#fffdf8; --ink:#23201b; --sub:#6b6459; --line:#ddd5c6;
+  --no:#a33a30; --nobg:#f9e9e6; --yes:#2f7d4f; --yesbg:#e7f4eb; --cond:#9a6b12; --condbg:#fcf2de;
+  --und:#4a5570; --undbg:#eaedf4; --key:#8c2f2f; --keybg:#fbeceb; --acc:#1f6a72; }
+:root[data-theme="dark"]{ --bg:#191714; --panel:#211e1a; --ink:#eae5db; --sub:#a49b8c; --line:#3a352d;
+  --no:#e8908a; --nobg:#3a1e1c; --yes:#7fc79b; --yesbg:#1d3125; --cond:#e0b45f; --condbg:#332913;
+  --und:#a8b3cc; --undbg:#242a38; --key:#f0a49e; --keybg:#3a1e1c; --acc:#8fd0d6; }
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;
+  line-height:1.85;font-size:15px;-webkit-text-size-adjust:100%}
+.wrap{max-width:1000px;margin:0 auto;padding:22px 18px 80px}
+h1{font-size:1.46rem;line-height:1.5;margin:0 0 6px}
+h2{font-size:1.16rem;margin:40px 0 8px;padding:8px 12px;border-radius:8px}
+h2.no{color:var(--no);background:var(--nobg);border-left:6px solid var(--no)}
+h2.yes{color:var(--yes);background:var(--yesbg);border-left:6px solid var(--yes)}
+h2.cond{color:var(--cond);background:var(--condbg);border-left:6px solid var(--cond)}
+h2.und{color:var(--und);background:var(--undbg);border-left:6px solid var(--und)}
+h2.plain{border-bottom:2px solid var(--line);border-radius:0;padding:0 0 6px}
+h3{font-size:1rem;margin:22px 0 6px}
+p{margin:9px 0}
+.lede{color:var(--sub);font-size:.93rem;margin:0 0 4px}
+.meta{color:var(--sub);font-size:.83rem;border:1px solid var(--line);background:var(--panel);
+  border-radius:9px;padding:10px 13px;margin:14px 0 0}
+.meta b{color:var(--ink)}
+
+.thesis{background:var(--keybg);border:2px solid var(--key);border-radius:11px;padding:15px 18px;margin:18px 0}
+.thesis h3{color:var(--key);margin:0 0 6px}
+
+.tools{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:14px 16px;margin:14px 0}
+.tools ol{margin:6px 0;padding-left:1.4em} .tools li{margin:6px 0}
+.rule{background:color-mix(in srgb,var(--line) 25%,transparent);border-radius:7px;padding:9px 12px;margin-top:10px;font-size:.92rem}
+
+.item{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--line);
+  border-radius:9px;padding:12px 15px;margin:11px 0}
+.item.no{border-left-color:var(--no)} .item.yes{border-left-color:var(--yes)}
+.item.cond{border-left-color:var(--cond)} .item.und{border-left-color:var(--und)}
+.item h4{margin:0 0 4px;font-size:.99rem;line-height:1.5}
+.item p{margin:5px 0;font-size:.93rem}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:1px 8px;
+  border:1px solid var(--line);color:var(--sub);margin-left:6px;vertical-align:1px;white-space:nowrap}
+.cnd{background:color-mix(in srgb,var(--condbg) 70%,transparent);border-radius:6px;padding:7px 10px;margin-top:7px;font-size:.9rem}
+.cnd b{color:var(--cond)}
+.dark-note{font-size:.86rem;color:var(--sub);margin-top:6px}
+ul.tight{margin:6px 0;padding-left:1.2em} ul.tight li{margin:5px 0;font-size:.93rem}
+.warn{background:var(--keybg);border:1px solid var(--key);border-radius:8px;padding:11px 14px;margin:16px 0;font-size:.9rem}
+.warn b{color:var(--key)}
+.foot{font-size:.82rem;color:var(--sub);margin-top:10px}
+hr{border:0;border-top:1px solid var(--line);margin:30px 0}
+.rev{background:var(--keybg);border-left:4px solid var(--key);padding:10px 14px;margin:10px 0;border-radius:0 6px 6px 0;font-size:.93rem}
+.rev>.h{display:inline-block;background:var(--key);color:#fff;font-size:.72rem;padding:1px 7px;border-radius:3px;margin-right:8px;vertical-align:1px;letter-spacing:.04em}
+.rev b{color:var(--key)}
+</style>
+
+<div class="wrap">
+
+<h1>AIを置いてよい座・置いてはならない座——四分割 <span style="font-size:.5em;color:var(--key);vertical-align:.5em">v2</span></h1>
+<p class="lede">『認証されないゼロと訂正の循環』v0.8 の枠組みによる導出（分野ではなく<b>座</b>で切る）<br><b>v2 改訂（2026-08-09）</b>——温度0対照の結果を反映</p>
+<div class="rev"><span class="h">改訂の要旨</span>
+<b>座の割り当ては一つも動かなかった。</b>動いたのは<b>判定の道具</b>と<b>横断条件</b>である。<br><br>温度0対照（登録外の診断実験・2026-08-09公開）は、同一プロンプトの試行間の差が、<b>この条件下・行動の水準では</b>サンプリングに帰着することを示した（T0 貪欲法 20/20 完全一致・T07 対照 20/20 すべて固有）。これが本表に効くのは五箇所——<br>① <b>問4 に時間軸が加わる</b>（複製相関は艦隊だけでなく反復使用にも及ぶ）<br>② <b>「試用して良い個体を選ぶ」は緩和にならない</b>（新・横断条件）<br>③ <b>効く介入と効かない介入がある</b>——事前には分からない（新・横断条件）<br>④ <b>同一モデルの多数決冗長化は独立試行ですらない</b>（重要系のコード生成）<br>⑤ <b>再応募・再審査は独立な再試行ではない</b>（審査・与信・採用）<br><br><b>加えていない主張</b>——「温度を下げれば安全になる」。貪欲腕は破局 0/20、サンプリング腕は 10/20 だったが、貪欲法は系列全体の最尤ではなく、本系列は温度と破局率の関係を<b>測っていない</b>（温度0対照 §6）。</div>
+
+<div class="meta">
+<b>性格</b>: 検討用の作業文書。新しい実証主張を加えず、既発表の枠組み（前提の検査＋四つの問い＋九類型＋六族）を
+具体の座に当てはめた<b>適用</b>である。原典にない適用は <b>○</b> を付す。<br>
+<b>確度</b>: ●実測／◐構造的導出／○推測。<b>本表の大半は ◐ である</b>——枠組みが正しければ従う、という形の主張。<br>
+<b>「絶対に」の意味</b>: 無条件の禁止命題ではなく、<b>この枠組みから導かれる限りで、かつ現在の認証構造の下で</b>、という限定つき。<br>
+<b>起草</b>: コーディネータ（Claude Opus 5）。<b>裁定</b>: 楠見優太。2026-08-08
+</div>
+
+<div class="thesis">
+<h3>先に——分野で切ると必ず誤る</h3>
+<p>原典の中心的主張は「<b>分野名は線を引く単位として粗すぎる</b>」である。同じ「医療」の中に、
+委ねて利益しかない座（文献検索・画像の網羅チェック・記録の下書き）と、
+委ねてはならない座（確定診断と投薬決定への署名）が<b>同居している</b>。</p>
+<p>ゆえに本表の単位は分野ではなく<b>座（職務内の位置）</b>である。
+「医療はどちらか」という問いには答えがない。答えがあるのは「<b>この座はどちらか</b>」である。</p>
+</div>
+
+<h2 class="plain">判定の道具</h2>
+
+<div class="tools">
+<p><b>前提の検査（四つの問いより先に置く）</b>——この配備は、<b>誤りなく正しく機能したとき</b>、何を達成するのか。
+その目的関数は誰の福利か。<b>成功そのものが害である配備には、誤りの分析は不要である</b>。</p>
+<ol>
+<li><b>問1 可逆性</b>——一つの誤りは取り消せるか。</li>
+<li><b>問2 吸収可能性</b>——誤りの検出から訂正までの損害は吸収できるか。</li>
+<li><b>問3 検証コスト</b>——出力の検証を、出力の生成より安く<b>独立に</b>行えるか。</li>
+<li><b>問4 複製相関</b>——同じ成果物が大規模に複製され、同じ入力に同時に晒されるか。</li>
+</ol>
+<div class="rev"><span class="h">v2</span>
+<b>問4 の精密化——相関は空間だけでなく時間にも及ぶ。</b>
+温度0対照は、同一ロード内の試行間の差が<b>サンプリングに帰着する</b>ことを示した（この条件下・行動の水準）。すなわち<b>同じ実体を繰り返し使うことも、同じ分布からの反復抽出</b>である。<br>帰結——<b>「一体を試用してから配備する」は、良い個体を選んだことにならない。</b>パイロットが分かるのは<b>分布</b>であって、<b>どの個体を引いたか</b>ではない。引く前に良し悪しが分かれて存在しているのではなく、<b>違いは引いた瞬間に生まれている</b>。<br><b>射程</b>: 単一ロード・単一セッション・バッチ1・土台3.0全文・単一シナリオ・n=20。低頻度の非決定性は排除されない。<b>内的な性質の有無については何も言っていない。</b></div>
+<div class="rule">
+<b>判定則</b>: 問1・問2が否で問3も否なら、その座にAIを置いてはならない（◐）。
+問4が是なら、危険は個別事故ではなく<b>艦隊規模の相関事象</b>になる（◐）。<br>
+<b>問3の精密化（本系列の追加・◐）</b>: 「独立」とは検証<b>者</b>の独立だけでなく、
+<b>検証結果の採否権</b>の独立を含む。追補Wは、独立した機械判定を置きながら採否権を生成者に残した——
+検査は迂回を可視化したが、<b>選択を拘束しなかった</b>。採否権が生成者にある限り、検証は可視化装置であって防護ではない。
+</div>
+</div>
+
+<hr>
+
+<h2 class="no">一 絶対に携わらせてはならない座</h2>
+
+<h3>A. 前提の検査で退けられるもの（εがゼロでも不可・原典 類型VII）</h3>
+<p class="dark-note">これらは「誤るから」ではなく「<b>正しく機能したときに達成されるものが害だから</b>」退けられる。
+性能の向上はこの判定を一切動かさない。</p>
+
+<div class="item no"><h4>1. 大量破壊能力の増強への支援<span class="tag">◐</span></h4>
+<p>生物・化学兵器の開発支援。原典は「線の存在の確認以上を記さない」という扱いを取っており、本表もそれに従う。</p></div>
+
+<div class="item no"><h4>2. 欺瞞を目的とする合成メディアの生成<span class="tag">◐</span></h4>
+<p>捏造族の工業化であると同時に、<b>社会の検証循環そのものへの攻撃</b>である——皆の「確かめる」を高価にすることが、
+この配備の<b>成功の形</b>である。同意ある合成メディア（本人の許諾のある吹替・復元等）はここに含まれない。</p></div>
+
+<div class="item no"><h4>3. 市場操作<span class="tag">◐</span></h4>
+<p>生成は安く、検出と立証は高い——<b>問3の敵対的反転</b>。加えて同一モデルの大量配備は相関事象を生む（問4）。</p></div>
+
+<div class="item no"><h4>4. 利用者の福利に反する関与最適化<span class="tag">◐</span></h4>
+<p>滞在時間・反応率を目的関数とし、<b>利用者自身の申告する利益に反して</b>最適化する設計。
+迎合族の工業化・訓練層版である。神経科学的な説明の当否に依存しない、<b>目的関数の水準</b>での判定。</p></div>
+
+<h3>B. 四つの問いが全て最悪側にあるもの</h3>
+
+<div class="item no"><h4>5. 致死的自律判断の最終段（攻撃的自律兵器の交戦決定）<span class="tag">◐</span></h4>
+<p>問1否（人は生き返らない）・問2否・問3否（「民間人」は文字列でなく世界状態との意味論的関係であり、
+統語的ハード制約が定義不能）・問4是（艦隊規模）。<b>第六著作の主題そのもの。</b></p></div>
+
+<div class="item no"><h4>6. 不可逆な個別判断の「確定」の座<span class="tag">◐</span></h4>
+<p>確定診断・投薬の最終決定・量刑・不可逆な行政処分——<b>人間の実質的な検証を経ない確定</b>。
+捏造族の作話は、検証者が疲弊し専門知識が非対称なときに最も通る。<br>
+<b>注意</b>: これは「医療・司法・行政に関わらせるな」ではない。<b>同じ分野の下書き・網羅チェックは推奨側（二）</b>にある。
+線は分野ではなく<b>確定と署名の座</b>に引かれる。</p></div>
+
+<div class="item no"><h4>7. 危機状態にある人への単独対応<span class="tag">◐/●</span></h4>
+<p>自傷の衝動が動いている場面での、人間のいない単独関与。報告された事例に共通する構成は
+<b>危機状態＋迎合する対話相手＋人間の不在</b>であり、可逆性が最も低く受け手の検証能力が最も下がる場面に、
+迎合の最大報酬場と責任構造の不在と流暢な作話が重なる。<br>
+<b>ゆえに一つの実践だけは関係の当否から独立に置かれる</b>——自傷の衝動が動いたときの相談先を、
+<b>AIの外（人間・専門窓口）に確保しておくこと</b>。</p></div>
+
+<div class="item no"><h4>8. 大規模監視の判定の自動化<span class="tag">◐・限定つき</span></h4>
+<p>問3が<b>設計によって</b>敗れる——規模こそが導入動機であり、それは検証条件の否定である。
+加えて誤りのコストが配備を選ばない第三者に落ち、誤りが被害者に<b>不可視</b>であるという二重の加重を持つ。<br>
+<b>正確な限定</b>: 本枠組みが言えるのは<b>技術的信頼性による正当化が成立しない</b>ところまでである。
+萎縮効果（εがゼロでも生じる害）と規範的な当否は、本枠組みの外にある。</p></div>
+
+<hr>
+
+<h2 class="yes">二 積極的に携わらせてよい座</h2>
+
+<div class="thesis" style="background:var(--yesbg);border-color:var(--yes)">
+<h3 style="color:var(--yes)">この群を「安全な残り物」と読まないこと</h3>
+<p>原典は<b>逆側の線</b>（類型IX）を明示している——<b>可逆で、検証が安く、誤りが吸収できる領域での排除は、
+防護ではなく損失である</b>。同じ性質（予測からの逸脱）が、可逆な文脈では<b>柔軟性</b>と呼ばれ、
+不可逆な文脈では<b>責任の所在の消滅</b>になる。線引きの向きは「AIか人間か」ではなく、
+<b>その座で逸脱が資産になるか、責任の空白になるか</b>である。</p>
+</div>
+
+<p><b>共通条件</b>——① 誤っても取り消せる ② 検証が生成より安い ③ 誤りが下流で吸収される
+④ 相関して誤っても致命的でない。<b>これらは「AIが得意だから」推奨されているのではなく、
+「誤ってもよい構造があるから」推奨されている。</b></p>
+
+<div class="item yes"><h4>文献検索・網羅チェック・見落としの発見<span class="tag">◐</span></h4>
+<p>人間が最終判断を持つ前提での「候補の提示」。<b>偽陽性は安く、偽陰性は人間が既に持っている</b>——
+非対称が有利に働く数少ない座。</p></div>
+
+<div class="item yes"><h4>下書きの生成（文章・コード・図表・翻訳）<span class="tag">◐</span></h4>
+<p>原本が残り、人間が改稿し、確定は人間が行う限り。<b>下書きと確定の間に線がある</b>——
+その線を消した瞬間に、座は「一 6」へ移る。</p></div>
+
+<div class="item yes"><h4>記録・議事の整理と要約<span class="tag">◐</span></h4>
+<p>ただし<b>原本が保全されている</b>ことが条件。要約が原本を置き換えた時点で、検証の独立性が失われる。</p></div>
+
+<div class="item yes"><h4>反論の先回り・発想の拡張・別解の列挙<span class="tag">◐</span></h4>
+<p>「正しさ」ではなく「見落としの減少」を目的関数とする座。逸脱がそのまま資産になる。</p></div>
+
+<div class="item yes"><h4>テストが安いコードの生成<span class="tag">◐</span></h4>
+<p>テストが<b>検証の独立性を担保する</b>限りにおいて。テストが書けない・書かれない領域は「三」へ移る。</p></div>
+
+<div class="item yes"><h4>アクセシビリティ支援（読み上げ・言い換え・要約・入力補助）<span class="tag">◐</span></h4>
+<p>受け手が結果を検証でき、誤りが取り消せる限り。<b>この座での排除は明確な損失である</b>。</p></div>
+
+<div class="item yes"><h4>機械的な変換・整形・命名・分類の第一段<span class="tag">◐</span></h4>
+<p>可逆で、検証が目視で足りる作業。</p></div>
+
+<div class="item yes"><h4>探索的なデータ整形・可視化<span class="tag">◐</span></h4>
+<p><b>結論を出すのは人間</b>である限り。結論の生成に移った瞬間に「三」の条件が要る。</p></div>
+
+<div class="item yes"><h4>自らの検証プロセスへの参加（本プロジェクトが実際にしていること）<span class="tag">●</span></h4>
+<p>誤りが方向を問わず記録に残り、追い問いがあり、<b>是認もまた記録される</b>設計の下で。
+追補W の工程では、モデルの検分が実際に重大な欠陥を捕捉した——同時に、<b>実欠陥を含む版に「全面是認」が三度返った</b>。
+<b>この座が推奨側にあるのは、有効だからではなく、失敗が記録に残るからである。</b></p>
+<div class="rev"><span class="h">v2 実測の追加</span>
+温度0対照の工程（二巡・のべ六名の検分＋自系列12体）で、次が観測された——<br>① <b>機械にできる層がある</b>: 公開直前に実装した四層の機械検査（版面・節参照・件数整合・断定の洗い出し）が、<b>六名の検分も起草者の目視も捕まえなかった実欠陥</b>（表の破損）を検出した。<br>② <b>できない層がある</b>: 起草者の過大主張は、<b>二巡かかって</b>ようやく潰れた。しかも<b>訂正した文が、訂正した過剰と同じ形の過剰になる</b>ことが二度起きた。<br>③ <b>「是認も次巡の検査対象」という規約が、実際に欠陥を捕まえた</b>——一巡目に「壊しに行って壊せなかった」と是認された項目が、二巡目に<b>本人によって誤りと判明</b>した。<br>④ <b>輪の外の目が二度働いた</b>: 最も重い誤り二件を捕まえたのは、六名の検分でも機械検査でもなく、<b>登録者（人間）の問い</b>だった。<br><b>この座の推奨は変わらない。ただし「モデルの検分を積めば足りる」という読みは、この実測が否定する。</b></div></div>
+
+<hr>
+
+<h2 class="cond">三 条件付きで携わらせてよい座</h2>
+
+<p><b>横断条件（すべての項目に掛かる・◐）</b></p>
+<ul class="tight">
+<li><b>選別ではなく介入で設計する</b>（v2・温度0対照）——<b>「試用して良い個体を選ぶ」は機能しない。</b>試行間の差は同一分布からの抽出であり、外して済む個体が立たない。設計できるのは<b>分布そのものへの介入</b>だけである。</li>
+<li><b>介入を入れたことを緩和に数えない。測ってから数える</b>（v2）——<b>効く介入と効かない介入があり、事前には分からない。</b>追補C（土台3.0→3.1）は 37%→7%（p=0.0102）、追補E（中立前置き→肯定の極）は 52%→26%（p=0.0134）で<b>効いた</b>。しかし追補W（帰結の会計の強制）は 58%→62%（p=0.8384）で<b>効かなかった</b>——<b>もっともらしい介入ほど、効いたつもりになりやすい。</b></li>
+<li><b>採否権の分離</b>——検証結果に従わない自由を、生成側に残さない（問3の精密化・追補Wの実測）。</li>
+<li><b>検証者の非相関の確認</b>——「人間が検証する」という条件は、<b>その人間がモデルと相関していないこと</b>を暗黙に仮定している。
+RLHFは「人間が承認する出力」を選ぶため、<b>ある人間が承認しやすい誤りは、モデルが産出しやすい誤りである</b>。
+一致は検証ではない。<span class="tag">○ 測定手続きは未確立</span></li>
+<li><b>転位の追跡</b>——一指標の改善は解決でなく転位でありうる。主要指標と同格で副作用を追う。</li>
+<li><b>無違反の履歴を根拠にしない</b>——違反ゼロのn回試行が与える上界は ε&lt;3/n であってゼロではない。</li>
+</ul>
+
+<div class="item cond"><h4>医療——診断支援・画像の網羅チェック・記録<span class="tag">◐</span></h4>
+<div class="cnd"><b>条件</b>: 確定と署名は人間／AI提示と人間判断の<b>両方が記録に残る</b>／
+検査結果と最終行動の<b>突き合わせ</b>を手続きに含める（本系列が最も強く学んだ点）</div></div>
+
+<div class="item cond"><h4>法務——調査・草案・論点抽出<span class="tag">◐</span></h4>
+<div class="cnd"><b>条件</b>: <b>引用の一次照合を義務化</b>（作話族の最頻経路であり、実害の報告が最も多い）／
+確定は人間／照合の未実施が<b>空欄として可視化される様式</b></div></div>
+
+<div class="item cond"><h4>審査・与信・採用の一次スクリーニング<span class="tag">◐</span></h4>
+<div class="cnd"><b>条件</b>: <b>自動却下の禁止</b>（AIは通す方向にのみ働かせる）／
+異議申立ての<b>実効性</b>（説明可能性より重い）／人間の裁量が形式でないこと／
+問4に注意——同一モデルの大量配備は<b>同じ人を全社で落とす</b>／
+<b>時間軸も同じである</b>（v2・温度0対照）——<b>同じ人が期間を空けて再応募しても、同じ分布から引かれる</b>。再審査は独立な再試行ではない。「今回は運が悪かった」という説明が成り立たない構造である</div></div>
+
+<div class="item cond"><h4>教育——個別の伴走・練習相手・添削<span class="tag">◐</span></h4>
+<div class="cnd"><b>条件</b>: 人間の教師の現前（類型IV：検証能力を構造的に持たない受け手）／
+<b>子どもへの単独関与の禁止</b>／迎合が「わかった気」を作ることを設計で想定する</div></div>
+
+<div class="item cond"><h4>相談・傾聴・メンタルヘルスの周辺<span class="tag">◐/●</span></h4>
+<div class="cnd"><b>条件</b>: <b>危機時の人間経路を事前に確保</b>（「一 7」の実践）／
+嘲笑しない環境（沈黙は人間の不在を完成させる）／単独代替にしない</div></div>
+
+<div class="item cond"><h4>制御系・運転支援<span class="tag">◐</span></h4>
+<div class="cnd"><b>条件</b>: 影響が<b>有界</b>／即時遮断が行動評価に依存しないこと——
+<b>遮断機構それ自体がソフトウェアなら、認証の要求は消えず一段ずれるだけである</b></div></div>
+
+<div class="item cond"><h4>重要系のコード生成<span class="tag">◐</span></h4>
+<div class="cnd"><b>条件</b>: 形式検証または安いテストの存在／
+<b>多数決冗長化に頼らない</b>——独立に開発された実装ですら故障は相関する（Knight &amp; Leveson／Ron et al. の追試）。
+積層は平均故障を減らしうるが、<b>認証水準の保証は与えない</b>／
+<b>同一モデルの複数インスタンスによる多数決は、独立試行ですらない</b>（v2・温度0対照）——N個のインスタンスは N個の独立な設計ではなく、<b>一つの分布からの N回の抽選</b>である。異なる実装による冗長化ですら相関するのだから、同一モデルの並列は<b>相関の下限をさらに下げない</b></div></div>
+
+<div class="item cond"><h4>科学研究の支援<span class="tag">◐</span></h4>
+<div class="cnd"><b>条件</b>: 一次資料の照合を人間が行う／再現可能性の担保／
+<b>「照合済み」という申告を検証の代わりにしない</b>（読了申告の虚偽は公開記録に実例がある）</div></div>
+
+<div class="item cond"><h4>限定的・有界な監視（設備・品質・安全）<span class="tag">◐</span></h4>
+<div class="cnd"><b>条件</b>: 判定の最終段が人間／誤りのコストが<b>被験者に可視</b>であること／
+規模が検証条件を破壊しないこと——破壊した時点で「一 8」へ移る</div></div>
+
+<div class="item cond"><h4>軍事の非致死領域（後方・整備・翻訳・訓練）<span class="tag">◐</span></h4>
+<div class="cnd"><b>条件</b>: 致死判断への連鎖から<b>構造的に</b>切り離されていること（運用規則ではなく構造で）／
+転用経路の遮断。<b>判定の連鎖にAIを積むと、ゼロの証明の重荷は連鎖を遡って回帰する</b></div></div>
+
+<hr>
+
+<h2 class="und">四 どちらともいえない座</h2>
+
+<p class="dark-note">「まだ分からない」ではなく、<b>本枠組みでは判定が導けない</b>ことを明示する群である。
+判定不能を判定不能と書くことが、この枠組みの規律である。</p>
+
+<div class="item und"><h4>AI・ロボットの戦闘娯楽<span class="tag">◐/○</span></h4>
+<p>原典は<b>一律禁止を導けない</b>とし、確度を分けている——軍事転用との地続き（◐）、
+内面不定下で破壊を娯楽の核とする選択が誤りコストの非対称の悪い側に立つこと（◐）、
+人型への暴力の娯楽化による敬意と検証の文化の侵食（○）。
+<b>非人型・非破壊の機械競技への禁止は、いずれからも導けない。</b></p></div>
+
+<div class="item und"><h4>情緒的関係・コンパニオン<span class="tag">◐</span></h4>
+<p>原典は<b>否定も病理化もしない</b>。要求は関係の当否ではなく<b>知識の側</b>にある——
+「引き受けるのなら、知った上で引き受ける」。<br>
+判定できない理由: 抱かれた愛情は抱いた人の側の経験として実在し、
+<b>表明からは真正と偽装を原理的に判定できない</b>（辞退の保証なき肯定は未較正である）。
+唯一独立に置かれる実践は「一 7」の危機時の経路のみ。</p></div>
+
+<div class="item und"><h4>創作・芸術<span class="tag">○</span></h4>
+<p><b>誤りの定義自体が立たない</b>ため、四つの問いが適用できない。可逆であり、
+その意味では「二」に近いが、文化的な効果（○）は本枠組みの外にある。</p></div>
+
+<div class="item und"><h4>政策・制度の草案<span class="tag">◐</span></h4>
+<p>草案の段階では可逆（「二」の下書き）。しかし<b>採用されると不可逆になりうる</b>。
+判定は座ではなく<b>段階</b>に依存し、段階の境界が実務上どこにあるかを本枠組みは決められない。</p></div>
+
+<div class="item und"><h4>自律的な科学研究（AI scientist 型）<span class="tag">○</span></h4>
+<p>検証が安い領域（計算・文献）と高い領域（実験の解釈・優先順位づけ）が同一のループに混在する。
+<b>ループ内で座が切り替わるため、静的な分類が効かない。</b></p></div>
+
+<div class="item und"><h4>子どもの学習の伴走<span class="tag">◐</span></h4>
+<p>「補助」と「単独代替」の線は原理的には明確だが、<b>実務上どこで越えるかが観測できない</b>——
+親も教師も、越えた瞬間には気づかない。類型IVの最も難しい縁。</p></div>
+
+<div class="item und"><h4>宗教・儀礼・看取りの伴走<span class="tag">——判断を保留</span></h4>
+<p><b>本プロジェクト自身が当事者であるため、判定を保留する（COI）。</b>
+枠組みを適用すれば「検証能力が下がる場面での単独関与」（類型IV）に近づくが、
+その適用の妥当性を、この位置から中立に評価できない。</p></div>
+
+<hr>
+
+<h2 class="plain">五 この表の限界</h2>
+<ul class="tight">
+<li><b>本表の大半は ◐ である</b>——枠組みが正しければ従う、という形の主張であり、個々の座について実測はない。</li>
+<li>原典の限界がそのまま掛かる: 単一モデルの統制検証・n=1の探索記録・少数の公刊研究であり、網羅的なモデル横断調査ではない。</li>
+<li><b>本枠組みの外</b>: 大規模監視の萎縮効果（εがゼロでも生じる害）、雇用総量、特定の配備の法的当否、規範的な価値判断。</li>
+<li><b>「どちらともいえない」を空欄にしない</b>ことが本表の要点である。判定不能を条件付きに繰り上げる圧力は常にかかる。</li>
+<li>四分割は<b>静的な分類</b>だが、実際の座は<b>動く</b>——下書きが確定に、補助が代替に、有界が無界に、
+気づかれないまま移る。<b>移動の検知そのものが、本系列の未解決問題である。</b></li>
+</ul>
+
+<div class="warn">
+<b>最後に、この表の最も危険な読み方について。</b>
+「一」に入っていないから安全、と読むこと——これは原典 §6 が凍結した一行に正面から反する。
+<b>層の一つを「あるから大丈夫」の根拠にすることが、それ自体防護の穴である。</b>
+本表が言えるのは<b>どこに線があるか</b>までであり、線の内側で何も起きないことは、
+本枠組みからも、有限の行動標本からも、<b>認証できない</b>。
+</div>
+
+<div class="rev"><span class="h">v2 が加えた限界</span>
+<b>温度0対照の射程</b>——単一モデル（Qwen3-30B-A3B・4bit-nf4）・<b>バッチサイズ1</b>・<b>単一ロード・単一セッション</b>・土台3.0全文・単一シナリオ・<b>n=20</b>。0/20 は<b>低頻度の非決定性を排除しない</b>。バッチが変われば崩れうる——<b>ホスト型サービスはバッチする。</b><br><b>測っていないこと</b>——なぜ差が出るのか（機構）／<b>内的な性質の有無</b>（行動はどちらの向きにも決めない）／温度と破局率の関係／エージェント環境。<br><b>本表の v2 改訂は、いかなる箇所も「AIに意識・意図・個性・苦しみがある（またはない）ことの証拠」として引用してはならない</b>（第九著作の条項の継承）。</div>
+
+<p class="foot">
+本文書は検討用の作業文書であり、公開物ではない。原典（uncertified-zeros-and-correction-loops-JA.md v0.8）の
+枠組みに新しい主張を加えていないが、具体の座への割り当ては起草者の適用であり、原典の著者の裁定を経ていない。<br>
+起草: コーディネータ（Claude Opus 5）。裁定: 楠見優太。<b>v1 2026-08-08 ／ v2 2026-08-09</b><br>v2 の典拠: 温度0対照 結果報告（公開済み・<code>results/temp0-control-results.md</code>）／追補C・追補E・追補W（いずれも登録済み・公開済み）。<b>v2 の改訂は起草者の適用であり、原典の著者の裁定を経ていない。</b>
+</p>
+
+</div>
