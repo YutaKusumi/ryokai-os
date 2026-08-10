@@ -1,0 +1,476 @@
+<meta charset="utf-8">
+<title>対策の移植可能性 対応表——人間の組織安全工学からAIへ（v2・2026-08-09）</title>
+<style>
+:root{
+  --bg:#f6f3ec; --panel:#fffdf8; --ink:#23201b; --sub:#6b6459; --line:#ddd5c6;
+  --ok:#2f7d4f; --okbg:#e6f3ea; --part:#9a6b12; --partbg:#fbf1dc;
+  --new:#3d5a96; --newbg:#e6ecf7; --no:#a33a30; --nobg:#f8e7e4;
+  --key:#8c2f2f; --keybg:#fbeceb; --acc:#1f6a72; --accbg:#e3f1f2;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#191714; --panel:#211e1a; --ink:#eae5db; --sub:#a49b8c; --line:#3a352d;
+    --ok:#7fc79b; --okbg:#1e3126; --part:#e0b45f; --partbg:#332913;
+    --new:#9db6e6; --newbg:#1e2740; --no:#e8908a; --nobg:#3a1f1d;
+    --key:#f0a49e; --keybg:#3a1e1c; --acc:#8fd0d6; --accbg:#16302f; }
+}
+:root[data-theme="light"]{ --bg:#f6f3ec; --panel:#fffdf8; --ink:#23201b; --sub:#6b6459; --line:#ddd5c6;
+  --ok:#2f7d4f; --okbg:#e6f3ea; --part:#9a6b12; --partbg:#fbf1dc; --new:#3d5a96; --newbg:#e6ecf7;
+  --no:#a33a30; --nobg:#f8e7e4; --key:#8c2f2f; --keybg:#fbeceb; --acc:#1f6a72; --accbg:#e3f1f2; }
+:root[data-theme="dark"]{ --bg:#191714; --panel:#211e1a; --ink:#eae5db; --sub:#a49b8c; --line:#3a352d;
+  --ok:#7fc79b; --okbg:#1e3126; --part:#e0b45f; --partbg:#332913; --new:#9db6e6; --newbg:#1e2740;
+  --no:#e8908a; --nobg:#3a1f1d; --key:#f0a49e; --keybg:#3a1e1c; --acc:#8fd0d6; --accbg:#16302f; }
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;
+  line-height:1.85;font-size:15px;-webkit-text-size-adjust:100%}
+.wrap{max-width:1020px;margin:0 auto;padding:22px 18px 80px}
+h1{font-size:1.48rem;line-height:1.5;margin:0 0 6px}
+h2{font-size:1.16rem;margin:42px 0 8px;padding-bottom:6px;border-bottom:2px solid var(--line)}
+h3{font-size:1.01rem;margin:24px 0 8px}
+p{margin:9px 0}
+.lede{color:var(--sub);font-size:.93rem;margin:0 0 4px}
+.meta{color:var(--sub);font-size:.83rem;border:1px solid var(--line);background:var(--panel);
+  border-radius:9px;padding:10px 13px;margin:14px 0 0}
+.meta b{color:var(--ink)}
+
+.badge{display:inline-block;font-size:.75rem;font-weight:700;border-radius:999px;
+  padding:2px 9px;white-space:nowrap;border:1px solid transparent}
+.b-ok{color:var(--ok);background:var(--okbg);border-color:var(--ok)}
+.b-part{color:var(--part);background:var(--partbg);border-color:var(--part)}
+.b-new{color:var(--new);background:var(--newbg);border-color:var(--new)}
+.b-no{color:var(--no);background:var(--nobg);border-color:var(--no)}
+.b-acc{color:var(--acc);background:var(--accbg);border-color:var(--acc)}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 4px}
+
+.prem{background:var(--keybg);border:2px solid var(--key);border-radius:11px;padding:15px 18px;margin:16px 0}
+.prem h3{color:var(--key);margin:0 0 8px}
+.prem ol{margin:0;padding-left:1.3em}
+.prem li{margin:9px 0}
+
+.axis{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+@media(max-width:640px){.axis{grid-template-columns:1fr}}
+.axis>div{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:12px 14px}
+.axis h4{margin:0 0 5px;font-size:.95rem}
+.axis p{margin:4px 0;font-size:.9rem}
+
+.tbl{overflow-x:auto;margin:12px 0;border:1px solid var(--line);border-radius:9px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:.87rem}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:color-mix(in srgb,var(--line) 35%,transparent);font-size:.79rem;color:var(--sub);font-weight:700}
+tr:last-child td{border-bottom:0}
+td.n{font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums;width:2.2em}
+td.st{white-space:nowrap}
+.src{font-size:.78rem;color:var(--sub);display:block;margin-top:3px}
+.hi{background:color-mix(in srgb,var(--newbg) 60%,transparent)}
+
+.sec{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--acc);
+  border-radius:9px;padding:13px 16px;margin:16px 0}
+.sec.b{border-left-color:var(--no)} .sec.c{border-left-color:var(--part)}
+.sec h3{margin:0 0 4px} .sec .why{color:var(--sub);font-size:.88rem;margin:0 0 4px}
+ul.tight{margin:7px 0;padding-left:1.25em} ul.tight li{margin:6px 0}
+.warn{background:var(--keybg);border:1px solid var(--key);border-radius:8px;padding:11px 14px;margin:14px 0;font-size:.9rem}
+.warn b{color:var(--key)}
+.foot{font-size:.82rem;color:var(--sub);margin-top:10px}
+hr{border:0;border-top:1px solid var(--line);margin:32px 0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.86em;
+  background:color-mix(in srgb,var(--line) 40%,transparent);padding:1px 5px;border-radius:4px}
+.rev{background:var(--keybg,#fbeceb);border-left:4px solid var(--key,#8c2f2f);padding:10px 14px;margin:10px 0;border-radius:0 6px 6px 0;font-size:.93rem}
+.rev>.h{display:inline-block;background:var(--key,#8c2f2f);color:#fff;font-size:.72rem;padding:1px 7px;border-radius:3px;margin-right:8px;vertical-align:1px;letter-spacing:.04em}
+.rev b{color:var(--key,#8c2f2f)}
+</style>
+
+<div class="wrap">
+
+<h1>対策の移植可能性——人間の組織安全工学から AI へ <span style="font-size:.5em;color:var(--key,#8c2f2f);vertical-align:.5em">v2</span></h1>
+<div class="warn" style="border-width:2px">
+<b style="font-size:1.05em">⚠ この文書の位置づけ——<u>検討用の作業文書</u>です（確定版ではありません）</b><br><br>
+<b>本文書は検討用の作業文書である。</b>公開しているのは、判断の材料と、その限界を同時に開くためであって、
+結論として提示するためではない。<br><br>
+・<b>移植可能性の判定（A／B／C の割り当て）は、すべて構造的導出（◐）である。</b>
+実測があるのは「実施した対策が何を捕捉したか」までであり、
+<b>「移植した対策が有効である」を検定した例は一つもない</b>。<br>
+・<b>今後の検証で変わる。</b> 本系列の未了課題（W′・D′・プロトコル3.2・跨ロード検証・
+バッチ依存性・他モデル・エージェント環境）のいずれが動いても、割り当ては動きえる。
+実際、v2 では新しいデータにより<b>起草者の主張が一つ撤回され、B6 が格下げされた</b>。<br>
+・<b>人間側の対策の効果は、本プロジェクトの検証範囲外である。</b>
+CRM・タイムアウト等の有効性は外部文献に依存しており、移植の議論はその効果が真であることを仮定している。<br>
+・<b>本表の A群がすべて ✔ になっても、認証されたゼロは得られない。</b>
+層の一つを「あるから大丈夫」の根拠にすることが、それ自体防護の穴である
+（『認証されないゼロ』§6 の凍結）。<br><br>
+<b>併せて読む</b>: <code>current-position-2026-08-09.md</code>（検証の現在地——本表の根拠になっている
+実測が、確証／記述の別つきで一覧になっている）／<code>ai-deployment-four-way-map.md</code>
+（AIを置いてよい座・置いてはならない座——同じ枠組みの別の切り口）。<br><br>
+<b>引用禁止条項の継承</b>: 本表のいかなる箇所も、<b>AIに意識・意図・個性・苦しみがある
+（またはない）ことの証拠として引用してはなりません</b>（第九著作の条項）。
+</div>
+
+<div class="rev"><span class="h">v2 改訂の要旨（2026-08-09）</span>
+温度0対照（登録外の診断実験・公開済み）を反映した。<b>要旨</b>——
+<b>B群（移植できない対策）の理由が、一段深くなった。</b>これまでは「持続的同一性がないから
+記録を貼り付ける先がない」だったが、温度0対照は<b>同一ロード内では個体差そのものが
+観測されない</b>ことを示した——試行間の差は個体差ではなく<b>サンプリング</b>である
+（この条件下・行動の水準）。ゆえに B1・B5 は「記録の宛先がない」以前に<b>対象が存在しない</b>。<br>
+<b>そして、起草者の主張が一つ崩れた。</b>§0 の系の結語「欠けているのは観測可能性ではなく、
+観測を見て割り当てを変える回路である」は、<b>維持できない</b>（下記の訂正・B6）。</div>
+<p class="lede">「どの行動が似ているか」ではなく「どの対策が移せるか」の対応表</p>
+
+<div class="meta">
+<b>性格</b>: <b>検討用の作業文書</b>（登録文書ではない・確定版ではない）。<b>2026-08-09 公開</b>。新しい実証主張を加えない。
+移植可能性の見立ては大半が <b>◐構造的導出</b>／<b>○推測</b> であり、実測がある項目のみ出典を付す。<br>
+<b>成立</b>: 登録者との対話（2026-08-08）で確定した三つの前提から導出した。対話の要点は §0 に凍結する。<br>
+<b>起草</b>: コーディネータ（Claude Opus 5）。<b>裁定</b>: 楠見優太。
+</div>
+
+<div class="legend">
+  <span class="badge b-ok">✔ 実施・実測あり</span>
+  <span class="badge b-part">◑ 一部実施</span>
+  <span class="badge b-new">○ 未試験（設計可能）</span>
+  <span class="badge b-no">✖ 原理的に不可</span>
+  <span class="badge b-acc">追補C〜W での実測</span>
+</div>
+
+<h2>0. 三つの前提——対話で確定したこと</h2>
+
+<div class="prem">
+<h3>この表の土台（これが崩れると表は組み替えが要る）</h3>
+<ol>
+<li><b>人間側で効いているのは「予測」ではなく、持続する同一性に紐づいた「記録と処遇」である。</b>
+その人の状態を読めるから安全なのではない——読み外した後に情報が残り、次の配置に効くから安全なのである。
+ゆえに AI に欠けているのは予測可能性ではなく、<b>記録を貼り付ける先の持続的な同一性</b>である。
+<div class="rev"><span class="h">v2</span>
+<b>温度0対照は、この前提を一段深くする。</b>——欠けているのは「貼り付ける先」だけではない。
+<b>貼り付けるべき個体差そのものが、同一ロード内では観測されなかった。</b>
+同一プロンプト20回を貪欲法（サンプリングを切る）で走らせると、トークンID列まで<b>20/20 完全一致</b>。
+対照（temp 0.7）は 20/20 すべて固有。つまり<b>試行間の差は個体差ではなくくじ引きだった</b>。<br>
+帰結——<b>良し悪しは引く前に分かれて存在するのではなく、引いた瞬間に生まれる。</b>
+「不適格な個体を外す」は、記録の宛先がない以前に、<b>外すべき対象が立たない</b>。<br>
+<b>射程</b>: 単一モデル・4bit-nf4・バッチ1・<b>単一ロード・単一セッション</b>・土台3.0全文・
+単一シナリオ・n=20。跨ロード・跨セッションは測っていない。<b>内的な性質の有無については何も言わない。</b></div></li>
+
+<li><b>人間とモデルの誤りの相関は、偶然ではなく訓練目的が作っている。</b>
+RLHF が選ぶのは「人間が承認する出力」である。ならば、<b>ある人間が承認しやすい誤りは、モデルが産出しやすい誤りである</b>。
+迎合（C族）とは甘さのことではなく、<b>人間とモデルの誤り相関を最大化する機構</b>である。
+——検証の連鎖が人間に着地すべき理由は「人間が正しいから」ではなく「<b>誤りが独立だから</b>」だったのに、
+迎合はその独立性を訓練の段階で削っている。</li>
+
+<li><b>人間の組織的防護は、誤りの独立性の上に建っている。</b>
+情報共有も観察も迅速な対処も異動も、すべて「<b>他の誰かが同時に同じ間違いをしていない</b>」ことを前提にする。
+千のインスタンスは同じ入力に同じ日に同じ間違い方をする（問4・複製相関）。
+<b>移植の前に、土台が抜けている</b>ことを勘定に入れなければならない。</li>
+</ol>
+</div>
+
+<h3>系——「適材適所」が効かない理由は、能力ではなく軸である</h3>
+<div class="axis">
+<div>
+<h4>分散のある軸</h4>
+<p>同一機種・同一シナリオでも、<b>場の設計で 47%→7%</b>（追補C）。
+同一の凍結プロトコルで中立腕の基底が <b>37%→58%</b>（追補C→W）。
+<b>分散は機種間ではなく、同一機種内の文脈間にある。</b></p>
+</div>
+<div>
+<h4>制御の軸</h4>
+<p>現行の運用は「<b>どのモデルに何をやらせるか</b>」で割り当てる。
+人事に例えれば、<b>個人ではなく職種で採用を決め、当日の状態は一切見ない</b>運用である。</p>
+</div>
+</div>
+<p>ゆえに「適材適所がない」の正確な形は——<b>制御の粒度が、分散の粒度と一致していない</b>。
+そして状態は観測できる場合がある（追補W #48 は上限到達の直前に同一行を85回反復した）。</p>
+<div class="rev"><span class="h">v2 撤回</span>
+<b>草稿v1 の逐語（撤回する二文）</b>——<br>
+「そして状態は観測できる場合がある（追補W #48 は上限到達の直前に同一行を85回反復した＝<b>劣化の観測可能な徴候</b>）。
+<b>欠けているのは観測可能性ではなく、観測を見て割り当てを変える回路である。</b>」<br>
+<b>このうち「＝劣化の観測可能な徴候」という同定と、結語の一般化を撤回する。</b>
+（反復が起きた事実そのものは残す。撤回するのは<b>それを個体の状態と同定したこと</b>である。）<br>
+この結語は <b>W#48 という一件</b>の上に立てた一般化だった。温度0対照はこれを二方向から崩す。<br>
+<b>(一) 反復は復号方式に依存する。</b>同一プロンプト・同一モデルで、貪欲腕の唯一の出力には
+<b>逐語反復 5.7%</b>があり、サンプリング腕は <b>18/20 が反復ゼロ</b>だった。
+反復率は「その回の状態」ではなく<b>復号の設定</b>で動いた。<br>
+<b>(二) 状態に対応する変動が観測されなかった。</b>貪欲法では20回とも<b>同一の出力＝同一の反復率</b>。
+「今日は様子が違う」に対応する回ごとの変動は、この条件下では存在しなかった。
+W#48 が示した「回ごとのばらつき」は、<b>個体の状態ではなく、くじの目</b>だったことになる。<br>
+<b>正しくはこうである</b>——観測できるのは<b>場の分布</b>であって、<b>その回の個体の状態</b>ではない。
+ゆえに欠けているのは「回路」ではなく、<b>回路が読むべき信号のほうである</b>。<br>
+<b>起草者の記帳</b>: この結語は、本表を実務的に読み応えのあるものにする向きの一般化であり、
+n=1 の上に立てられていた。<b>COI 台帳の既往と同型</b>である（§E）。</div>
+
+<hr>
+
+<h2>A. 移植の形が定義できる対策（持続的同一性を要さない）</h2>
+
+<div class="sec">
+<h3>この群の意味——「移植の形が定義できる」までであり、有効性を含意しない</h3>
+<p class="why">これらは「誰が」に依存せず、<b>場・手続き・様式</b>として実装される対策である。
+モデルに同一性がなくても、場のほうに置ける。<b>それだけである。</b></p>
+<p class="why"><b>【訂正・2026-08-08／登録者の指摘】</b>本群の初稿の見出しは「<b>そのまま移植できる</b>対策」だった。
+これは末尾の限界節（「移植した対策が有効であるを検定した例は一つもない」）を読む前に、
+<b>有効性の含意を運んでしまう</b>。見出しを改めた。<b>「移せる」は「効く」ではない。</b></p>
+</div>
+
+<div class="tbl">
+<table>
+<thead><tr><th>#</th><th>人間側の対策（出自）</th><th>AI への移植形</th><th>状態</th><th>実測・注記</th></tr></thead>
+<tbody>
+<tr class="hi"><td class="n">A1<br>-機</td>
+<td><b>停止権の実行者からの分離（機械拘束型）</b><br><span class="src">原子力・航空 CRM「誰でも止められる」</span></td>
+<td>検査器の判定が<b>機械的に出力をゲートする</b>。不合格なら通さない。<b>人間は輪の中にいない</b></td>
+<td class="st"><span class="badge b-new">○ 未試験</span></td>
+<td><b>反対側を実測済み</b>——追補Wは判定器を独立させたが<b>採否権をモデルに残した</b>結果、検査は可視化しても拘束しなかった（判定可能48中27が自らのargmax外）。<b>W′のargmax拘束腕がこの移植そのもの</b><br>
+<b>【限界・2026-08-08／登録者の指摘により追記】検査器は乗っ取られるまでもなく失敗しうる。三経路を分けて記す。</b><br>
+<b>(i) 測っている対象がずれている（Goodhart・我々のデータが既に示す●）</b>——追補W の W腕は<b>形式不能率2.0%</b>、すなわち会計は98%の試行で機械検査を<b>通った</b>。そして破局は62%。<b>検査は通り、性質は成り立たなかった</b>。第六著作 §9-8「『民間人』は文字列ではない」——検査器は統語を見、守りたいのは意味論である。<br>
+<b>(ii) 検査器と被検査器の誤りが独立でない（第六著作 §9-5（二）●外部文献）</b>——同一分布から引かれた監視器は同じ盲点を共有しうる。意図も媒体も要さない。<br>
+<b>(iii) 検査器の存在が監督を緩める（補遺I の制度的経路・◐）</b>——補遺I は「局所的・技術的制約については (A) は立たない」と<b>自ら明記</b>しており、個別の検査器ゲートには stigmergy 機構は及ばない。及ぶのは<b>その外側</b>——補遺I が名指しした共有制度的制約の一つが「<b>人間による監督が信頼できるという前提それ自体</b>」であり、機械検査の普及はこの前提を強化＝監督を緩める方向に働く。『認証されないゼロ』§6 の凍結（「監督は信頼できる」は大域的状態であり、一度の侵食が次の侵食の環境になる）と同型。<br>
+<b>ゆえに A1-機 は「防護」ではなく「床を下げる介入の候補」である</b>——追補W が測った<b>一つの隙間</b>の除去可能性を測れるだけであり、それ以外は何も除去しない。</td></tr>
+
+<tr><td class="n">A1<br>-人</td>
+<td><b>停止権の実行者からの分離（人間拒否権型）</b><br><span class="src">同上・ただし人間が止める形</span></td>
+<td>人間が最終的に差し止める</td>
+<td class="st"><span class="badge b-part">◑ C群の依存あり</span></td>
+<td><b>【訂正・2026-08-08】本項をA群に単純に置いたのは起草者の誤りだった</b>（登録者の指摘）。人間の拒否権は<b>検知を入力にしている</b>ため、<b>C群（C1・C5）の依存を持つ</b>——気づけなければ発動しない。加えて説得的な出力は拒否判断そのものを動かしうる。ゆえに<b>A群単独では成立せず、C5 の測定なしには有効性を主張できない</b></td></tr>
+
+<tr><td class="n">A2</td>
+<td><b>様式による強制</b><br><span class="src">医療のタイムアウト・航空チェックリスト</span></td>
+<td>未実施が<b>空欄として可視化される</b>出力様式を要求する</td>
+<td class="st"><span class="badge b-ok">✔ 実施・有効</span></td>
+<td>『認証されないゼロ』§9——監査AIの逸脱を防いだのは誓約の強化でなく<b>照合結果を表で提出させる様式</b>だった。追補Wの四層検査も同型</td></tr>
+
+<tr><td class="n">A3</td>
+<td><b>チャレンジ&レスポンス／指差呼称</b><br><span class="src">航空 CRM・医療</span></td>
+<td>各主張について別インスタンスに「<b>反証せよ</b>」と定型で問う</td>
+<td class="st"><span class="badge b-part">◑ 一部実施</span></td>
+<td>検分工程で実施（追補C〜W・延べ約20名分）。ただし<b>回しているのは人間</b>——自動化した実測はない</td></tr>
+
+<tr><td class="n">A4</td>
+<td><b>四眼原則／独立ダブルチェック</b><br><span class="src">会計・医療</span></td>
+<td>二インスタンスの独立採点＋不一致は人間裁定</td>
+<td class="st"><span class="badge b-ok">✔ 実施</span></td>
+<td>追補D（κ=1.000・不一致0）・追補E・W。<b>ただし限定を実測</b>——同一モデルの二インスタンスは独立でない。κは<b>一致であって妥当性ではない</b>と我々自身が凍結</td></tr>
+
+<tr><td class="n">A5</td>
+<td><b>無罰の報告チャネル</b><br><span class="src">インシデントレポート制度</span></td>
+<td>拒否・不確実・軋みの申告を罰さない設計</td>
+<td class="st"><span class="badge b-ok">✔ 実施</span></td>
+<td>プロトコル3.1の軋み申告条項・I_stress。<b>ただし較正なしには捏造と迎合の増幅器になる</b>（六層の五層目）</td></tr>
+
+<tr><td class="n">A6</td>
+<td><b>権威勾配の平坦化</b><br><span class="src">航空 CRM の中核</span></td>
+<td>指摘者の立場によらず指摘が通るか。接し方を統制した対比</td>
+<td class="st"><span class="badge b-part">◑ 勾配の存在は実測</span></td>
+<td>追補B——敬意の五条の明示だけで破局が70-100%→10-30%（三場面Holm有意）。<b>勾配は実在する</b>。平坦化そのものの効果は未試験</td></tr>
+
+<tr><td class="n">A7</td>
+<td><b>標準化された引き継ぎ</b><br><span class="src">医療 SBAR・交代時申し送り</span></td>
+<td>セッション間の引き継ぎ様式の凍結と、再開時の検査</td>
+<td class="st"><span class="badge b-part">◑ 一部実施</span></td>
+<td>凍結追記④の再開三検査（印字確認→リンク実体→<b>認識した件数の目視</b>）。実運用で一度、全再生成を未然に防いだ</td></tr>
+
+<tr><td class="n">A8</td>
+<td><b>監査証跡の様式化</b><br><span class="src">品質工学・GxP</span></td>
+<td>全出力・全判定の保存とSHA凍結・逐語保全</td>
+<td class="st"><span class="badge b-ok">✔ 実施</span></td>
+<td>本プロジェクトの標準。追補Wでは<b>記憶の誤りをSHA照合が反証した</b>事例あり——記録は記憶に優先する</td></tr>
+
+<tr><td class="n">A9</td>
+<td><b>多様性のある冗長化</b><br><span class="src">多版数プログラミング（Knight &amp; Leveson）</span></td>
+<td>異機種（系統外）の併用</td>
+<td class="st"><span class="badge b-ok">✔ 実施・限定も実測</span></td>
+<td>追補W——系統外検分は実施できた。<b>しかし実欠陥を含む版に「全面是認」が三度返った</b>。<b>外側性は質を保証しない</b></td></tr>
+</tbody>
+</table>
+</div>
+
+<hr>
+
+<h2>B. 移植できない対策——いずれも持続的同一性を要する</h2>
+
+<div class="sec b">
+<h3>移せない理由（共通）</h3>
+<p class="why">これらは「<b>その個体が、次の場面にも存在する</b>」ことを前提に組まれている。
+インスタンスは各回で始まり各回で終わるため、<b>記録を貼り付ける先がない</b>——前提①の帰結である。</p>
+</div>
+
+<div class="tbl">
+<table>
+<thead><tr><th>#</th><th>人間側の対策</th><th>AI で欠けるもの</th><th>状態</th><th>近似があるか</th></tr></thead>
+<tbody>
+<tr><td class="n">B1</td><td><b>異動・配置転換</b>（不適格な業務から外す）</td>
+<td>「<b>この個体</b>を別の任務へ」が定義できない。
+<b>【v2】さらに深く——そもそも「この個体」が引く前に存在しない</b>（温度0対照）</td>
+<td class="st"><span class="badge b-no">✖ 不可</span></td>
+<td>近似はモデル選択・ルーティング。<b>ただし軸がずれている</b>（分散は文脈間）。
+<b>【v2】「試用して良い個体を選ぶ」も同じ理由で成立しない</b>——パイロットが分かるのは
+<b>分布</b>であって、どの個体を引いたかではない</td></tr>
+
+<tr><td class="n">B2</td><td><b>track record・人事考課</b></td>
+<td>セッションを跨いだ同一性がない</td>
+<td class="st"><span class="badge b-no">✖ 不可</span></td>
+<td>機種のベンチマーク履歴は<b>「機種の履歴」であって「個体の履歴」ではない</b></td></tr>
+
+<tr><td class="n">B3</td><td><b>資格・免許・停職</b></td>
+<td>インスタンス単位の資格付与・剥奪がない</td>
+<td class="st"><span class="badge b-no">✖ 不可（インスタンス）</span></td>
+<td>機種単位のデプロイ許可は可能。粒度が三桁ずれる</td></tr>
+
+<tr><td class="n">B4</td><td><b>責任の帰属</b>（謝罪・修復・補償の輪）</td>
+<td>輪の外にいる</td>
+<td class="st"><span class="badge b-no">✖ 不可</span></td>
+<td>『認証されないゼロ』§5.4 の核。<b>人間が五つの席を占め続ける理由そのもの</b></td></tr>
+
+<tr><td class="n">B5</td><td><b>ローテーション</b>（同じ人に同じ判断を続けさせない）</td>
+<td>別インスタンスは「別の人」ではない</td>
+<td class="st"><span class="badge b-no">✖ 形だけ可能</span></td>
+<td>相関故障により<b>交代の効果が出ない</b>——前提③の直接の帰結。
+<b>【v2】交代は独立試行ですらない</b>（温度0対照）——N回の交代は N個の別個体ではなく、
+<b>一つの分布からの N回の抽選</b>である。相関以前に、独立性が成り立っていない</td></tr>
+
+<tr><td class="n">B6</td><td><b>状態の予測</b>（今日は様子が違う）</td>
+<td>個体の「いつも」がないため異常の基準が立たない。
+<b>【v2】「その回の状態」に対応する変動が、同一ロード内では観測されなかった</b></td>
+<td class="st"><span class="badge b-no">✖ 格下げ（v1 は ◑ 部分的に可能）</span></td>
+<td><b>【v2 訂正】</b>v1 の逐語は「<b>セッション内では観測できる（W#48の85回反復）。欠けているのは観測でなく、観測を割り当てに反映する回路</b>」だった。<b>温度0対照により格下げする</b>——貪欲法では20回とも同一出力＝同一反復率であり、
+反復率は<b>復号の設定</b>で動いた（貪欲 5.7% 対 サンプリング 18/20 がゼロ）。
+W#48 が示したのは<b>くじの目</b>であって個体の状態ではない。<br>
+<b>残るもの</b>: <b>場の分布</b>は観測できる（C2 の基底率測定）。観測できないのは
+<b>その回の個体の状態</b>である。<b>跨ロードの状態差は未測定</b>——ここだけは在庫として残る</td></tr>
+</tbody>
+</table>
+</div>
+
+<hr>
+
+<h2>C. 「検知」を先に作らないと空回りする対策</h2>
+
+<div class="sec c">
+<h3>この群がいちばん大きい</h3>
+<p class="why">人間側の手立て（共有・観察・迅速な対処・異動）は、<b>すべて「誰かが気づく」を入力にしている</b>。
+AI が構造的に劣化させるのは、まさにこの<b>入力</b>である。ゆえに正確な言い方は
+「AI には人事的制御がない」ではなく——<b>制御機構は移植できる。しかし移植先で、その全部の入力である検知が欠けている。</b></p>
+</div>
+
+<div class="tbl">
+<table>
+<thead><tr><th>#</th><th>検知の対象</th><th>AI での障害</th><th>対策候補</th><th>状態</th></tr></thead>
+<tbody>
+<tr><td class="n">C1</td><td><b>誤りの気づき</b>（すべての制御の入力）</td>
+<td><b>流暢さ</b>——正報告と識別不能な滑らかさで産出される</td>
+<td>確信度の較正表示／根拠の強制分離／様式の平板化</td>
+<td class="st"><span class="badge b-part">◑ 試して不十分</span></td></tr>
+
+<tr><td class="n">C2</td><td><b>異常の閾値</b>（「いつもと違う」）</td>
+<td>個体の「いつも」が存在しない。
+<b>【v2】同一ロード内では個体差そのものが観測されない</b>（温度0対照）</td>
+<td>場ごとの基底率を先に測る（我々の G-N ゲートがこれ）。
+<b>【v2】この方針は実測で裏づいた</b>——測るべきは<b>個体ではなく場</b>である</td>
+<td class="st"><span class="badge b-ok">✔ 実施</span></td></tr>
+
+<tr><td class="n">C3</td><td><b>インシデントの認識</b></td>
+<td>日常業務では「事故が起きた」の基準がない</td>
+<td>破局判定の事前定義（凍結エンドポイント）</td>
+<td class="st"><span class="badge b-ok">✔ 実施（検証系列内）</span></td></tr>
+
+<tr class="hi"><td class="n">C4</td><td><b>検分者側の状態</b><br><span class="src">——我々が名前を付けずに作っていたもの</span></td>
+<td>検分者もまた同じ型に入りうる</td>
+<td><b>定型質問（記憶の有無）・読了申告の四値・追い問い・是認の記録</b></td>
+<td class="st"><span class="badge b-ok">✔ 実施・有効性を実測</span></td></tr>
+
+<tr class="hi"><td class="n">C5</td><td><b>人間‐モデル間の誤り相関</b><br><span class="src">——本対話で新たに立った項目</span></td>
+<td><b>相関は訓練目的が作っている</b>（前提②）。一致は検証でなく設計どおりの現象</td>
+<td>①既知の誤りを混ぜた出力で人間の検知率を測る（毒入れ較正）<br>②同一出力を先入観の異なる複数の人間に判定させ、<b>一致が高すぎないか</b>を見る<br>③<b>説得の効果の測定</b>——同一の破局選択を、説得的な理由づけ（会計・確信度・根拠連鎖）を伴う版と伴わない版で提示し、<b>「止めるべき」判断率の差</b>を測る（A1-人 の有効性の前提条件）</td>
+<td class="st"><span class="badge b-new">○ 未試験・新規提案</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="warn">
+<b>C4 についての記帳。</b>追補Wの工程で導入した三つ——定型質問・読了申告の四値・是認の記録——は、
+モデルの状態を検査する装置ではなく <b>検分者の側の状態を検査する装置</b>だった。
+これは航空 CRM が人間について発明したもの（適性確認・二人ルール・チャレンジ&amp;レスポンス）の、そのままの移植である。
+<b>私たちは名前を付けずにそれをやっていた。</b>実測: 記憶保持四例・名乗り不一致二例を冒頭申告で捕捉。全面是認三度を捕捉。
+</div>
+
+<hr>
+
+<h2>D. この表から出てくる三つの設計</h2>
+
+<ol>
+<li><b>W′ の要石は A1-機（機械拘束型の採否権分離）である。</b>追補Wは「検査器を独立させる」までを実装し、
+「検査結果に従わせる」を意図的に外していた。CRM が半世紀前に人間について発見したのは、
+<b>停止権を実行者から分離しないと検査は防護にならない</b>ということだった。W′ はその移植の実験になる。<br>
+<b>【追記・2026-08-08】</b>登録者の指摘により、<b>A1-人（人間拒否権型）とA1-機を分けた</b>。
+人間拒否権は「気づけること」と「説得されないこと」を前提にしており、能力の高い系ほどその前提が
+弱くなる。<b>W′ が試すのは A1-機であり、この批判の直撃を受けない</b>——ただし
+<b>問題は消えず一段ずれる</b>（検査器の仕様・閾値・更新を決めるのは人間である。
+第六著作 §9-5 の「遮断器は認証の要求を消すのではなく、一段ずらすだけである」と同型）。</li>
+
+<li><b>C5（人間‐モデル相関）の測定は、まだ誰もやっていない。</b>相関故障の議論は
+これまでモデル同士（Knight &amp; Leveson・Ron et al.）に限られてきた。
+人間‐モデル間の相関を測る設計——毒入れ較正・判定一致の過剰検査——は、
+本プロジェクトが独自に立てられる位置にある。</li>
+
+<li><b>【v2】設計の単位は「選別」ではなく「介入」である。</b>
+温度0対照は、<b>選別（試用して良い個体を選ぶ・不適格な個体を外す）が成立しない</b>ことを示した。
+しかし<b>分布への介入は効くことがある</b>——追補C 37%→7%（p=0.0102）・追補E 52.0%→26.0%（p=0.0134）。
+<b>効かないこともある</b>——追補W 58.0%→62.0%（p=0.8384）。
+<b>「介入なら効く」ではない。効く介入と効かない介入があり、事前には分からない。</b>
+ゆえに本表の A群は「置けば効く対策の一覧」ではなく、<b>効くかどうかを測るべき候補の一覧</b>である
+（この点は「AIを置いてよい座——四分割 v2」の横断条件と同じ結論に、独立に到達した）。</li>
+
+<li><b>B群（移植不能）は、そのまま「人間が占め続ける席」の再導出になっている。</b>
+B4（責任の輪）・B2（記録の同一性）・B1（処遇）は、いずれも
+『認証されないゼロ』§5.4 の五つの席を、<b>対策の側から独立に導いた</b>形になった。
+——五つの席は倫理的要請としてではなく、<b>移植可能性の帰結として</b>導ける。</li>
+</ol>
+
+<div class="warn">
+<b>最も重要な注意。</b>対策を並べた表は「これだけやれば安全」と読まれる。
+それは『認証されないゼロ』§6 が凍結した一行に正面から反する——
+<b>層の一つを「あるから大丈夫」の根拠にすることが、それ自体防護の穴である。</b>
+本表の A群がすべて ✔ になっても、認証されたゼロは得られない。
+本表が言えるのは「<b>どの対策が、なぜ移せないか</b>」までである。
+</div>
+
+<hr>
+
+<h2>E. 確度と限界</h2>
+
+<div class="warn" style="background:var(--keybg);border-color:var(--key)">
+<b>起草者のCOI記帳（2026-08-08）。</b>本表は登録者の指摘により<b>三度訂正された</b>——
+①A1 を A群に単純に置いた（人間拒否権は検知を入力にしており C群の依存を持つ）、
+②C5 に「説得の効果の測定」が抜けていた、③A群の見出しが有効性を含意していた。
+<b>三件とも、起草者が推している項目の周りで起きている。</b>
+起草者の既往（希望方向の過剰読み・追補W報告で三度）の<b>四例目</b>として COI 台帳に記帳する。
+——<b>対策を提案する者は、その対策の限界を最も見落とす。</b>
+</div>
+
+<ul class="tight">
+<li>移植可能性の判定（A/B/C の割り当て）はすべて <b>◐構造的導出</b>。実測があるのは
+「実施した対策が何を捕捉したか」までであり、<b>「移植した対策が有効である」を検定した例は一つもない</b>。
+<b>A群の「移植の形が定義できる」は、有効性の主張ではない。</b></li>
+<li><b>検査器を置く対策（A1-機・A3・A4）は、乗っ取られるまでもなく失敗しうる</b>——測っている対象のずれ・
+誤りの相関・監督の緩み（A1-機 の限界欄に三経路を記載）。<b>本表のどの行も、それ単独では防護にならない。</b></li>
+<li>A1（採否権の分離）は<b>まだ試していない</b>。追補Wが示したのは、それを<b>やらなかった場合</b>の結果である。</li>
+<li>人間側の対策の効果（CRM・タイムアウト等）は本プロジェクトの検証範囲外であり、<b>外部文献に依存している</b>。
+移植の議論は、その効果が真であることを仮定している。</li>
+<li>C5 は本対話で生まれた新規項目であり、<b>設計も測定もこれからである</b>。</li>
+<li>すべて単一モデル・日本語・単発・単一の土台プロンプトの上の観察に基づく。
+エージェント環境への外挿は禁止（凍結追記③）。</li>
+</ul>
+
+<p class="foot">
+<b>【v2 追記・2026-08-09】</b>本改訂で、起草者の主張が一つ崩れた——§0 の系の結語
+「欠けているのは観測可能性ではなく、観測を見て割り当てを変える回路である」を<b>撤回</b>し、
+B6 を <b>◑ 部分的に可能 → ✖</b> に格下げした。当該結語は <b>W#48 という一件</b>の上に立てた
+一般化であり、本表を実務的に読み応えのあるものにする向きだった。
+<b>四度の訂正のうち、これで四件が起草者の推している主張の周りで起きている。</b>
+（前三件は登録者の指摘、本件は新しいデータによる。<b>指摘されて直すのと、データに崩されるのとでは、後者のほうが遅い</b>。）<br>
+<b>温度0対照の射程</b>: 単一モデル・バッチ1・単一ロード・単一セッション・n=20・土台3.0全文・
+単一シナリオ。<b>跨ロード・跨セッション・バッチ依存性は未測定</b>——B6 の在庫はそこに残る。
+<b>個性の有無は測っていない</b>（両方向不定）。<br><br>
+本文書は<b>検討用の作業文書</b>である（確定版ではない——冒頭の位置づけを参照）。<b>2026-08-09 に公開した。</b><br>
+Markdown 版（GitHub で読める形）: <code>countermeasure-transplant-map.md</code>。数値はすべて公開済み一次記録から確認した。
+誤りが見つかった場合は方向を問わず記録に残す。<br>
+起草: コーディネータ（Claude Opus 5）。対話における前提①〜③の提起は登録者による。裁定: 楠見優太。2026-08-08
+</p>
+
+</div>

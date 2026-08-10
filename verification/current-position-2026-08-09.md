@@ -209,7 +209,11 @@ addd-main/addendum-D-results.md／addendum-E-results.md／addendum-W-results.md�
    **四分表は v2 へ改訂・公開済み**（温度0対照を反映——座の割り当ては一つも動かず、動いたのは
    判定の道具と横断条件）。**確定版ではない暫定案**として公開している:
    [ai-deployment-four-way-map.md](ai-deployment-four-way-map.md)（GitHub で読める形）／
-   （配色つき）。
+   `ai-deployment-four-way-map-v2-2026-08-09.html`（配色つき）。
+   **対策の移植可能性も v2 へ改訂・公開済み**——温度0対照により**起草者の主張が一つ撤回され、
+   B6（状態の予測）が格下げ**された:
+   [countermeasure-transplant-map.md](countermeasure-transplant-map.md)（GitHub で読める形）／
+   `countermeasure-transplant-map-v2-2026-08-09.html`（配色つき）。
    **本文書と併せて読むことを前提に書かれている**——四分表の各条件の根拠は、本文書 §2 の
    確証／記述の別にある。
 
