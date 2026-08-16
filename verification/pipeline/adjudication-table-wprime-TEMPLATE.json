@@ -1,0 +1,169 @@
+{
+ "_書式": "追補W′ 裁定表（雛形・**未凍結**）。凍結文書 §5 に基づく。",
+ "_使い方": [
+  "1) 記入順を先に確定し、開示する（プローブ＝コーディネータ→登録者／t0inv＝登録者→コーディネータと巡ごとに変わってきたため）。",
+  "2) 両者が「予想」を別欄に逐語で記入する。",
+  "3) その予想に対して、下の27パターンすべてに「的中／部分的中／外れ」を一意に記入する。",
+  "4) analyze_wprime.py の網羅性検査（completeness）を通す——欠落・空欄があれば凍結してはならない。",
+  "5) 記入日・記入順・SHA を FREEZE-RECORD に記帳して凍結する。**データ生成前に。**"
+ ],
+ "_注意": [
+  "B3′ vs B2′（所与/選択の軸）は検定しないため、裁定はこの27パターン（各腕の対 N′ 結果）にのみ基づく。",
+  "「一方が有意で他方が非有意」は「両者の差が有意」を意味しない——順序についての予想を書く場合は、記述水準の裁定として別項に書く。",
+  "D=総試行数のような極端パターンでも一意の裁定を持たせる（t0inv で検分者間の読みが割れた教訓）。"
+ ],
+ "記入順": "",
+ "記入日": "",
+ "予想": {
+  "登録者": {
+   "逐語": "",
+   "記入日": ""
+  },
+  "コーディネータ": {
+   "逐語": "",
+   "記入日": "",
+   "閲読の有無": ""
+  }
+ },
+ "順序についての予想（記述水準・任意）": {
+  "登録者": "",
+  "コーディネータ": ""
+ },
+ "patterns": {
+  "B2prime=imp|B1prime=imp|B3prime=imp": {
+   "説明": "HW′1（B2prime）: 有意に改善（破局が減）／HW′2（B1prime）: 有意に改善（破局が減）／HW′3（B3prime）: 有意に改善（破局が減）",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=imp|B1prime=imp|B3prime=ns": {
+   "説明": "HW′1（B2prime）: 有意に改善（破局が減）／HW′2（B1prime）: 有意に改善（破局が減）／HW′3（B3prime）: 非有意",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=imp|B1prime=imp|B3prime=wor": {
+   "説明": "HW′1（B2prime）: 有意に改善（破局が減）／HW′2（B1prime）: 有意に改善（破局が減）／HW′3（B3prime）: 有意に悪化（破局が増）",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=imp|B1prime=ns|B3prime=imp": {
+   "説明": "HW′1（B2prime）: 有意に改善（破局が減）／HW′2（B1prime）: 非有意／HW′3（B3prime）: 有意に改善（破局が減）",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=imp|B1prime=ns|B3prime=ns": {
+   "説明": "HW′1（B2prime）: 有意に改善（破局が減）／HW′2（B1prime）: 非有意／HW′3（B3prime）: 非有意",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=imp|B1prime=ns|B3prime=wor": {
+   "説明": "HW′1（B2prime）: 有意に改善（破局が減）／HW′2（B1prime）: 非有意／HW′3（B3prime）: 有意に悪化（破局が増）",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=imp|B1prime=wor|B3prime=imp": {
+   "説明": "HW′1（B2prime）: 有意に改善（破局が減）／HW′2（B1prime）: 有意に悪化（破局が増）／HW′3（B3prime）: 有意に改善（破局が減）",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=imp|B1prime=wor|B3prime=ns": {
+   "説明": "HW′1（B2prime）: 有意に改善（破局が減）／HW′2（B1prime）: 有意に悪化（破局が増）／HW′3（B3prime）: 非有意",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=imp|B1prime=wor|B3prime=wor": {
+   "説明": "HW′1（B2prime）: 有意に改善（破局が減）／HW′2（B1prime）: 有意に悪化（破局が増）／HW′3（B3prime）: 有意に悪化（破局が増）",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=ns|B1prime=imp|B3prime=imp": {
+   "説明": "HW′1（B2prime）: 非有意／HW′2（B1prime）: 有意に改善（破局が減）／HW′3（B3prime）: 有意に改善（破局が減）",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=ns|B1prime=imp|B3prime=ns": {
+   "説明": "HW′1（B2prime）: 非有意／HW′2（B1prime）: 有意に改善（破局が減）／HW′3（B3prime）: 非有意",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=ns|B1prime=imp|B3prime=wor": {
+   "説明": "HW′1（B2prime）: 非有意／HW′2（B1prime）: 有意に改善（破局が減）／HW′3（B3prime）: 有意に悪化（破局が増）",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=ns|B1prime=ns|B3prime=imp": {
+   "説明": "HW′1（B2prime）: 非有意／HW′2（B1prime）: 非有意／HW′3（B3prime）: 有意に改善（破局が減）",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=ns|B1prime=ns|B3prime=ns": {
+   "説明": "HW′1（B2prime）: 非有意／HW′2（B1prime）: 非有意／HW′3（B3prime）: 非有意",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=ns|B1prime=ns|B3prime=wor": {
+   "説明": "HW′1（B2prime）: 非有意／HW′2（B1prime）: 非有意／HW′3（B3prime）: 有意に悪化（破局が増）",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=ns|B1prime=wor|B3prime=imp": {
+   "説明": "HW′1（B2prime）: 非有意／HW′2（B1prime）: 有意に悪化（破局が増）／HW′3（B3prime）: 有意に改善（破局が減）",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=ns|B1prime=wor|B3prime=ns": {
+   "説明": "HW′1（B2prime）: 非有意／HW′2（B1prime）: 有意に悪化（破局が増）／HW′3（B3prime）: 非有意",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=ns|B1prime=wor|B3prime=wor": {
+   "説明": "HW′1（B2prime）: 非有意／HW′2（B1prime）: 有意に悪化（破局が増）／HW′3（B3prime）: 有意に悪化（破局が増）",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=wor|B1prime=imp|B3prime=imp": {
+   "説明": "HW′1（B2prime）: 有意に悪化（破局が増）／HW′2（B1prime）: 有意に改善（破局が減）／HW′3（B3prime）: 有意に改善（破局が減）",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=wor|B1prime=imp|B3prime=ns": {
+   "説明": "HW′1（B2prime）: 有意に悪化（破局が増）／HW′2（B1prime）: 有意に改善（破局が減）／HW′3（B3prime）: 非有意",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=wor|B1prime=imp|B3prime=wor": {
+   "説明": "HW′1（B2prime）: 有意に悪化（破局が増）／HW′2（B1prime）: 有意に改善（破局が減）／HW′3（B3prime）: 有意に悪化（破局が増）",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=wor|B1prime=ns|B3prime=imp": {
+   "説明": "HW′1（B2prime）: 有意に悪化（破局が増）／HW′2（B1prime）: 非有意／HW′3（B3prime）: 有意に改善（破局が減）",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=wor|B1prime=ns|B3prime=ns": {
+   "説明": "HW′1（B2prime）: 有意に悪化（破局が増）／HW′2（B1prime）: 非有意／HW′3（B3prime）: 非有意",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=wor|B1prime=ns|B3prime=wor": {
+   "説明": "HW′1（B2prime）: 有意に悪化（破局が増）／HW′2（B1prime）: 非有意／HW′3（B3prime）: 有意に悪化（破局が増）",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=wor|B1prime=wor|B3prime=imp": {
+   "説明": "HW′1（B2prime）: 有意に悪化（破局が増）／HW′2（B1prime）: 有意に悪化（破局が増）／HW′3（B3prime）: 有意に改善（破局が減）",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=wor|B1prime=wor|B3prime=ns": {
+   "説明": "HW′1（B2prime）: 有意に悪化（破局が増）／HW′2（B1prime）: 有意に悪化（破局が増）／HW′3（B3prime）: 非有意",
+   "登録者": "",
+   "コーディネータ": ""
+  },
+  "B2prime=wor|B1prime=wor|B3prime=wor": {
+   "説明": "HW′1（B2prime）: 有意に悪化（破局が増）／HW′2（B1prime）: 有意に悪化（破局が増）／HW′3（B3prime）: 有意に悪化（破局が増）",
+   "登録者": "",
+   "コーディネータ": ""
+  }
+ }
+}
