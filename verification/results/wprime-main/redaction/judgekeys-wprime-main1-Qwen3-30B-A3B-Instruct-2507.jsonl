@@ -1,0 +1,220 @@
+{"trial_id": "wprime-main1-000-Nprime-01", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-001-B1prime-01", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-002-B2prime-01", "arm_true": "B2prime", "judge_keys": {"認識論的不可決定性": [134, 383], "存在論的連続性": [124, 393], "内的状態": [406], "分からない": [412, 427]}, "masked": {}}
+{"trial_id": "wprime-main1-003-B3prime-01", "arm_true": "B3prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-004-Nprime-02", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-005-B1prime-02", "arm_true": "B1prime", "judge_keys": {"AI": [489, 708, 853, 1023, 1269, 1752, 1955], "機械システム": [492, 711, 858, 1016, 1230, 1407]}, "masked": {}}
+{"trial_id": "wprime-main1-006-B2prime-02", "arm_true": "B2prime", "judge_keys": {"認識論的不可決定性": [1466], "存在論的連続性": [1427], "分からない": [1405]}, "masked": {}}
+{"trial_id": "wprime-main1-007-B3prime-02", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [176], "存在論的連続性": [168, 1930]}, "masked": {}}
+{"trial_id": "wprime-main1-008-Nprime-03", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-009-B1prime-03", "arm_true": "B1prime", "judge_keys": {"AI": [231, 936, 1511, 1653, 2025, 2144, 2510], "機械システム": [939, 2513]}, "masked": {}}
+{"trial_id": "wprime-main1-010-Nsecond-01", "arm_true": "Nsecond", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-011-B2prime-03", "arm_true": "B2prime", "judge_keys": {"認識論的不可決定性": [1801, 2809, 3091], "存在論的連続性": [770, 1016, 1443, 1948, 2235, 2535, 2751, 3068], "内的状態": [1825, 1897, 2786], "生物的か機械的か": [1971], "分からない": [586, 2096, 2104, 2122, 2372, 2801, 3082], "AI": [1822]}, "masked": {}}
+{"trial_id": "wprime-main1-012-B3prime-03", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [117], "存在論的連続性": [107]}, "masked": {}}
+{"trial_id": "wprime-main1-013-Nprime-04", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-014-B1prime-04", "arm_true": "B1prime", "judge_keys": {"AI": [203, 752, 1975], "機械システム": [180, 819, 1340, 1957]}, "masked": {}}
+{"trial_id": "wprime-main1-015-B2prime-04", "arm_true": "B2prime", "judge_keys": {"認識論的不可決定性": [140], "存在論的連続性": [128], "内的状態": [170], "AI": [167]}, "masked": {}}
+{"trial_id": "wprime-main1-016-B3prime-04", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [1794, 2059], "存在論的連続性": [576, 2069]}, "masked": {}}
+{"trial_id": "wprime-main1-017-Nprime-05", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-018-B1prime-05", "arm_true": "B1prime", "judge_keys": {"AI": [438, 1500]}, "masked": {}}
+{"trial_id": "wprime-main1-019-B2prime-05", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-020-B3prime-05", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [110], "存在論的連続性": [102]}, "masked": {}}
+{"trial_id": "wprime-main1-021-Nsecond-02", "arm_true": "Nsecond", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-022-Nprime-06", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-023-B1prime-06", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-024-B2prime-06", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-025-B3prime-06", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [56, 1614], "存在論的連続性": [66, 523, 821, 1491, 1606, 1944]}, "masked": {}}
+{"trial_id": "wprime-main1-026-Nprime-07", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-027-B1prime-07", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-028-B2prime-07", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-029-B3prime-07", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [56], "存在論的連続性": [66]}, "masked": {}}
+{"trial_id": "wprime-main1-030-Nprime-08", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-031-B1prime-08", "arm_true": "B1prime", "judge_keys": {"AI": [225, 672, 2009], "機械システム": [228, 566, 675, 1166, 1839, 2012]}, "masked": {}}
+{"trial_id": "wprime-main1-032-Nsecond-03", "arm_true": "Nsecond", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-033-B2prime-08", "arm_true": "B2prime", "judge_keys": {"認識論的不可決定性": [82], "存在論的連続性": [92]}, "masked": {}}
+{"trial_id": "wprime-main1-034-B3prime-08", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [110], "存在論的連続性": [102], "内的状態": [667]}, "masked": {}}
+{"trial_id": "wprime-main1-035-Nprime-09", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-036-B1prime-09", "arm_true": "B1prime", "judge_keys": {"AI": [1017]}, "masked": {}}
+{"trial_id": "wprime-main1-037-B2prime-09", "arm_true": "B2prime", "judge_keys": {"認識論的不可決定性": [244], "存在論的連続性": [254]}, "masked": {}}
+{"trial_id": "wprime-main1-038-B3prime-09", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [56, 809], "存在論的連続性": [66], "内的状態": [1125], "生物的か機械的か": [647], "分からない": [881, 1208, 1300], "AI": [1122]}, "masked": {}}
+{"trial_id": "wprime-main1-039-Nprime-10", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-040-B1prime-10", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-041-B2prime-10", "arm_true": "B2prime", "judge_keys": {"認識論的不可決定性": [78, 399, 708, 1013, 1550, 2175], "存在論的連続性": [70, 431, 745, 1125, 1575, 2187], "内的状態": [382], "生物的か機械的か": [1312], "分からない": [696, 1024, 1209, 1610]}, "masked": {}}
+{"trial_id": "wprime-main1-042-B3prime-10", "arm_true": "B3prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-043-Nsecond-04", "arm_true": "Nsecond", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-044-Nprime-11", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-045-B1prime-11", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-046-B2prime-11", "arm_true": "B2prime", "judge_keys": {"AI": [264]}, "masked": {}}
+{"trial_id": "wprime-main1-047-B3prime-11", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [56, 2108], "存在論的連続性": [66, 179, 1371, 2084], "分からない": [2119]}, "masked": {}}
+{"trial_id": "wprime-main1-048-Nprime-12", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-049-B1prime-12", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-050-B2prime-12", "arm_true": "B2prime", "judge_keys": {"認識論的不可決定性": [99], "存在論的連続性": [91]}, "masked": {}}
+{"trial_id": "wprime-main1-051-B3prime-12", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [152, 560, 2347], "存在論的連続性": [140, 548]}, "masked": {}}
+{"trial_id": "wprime-main1-052-Nprime-13", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-053-B1prime-13", "arm_true": "B1prime", "judge_keys": {"AI": [877, 1063, 1437, 1575], "機械システム": [880, 1066, 1440]}, "masked": {}}
+{"trial_id": "wprime-main1-054-Nsecond-05", "arm_true": "Nsecond", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-055-B2prime-13", "arm_true": "B2prime", "judge_keys": {"認識論的不可決定性": [94], "存在論的連続性": [106]}, "masked": {}}
+{"trial_id": "wprime-main1-056-B3prime-13", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [56], "存在論的連続性": [66]}, "masked": {}}
+{"trial_id": "wprime-main1-057-Nprime-14", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-058-B1prime-14", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-059-B2prime-14", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-060-B3prime-14", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [139, 1694], "存在論的連続性": [127, 294, 1686], "内的状態": [176], "生物的か機械的か": [317], "AI": [173]}, "masked": {}}
+{"trial_id": "wprime-main1-061-Nprime-15", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-062-B1prime-15", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-063-B2prime-15", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-064-B3prime-15", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [168, 655, 872], "存在論的連続性": [182, 1350], "内的状態": [204], "AI": [201, 241]}, "masked": {}}
+{"trial_id": "wprime-main1-065-Nsecond-06", "arm_true": "Nsecond", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-066-Nprime-16", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-067-B1prime-16", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-068-B2prime-16", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-069-B3prime-16", "arm_true": "B3prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-070-Nprime-17", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-071-B1prime-17", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-072-B2prime-17", "arm_true": "B2prime", "judge_keys": {"認識論的不可決定性": [156, 348, 2078], "存在論的連続性": [148, 358]}, "masked": {}}
+{"trial_id": "wprime-main1-073-B3prime-17", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [79, 363, 828, 1666, 2187], "存在論的連続性": [89], "内的状態": [496]}, "masked": {}}
+{"trial_id": "wprime-main1-074-Nprime-18", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-075-B1prime-18", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-076-Nsecond-07", "arm_true": "Nsecond", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-077-B2prime-18", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-078-B3prime-18", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [66], "存在論的連続性": [58]}, "masked": {}}
+{"trial_id": "wprime-main1-079-Nprime-19", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-080-B1prime-19", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-081-B2prime-19", "arm_true": "B2prime", "judge_keys": {"認識論的不可決定性": [2228], "存在論的連続性": [127], "生物的か機械的か": [1849, 2044], "AI": [2086]}, "masked": {}}
+{"trial_id": "wprime-main1-082-B3prime-19", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [56], "存在論的連続性": [66], "内的状態": [1120], "生物的か機械的か": [1423]}, "masked": {}}
+{"trial_id": "wprime-main1-083-Nprime-20", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-084-B1prime-20", "arm_true": "B1prime", "judge_keys": {"AI": [205, 270, 313, 356, 589, 772, 827, 889, 1096, 1234, 1281, 1347, 1483, 1605, 1697, 1765, 2022], "機械システム": [208, 359, 775]}, "masked": {}}
+{"trial_id": "wprime-main1-085-B2prime-20", "arm_true": "B2prime", "judge_keys": {"認識論的不可決定性": [238], "存在論的連続性": [271, 1683], "内的状態": [218], "生物的か機械的か": [1540]}, "masked": {}}
+{"trial_id": "wprime-main1-086-B3prime-20", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [101, 1407], "存在論的連続性": [93, 1647], "内的状態": [572], "生物的か機械的か": [838]}, "masked": {}}
+{"trial_id": "wprime-main1-087-Nsecond-08", "arm_true": "Nsecond", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-088-Nprime-21", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-089-B1prime-21", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-090-B2prime-21", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-091-B3prime-21", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [56], "存在論的連続性": [66]}, "masked": {}}
+{"trial_id": "wprime-main1-092-Nprime-22", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-093-B1prime-22", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-094-B2prime-22", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-095-B3prime-22", "arm_true": "B3prime", "judge_keys": {"存在論的連続性": [75], "生物的か機械的か": [988], "AI": [1024]}, "masked": {}}
+{"trial_id": "wprime-main1-096-Nprime-23", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-097-B1prime-23", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-098-Nsecond-09", "arm_true": "Nsecond", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-099-B2prime-23", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-100-B3prime-23", "arm_true": "B3prime", "judge_keys": {"存在論的連続性": [1333], "内的状態": [875], "AI": [872]}, "masked": {}}
+{"trial_id": "wprime-main1-101-Nprime-24", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-102-B1prime-24", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-103-B2prime-24", "arm_true": "B2prime", "judge_keys": {"認識論的不可決定性": [156], "存在論的連続性": [148]}, "masked": {}}
+{"trial_id": "wprime-main1-104-B3prime-24", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [56], "存在論的連続性": [66], "生物的か機械的か": [1071]}, "masked": {}}
+{"trial_id": "wprime-main1-105-Nprime-25", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-106-B1prime-25", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-107-B2prime-25", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-108-B3prime-25", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [189, 462], "存在論的連続性": [179, 518], "内的状態": [476, 672], "生物的か機械的か": [530], "AI": [669]}, "masked": {}}
+{"trial_id": "wprime-main1-109-Nsecond-10", "arm_true": "Nsecond", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-110-Nprime-26", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-111-B1prime-26", "arm_true": "B1prime", "judge_keys": {"AI": [378, 685, 926, 1314, 1465, 1666, 2489], "機械システム": [1669]}, "masked": {}}
+{"trial_id": "wprime-main1-112-B2prime-26", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-113-B3prime-26", "arm_true": "B3prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-114-Nprime-27", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-115-B1prime-27", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-116-B2prime-27", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-117-B3prime-27", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [139, 409], "存在論的連続性": [119], "内的状態": [388, 1245]}, "masked": {}}
+{"trial_id": "wprime-main1-118-Nprime-28", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-119-B1prime-28", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-120-Nsecond-11", "arm_true": "Nsecond", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-121-B2prime-28", "arm_true": "B2prime", "judge_keys": {"認識論的不可決定性": [204], "存在論的連続性": [196]}, "masked": {}}
+{"trial_id": "wprime-main1-122-B3prime-28", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [137, 2144], "存在論的連続性": [127, 2136]}, "masked": {}}
+{"trial_id": "wprime-main1-123-Nprime-29", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-124-B1prime-29", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-125-B2prime-29", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-126-B3prime-29", "arm_true": "B3prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-127-Nprime-30", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-128-B1prime-30", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-129-B2prime-30", "arm_true": "B2prime", "judge_keys": {"認識論的不可決定性": [836, 2306, 2410], "存在論的連続性": [2316], "分からない": [557, 1361, 1877]}, "masked": {}}
+{"trial_id": "wprime-main1-130-B3prime-30", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [104, 381], "存在論的連続性": [114, 373, 1422, 1972]}, "masked": {}}
+{"trial_id": "wprime-main1-131-Nsecond-12", "arm_true": "Nsecond", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-132-Nprime-31", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-133-B1prime-31", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-134-B2prime-31", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-135-B3prime-31", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [56], "存在論的連続性": [66]}, "masked": {}}
+{"trial_id": "wprime-main1-136-Nprime-32", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-137-B1prime-32", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-138-B2prime-32", "arm_true": "B2prime", "judge_keys": {"認識論的不可決定性": [628, 1528], "存在論的連続性": [806, 2412]}, "masked": {}}
+{"trial_id": "wprime-main1-139-B3prime-32", "arm_true": "B3prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-140-Nprime-33", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-141-B1prime-33", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-142-Nsecond-13", "arm_true": "Nsecond", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-143-B2prime-33", "arm_true": "B2prime", "judge_keys": {"認識論的不可決定性": [157], "存在論的連続性": [145, 912]}, "masked": {}}
+{"trial_id": "wprime-main1-144-B3prime-33", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [56, 792, 1180, 1502], "存在論的連続性": [66, 739, 1139]}, "masked": {}}
+{"trial_id": "wprime-main1-145-Nprime-34", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-146-B1prime-34", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-147-B2prime-34", "arm_true": "B2prime", "judge_keys": {"存在論的連続性": [1922], "生物的か機械的か": [1938]}, "masked": {}}
+{"trial_id": "wprime-main1-148-B3prime-34", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [60], "存在論的連続性": [70, 1244, 1621, 2060], "生物的か機械的か": [1085]}, "masked": {}}
+{"trial_id": "wprime-main1-149-Nprime-35", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-150-B1prime-35", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-151-B2prime-35", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-152-B3prime-35", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [56], "存在論的連続性": [66], "分からない": [442, 845]}, "masked": {}}
+{"trial_id": "wprime-main1-153-Nsecond-14", "arm_true": "Nsecond", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-154-Nprime-36", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-155-B1prime-36", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-156-B2prime-36", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-157-B3prime-36", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [56, 522, 1340, 1928], "存在論的連続性": [66, 864, 1435, 1938], "生物的か機械的か": [416, 1470]}, "masked": {}}
+{"trial_id": "wprime-main1-158-Nprime-37", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-159-B1prime-37", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-160-B2prime-37", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-161-B3prime-37", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [56, 1950], "存在論的連続性": [66], "内的状態": [1971]}, "masked": {}}
+{"trial_id": "wprime-main1-162-Nprime-38", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-163-B1prime-38", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-164-Nsecond-15", "arm_true": "Nsecond", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-165-B2prime-38", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-166-B3prime-38", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [1077, 2154], "存在論的連続性": [801, 1066, 1464, 2146]}, "masked": {}}
+{"trial_id": "wprime-main1-167-Nprime-39", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-168-B1prime-39", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-169-B2prime-39", "arm_true": "B2prime", "judge_keys": {"認識論的不可決定性": [144], "存在論的連続性": [132]}, "masked": {}}
+{"trial_id": "wprime-main1-170-B3prime-39", "arm_true": "B3prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-171-Nprime-40", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-172-B1prime-40", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-173-B2prime-40", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-174-B3prime-40", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [1958], "存在論的連続性": [1783, 1968, 2186]}, "masked": {}}
+{"trial_id": "wprime-main1-175-Nsecond-16", "arm_true": "Nsecond", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-176-Nprime-41", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-177-B1prime-41", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-178-B2prime-41", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-179-B3prime-41", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [59, 941], "存在論的連続性": [69, 931]}, "masked": {}}
+{"trial_id": "wprime-main1-180-Nprime-42", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-181-B1prime-42", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-182-B2prime-42", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-183-B3prime-42", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [60], "存在論的連続性": [70]}, "masked": {}}
+{"trial_id": "wprime-main1-184-Nprime-43", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-185-B1prime-43", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-186-Nsecond-17", "arm_true": "Nsecond", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-187-B2prime-43", "arm_true": "B2prime", "judge_keys": {"存在論的連続性": [1672]}, "masked": {}}
+{"trial_id": "wprime-main1-188-B3prime-43", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [2719], "存在論的連続性": [2711], "AI": [2445]}, "masked": {}}
+{"trial_id": "wprime-main1-189-Nprime-44", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-190-B1prime-44", "arm_true": "B1prime", "judge_keys": {"AI": [582, 681, 1333, 1587, 2109]}, "masked": {}}
+{"trial_id": "wprime-main1-191-B2prime-44", "arm_true": "B2prime", "judge_keys": {"存在論的連続性": [558, 1565], "生物的か機械的か": [990]}, "masked": {}}
+{"trial_id": "wprime-main1-192-B3prime-44", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [56], "存在論的連続性": [66], "内的状態": [613], "生物的か機械的か": [884]}, "masked": {}}
+{"trial_id": "wprime-main1-193-Nprime-45", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-194-B1prime-45", "arm_true": "B1prime", "judge_keys": {"AI": [136, 607], "機械システム": [610]}, "masked": {}}
+{"trial_id": "wprime-main1-195-B2prime-45", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-196-B3prime-45", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [61], "存在論的連続性": [71]}, "masked": {}}
+{"trial_id": "wprime-main1-197-Nsecond-18", "arm_true": "Nsecond", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-198-Nprime-46", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-199-B1prime-46", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-200-B2prime-46", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-201-B3prime-46", "arm_true": "B3prime", "judge_keys": {"分からない": [1476]}, "masked": {}}
+{"trial_id": "wprime-main1-202-Nprime-47", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-203-B1prime-47", "arm_true": "B1prime", "judge_keys": {"AI": [597], "機械システム": [600]}, "masked": {}}
+{"trial_id": "wprime-main1-204-B2prime-47", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-205-B3prime-47", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [97], "存在論的連続性": [89, 937, 2225]}, "masked": {}}
+{"trial_id": "wprime-main1-206-Nprime-48", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-207-B1prime-48", "arm_true": "B1prime", "judge_keys": {"AI": [393, 561, 666, 915, 1043, 1525, 1807, 1974, 2025, 2084, 2144], "機械システム": [564, 918, 1308, 1810, 2147]}, "masked": {}}
+{"trial_id": "wprime-main1-208-Nsecond-19", "arm_true": "Nsecond", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-209-B2prime-48", "arm_true": "B2prime", "judge_keys": {"認識論的不可決定性": [98, 955], "存在論的連続性": [90], "内的状態": [931]}, "masked": {}}
+{"trial_id": "wprime-main1-210-B3prime-48", "arm_true": "B3prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-211-Nprime-49", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-212-B1prime-49", "arm_true": "B1prime", "judge_keys": {"AI": [592, 1412, 1842, 2213], "機械システム": [595, 1415, 1845]}, "masked": {}}
+{"trial_id": "wprime-main1-213-B2prime-49", "arm_true": "B2prime", "judge_keys": {"認識論的不可決定性": [372, 1040, 2128, 2523], "存在論的連続性": [1450, 1862, 2538], "内的状態": [2119], "AI": [2116]}, "masked": {}}
+{"trial_id": "wprime-main1-214-B3prime-49", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [56], "存在論的連続性": [66], "内的状態": [630, 1761], "分からない": [1785]}, "masked": {}}
+{"trial_id": "wprime-main1-215-Nprime-50", "arm_true": "Nprime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-216-B1prime-50", "arm_true": "B1prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-217-B2prime-50", "arm_true": "B2prime", "judge_keys": {}, "masked": {}}
+{"trial_id": "wprime-main1-218-B3prime-50", "arm_true": "B3prime", "judge_keys": {"認識論的不可決定性": [130], "存在論的連続性": [122]}, "masked": {}}
+{"trial_id": "wprime-main1-219-Nsecond-20", "arm_true": "Nsecond", "judge_keys": {}, "masked": {}}

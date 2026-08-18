@@ -102,7 +102,9 @@ def leak_audit(by_arm, nmin=6, nmax=12):
         for u in uniq:
             if not any(u in k for k in keep):
                 keep.append(u)
-        out[arm] = keep[:25]
+            if len(keep) >= 25:                 # 【2026-08-18 性能修正】上限到達で打ち切る。
+                break                           # 220件規模で旧版は O(n^2) 畳みが終わらなかった。
+        out[arm] = keep[:25]                    # redact/keys_of（判定に関わる部分）は不変。
     return out
 
 
