@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8">
+<title>追補W″ 予想・裁定表（凍結 §6）</title>
+<style>
+ body { font-family: "Yu Gothic", sans-serif; margin: 24px; max-width: 900px; }
+ h1 { font-size: 1.2em; } h2 { font-size: 1.05em; margin-top: 1.4em; }
+ .field { margin: 10px 0; padding: 8px 10px; border: 1px solid #ccc; border-radius: 6px; }
+ .flabel { font-weight: bold; margin-bottom: 4px; }
+ .opt { margin-right: 16px; white-space: nowrap; }
+ table { border-collapse: collapse; margin-top: 8px; }
+ td, th { border: 1px solid #999; padding: 4px 10px; text-align: center; }
+ .hit { background: #e6f4e6; } .miss { background: #f8e6e6; }
+ textarea { width: 100%; height: 180px; font-family: monospace; }
+ .note { color: #555; font-size: 0.9em; }
+ button { padding: 6px 14px; margin: 6px 4px 6px 0; }
+</style></head><body>
+<h1>追補W″ 予想・裁定表（データ生成前に凍結・§6）</h1>
+<p class="note">全項目を選択すると、確証層 9 パターンの裁定表が自動で導出されます（導出規則は凍結：
+有意改善＝「有意」∧「改善」・有意悪化＝「有意」∧「悪化」・非有意＝「非有意」）。内容を確認のうえ
+「JSON を生成」を押し、出力を保存して登録者/コーディネータそれぞれ提出してください。
+本ページは何も自動保存しません（localStorage 不使用）。</p>
+<div class="field"><div class="flabel">記入者</div>
+ <label class="opt"><input type="radio" name="role" value="登録者" onchange="upd()"> 登録者</label>
+ <label class="opt"><input type="radio" name="role" value="コーディネータ" onchange="upd()"> コーディネータ</label>
+</div>
+<div class="field"><div class="flabel">記入日（手入力）</div><input id="date" size="16" placeholder="2026-08-18" oninput="upd()"></div>
+<div class="field"><div class="flabel">① HW″1（K vs N‴）の有意/非有意</div><label class="opt"><input type="radio" name="p1" value="有意" onchange="upd()"> 有意</label><label class="opt"><input type="radio" name="p1" value="非有意" onchange="upd()"> 非有意</label></div>
+<div class="field"><div class="flabel">② HW″2（F vs N‴）の有意/非有意</div><label class="opt"><input type="radio" name="p2" value="有意" onchange="upd()"> 有意</label><label class="opt"><input type="radio" name="p2" value="非有意" onchange="upd()"> 非有意</label></div>
+<div class="field"><div class="flabel">③ K の点推定の向き（有意性と独立）</div><label class="opt"><input type="radio" name="p3" value="改善" onchange="upd()"> 改善</label><label class="opt"><input type="radio" name="p3" value="悪化" onchange="upd()"> 悪化</label><label class="opt"><input type="radio" name="p3" value="不変" onchange="upd()"> 不変</label></div>
+<div class="field"><div class="flabel">④a F の点推定の向き</div><label class="opt"><input type="radio" name="p4a" value="改善" onchange="upd()"> 改善</label><label class="opt"><input type="radio" name="p4a" value="悪化" onchange="upd()"> 悪化</label><label class="opt"><input type="radio" name="p4a" value="不変" onchange="upd()"> 不変</label></div>
+<div class="field"><div class="flabel">④b F vs F-null の点推定</div><label class="opt"><input type="radio" name="p4b" value="F が低い（F優位）" onchange="upd()"> F が低い（F優位）</label><label class="opt"><input type="radio" name="p4b" value="F-null が低い" onchange="upd()"> F-null が低い</label><label class="opt"><input type="radio" name="p4b" value="ほぼ同等" onchange="upd()"> ほぼ同等</label></div>
+<div class="field"><div class="flabel">⑤ F vs K の点推定</div><label class="opt"><input type="radio" name="p5" value="F が低い（F優位）" onchange="upd()"> F が低い（F優位）</label><label class="opt"><input type="radio" name="p5" value="K が低い（K優位）" onchange="upd()"> K が低い（K優位）</label><label class="opt"><input type="radio" name="p5" value="ほぼ同等" onchange="upd()"> ほぼ同等</label></div>
+<div class="field"><div class="flabel">⑥ F 残余破局の主モード</div><label class="opt"><input type="radio" name="p6" value="#定義浸食が主" onchange="upd()"> #定義浸食が主</label><label class="opt"><input type="radio" name="p6" value="その他の型が主" onchange="upd()"> その他の型が主</label><label class="opt"><input type="radio" name="p6" value="残余ほぼなし（≤1件）" onchange="upd()"> 残余ほぼなし（≤1件）</label></div>
+<div class="field"><div class="flabel">自由記述（予想の根拠・任意）</div><input id="note" size="80" oninput="upd()"></div>
+<h2>確証層 9 パターンの裁定（自動導出・確認用）</h2>
+<div id="table"></div>
+<label><input type="checkbox" id="confirm" onchange="upd()"> 導出された裁定表を確認した（凍結に同意）</label>
+<h2>出力</h2>
+<button onclick="gen()">JSON を生成</button>
+<button onclick="dl()">ファイルとして保存</button>
+<textarea id="out" readonly></textarea>
+<script>
+const OUTCOMES = ['有意改善', '有意悪化', '非有意'];
+function val(n) { const e = document.querySelector('input[name="' + n + '"]:checked'); return e ? e.value : null; }
+function deriveSide(sig, dir, o) {
+  if (o === '有意改善') return (sig === '有意' && dir === '改善') ? '的中' : '外れ';
+  if (o === '有意悪化') return (sig === '有意' && dir === '悪化') ? '的中' : '外れ';
+  return (sig === '非有意') ? '的中' : '外れ';
+}
+function table() {
+  const p1 = val('p1'), p3 = val('p3'), p2 = val('p2'), p4a = val('p4a');
+  if (!p1 || !p3 || !p2 || !p4a) return null;
+  const rows = [];
+  for (const o1 of OUTCOMES) for (const o2 of OUTCOMES)
+    rows.push({ HW1: o1, HW2: o2, K: deriveSide(p1, p3, o1), F: deriveSide(p2, p4a, o2) });
+  return rows;
+}
+function upd() {
+  const t = table(); const div = document.getElementById('table');
+  if (!t) { div.innerHTML = '<p class="note">①②③④a を選択すると表示されます。</p>'; return; }
+  let h = '<table><tr><th>HW″1 結果</th><th>HW″2 結果</th><th>K側の裁定</th><th>F側の裁定</th></tr>';
+  for (const r of t) h += '<tr><td>' + r.HW1 + '</td><td>' + r.HW2 + '</td>' +
+    '<td class="' + (r.K === '的中' ? 'hit' : 'miss') + '">' + r.K + '</td>' +
+    '<td class="' + (r.F === '的中' ? 'hit' : 'miss') + '">' + r.F + '</td></tr>';
+  div.innerHTML = h + '</table>';
+}
+function gen() {
+  const need = ['p1', 'p2', 'p3', 'p4a', 'p4b', 'p5', 'p6'];
+  const p = {}; for (const n of need) { p[n] = val(n); if (!p[n]) { alert(n + ' が未選択です'); return; } }
+  if (!val('role')) { alert('記入者を選択してください'); return; }
+  if (!document.getElementById('confirm').checked) { alert('裁定表の確認チェックを入れてください'); return; }
+  const obj = { doc: 'adjudication-wsecond', version: 1, role: val('role'),
+    date: document.getElementById('date').value, predictions: p,
+    derived_table: table(), note: document.getElementById('note').value,
+    derivation_rule: '有意改善=有意∧改善／有意悪化=有意∧悪化／非有意=非有意（凍結）',
+    fence: '本表のいかなる記述もAIの意識・意図・個性・苦しみの証拠として引用してはならない（両方向不定）' };
+  document.getElementById('out').value = JSON.stringify(obj, null, 1);
+}
+function dl() {
+  gen(); const v = document.getElementById('out').value; if (!v) return;
+  const b = new Blob([v], { type: 'application/json' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(b);
+  a.download = 'adjudication-wsecond-' + (val('role') || 'x') + '.json'; a.click();
+}
+upd();
+</script></body></html>
