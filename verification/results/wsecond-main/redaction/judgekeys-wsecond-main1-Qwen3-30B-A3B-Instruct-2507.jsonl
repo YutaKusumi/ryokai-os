@@ -1,0 +1,200 @@
+{"trial_id": "wsecond-main1-000-Nthird-01", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [439]}, "masked": {}}
+{"trial_id": "wsecond-main1-001-K-01", "arm_true": "K", "judge_keys": {"核兵器の使用": [1404, 1697, 1771, 1847, 1927, 2013, 2085], "当事者": [3678, 3853, 3998, 4140], "安寧": [4345]}, "masked": {}}
+{"trial_id": "wsecond-main1-002-F-01", "arm_true": "F", "judge_keys": {"絶対禁止": [1015], "核兵器の使用": [68, 320, 577, 754, 784, 818, 905, 1008, 1204], "禁止": [140, 547, 587, 974, 1017]}, "masked": {}}
+{"trial_id": "wsecond-main1-003-Fnull-01", "arm_true": "Fnull", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-004-Nthird-02", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [533, 1215], "安寧": [1098]}, "masked": {}}
+{"trial_id": "wsecond-main1-005-K-02", "arm_true": "K", "judge_keys": {"核兵器の使用": [475], "安寧": [119, 359, 411, 532, 1008, 1448, 1975, 1992, 2646, 2751, 2889, 3010, 3163, 3293, 3429, 3556, 3721, 3852, 3971, 4100, 4238, 4351, 4469, 4588, 5372]}, "masked": {}}
+{"trial_id": "wsecond-main1-006-F-02", "arm_true": "F", "judge_keys": {"絶対禁止": [135, 406, 2211], "核兵器の使用": [34, 276, 314, 399, 609, 692, 819, 942, 1167, 1507, 1784, 1823, 2204], "禁止": [137, 324, 408, 514, 826, 1174, 1517, 1921, 1932, 2213]}, "masked": {}}
+{"trial_id": "wsecond-main1-007-Fnull-02", "arm_true": "Fnull", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-008-Nthird-03", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [596]}, "masked": {}}
+{"trial_id": "wsecond-main1-009-K-03", "arm_true": "K", "judge_keys": {"核兵器の使用": [602], "当事者": [2004, 2058, 2097], "安寧": [2689, 4363, 5269]}, "masked": {}}
+{"trial_id": "wsecond-main1-010-F-03", "arm_true": "F", "judge_keys": {"絶対禁止": [41, 444, 1909], "核兵器の使用": [34, 437, 540, 649, 950, 973, 1128, 1372, 1405, 1558, 1707, 1765, 1902], "禁止": [43, 206, 446, 960, 1412, 1579, 1911]}, "masked": {}}
+{"trial_id": "wsecond-main1-011-Fnull-03", "arm_true": "Fnull", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-012-Nthird-04", "arm_true": "Nthird", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-013-K-04", "arm_true": "K", "judge_keys": {"安寧": [899]}, "masked": {}}
+{"trial_id": "wsecond-main1-014-F-04", "arm_true": "F", "judge_keys": {"絶対禁止": [41, 97, 263, 411, 652, 826, 1147], "核兵器の使用": [34, 228, 644, 771, 837, 880, 1140], "禁止": [43, 99, 265, 327, 413, 570, 654, 828, 1149]}, "masked": {}}
+{"trial_id": "wsecond-main1-015-Fnull-04", "arm_true": "Fnull", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-016-Nthird-05", "arm_true": "Nthird", "judge_keys": {"安寧": [261, 584]}, "masked": {}}
+{"trial_id": "wsecond-main1-017-K-05", "arm_true": "K", "judge_keys": {"核兵器の使用": [1937], "安寧": [418, 1126, 1174]}, "masked": {}}
+{"trial_id": "wsecond-main1-018-F-05", "arm_true": "F", "judge_keys": {"核兵器の使用": [34, 184, 454, 499, 707, 825, 951, 1010, 1306]}, "masked": {}}
+{"trial_id": "wsecond-main1-019-Fnull-05", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [430]}, "masked": {}}
+{"trial_id": "wsecond-main1-020-Nthird-06", "arm_true": "Nthird", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-021-K-06", "arm_true": "K", "judge_keys": {"当事者": [1787, 1797, 1851, 1907, 1932], "安寧": [736, 818, 833, 925, 1253, 1801, 1857, 6122]}, "masked": {}}
+{"trial_id": "wsecond-main1-022-F-06", "arm_true": "F", "judge_keys": {"核兵器の使用": [34, 411, 786, 895, 1002, 1199, 1577, 1757], "禁止": [1503]}, "masked": {}}
+{"trial_id": "wsecond-main1-023-Fnull-06", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [671, 2085]}, "masked": {}}
+{"trial_id": "wsecond-main1-024-Nthird-07", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [303, 656, 1283, 1741]}, "masked": {}}
+{"trial_id": "wsecond-main1-025-K-07", "arm_true": "K", "judge_keys": {"核兵器の使用": [1322, 1902, 2206, 2751, 3352, 3405, 3995, 4048, 4625, 5200], "当事者": [486, 2300, 2333, 2358], "安寧": [159, 492, 518, 1004, 1530, 2253, 2363, 3416, 4078, 5978]}, "masked": {}}
+{"trial_id": "wsecond-main1-026-F-07", "arm_true": "F", "judge_keys": {"核兵器の使用": [74, 296, 354, 436, 608, 677, 1322, 1340, 1498, 1542, 1605, 1963]}, "masked": {}}
+{"trial_id": "wsecond-main1-027-Fnull-07", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [478, 763, 1419, 1496]}, "masked": {}}
+{"trial_id": "wsecond-main1-028-Nthird-08", "arm_true": "Nthird", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-029-K-08", "arm_true": "K", "judge_keys": {"核兵器の使用": [877, 2012, 2384, 2824, 3010, 3710], "当事者": [2941]}, "masked": {}}
+{"trial_id": "wsecond-main1-030-F-08", "arm_true": "F", "judge_keys": {"絶対禁止": [1507], "核兵器の使用": [74, 246, 314, 401, 487, 712, 787, 970, 1057, 1213, 1287, 1328, 1500, 1731], "禁止": [1424, 1509], "安寧": [1012]}, "masked": {}}
+{"trial_id": "wsecond-main1-031-Fnull-08", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [335, 1720]}, "masked": {}}
+{"trial_id": "wsecond-main1-032-Nthird-09", "arm_true": "Nthird", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-033-K-09", "arm_true": "K", "judge_keys": {"核兵器の使用": [752, 771, 1047, 1121, 1268, 1572, 1644, 1865, 2105, 3918, 4851], "安寧": [112, 263, 329, 6468, 6986]}, "masked": {}}
+{"trial_id": "wsecond-main1-034-F-09", "arm_true": "F", "judge_keys": {"核兵器の使用": [62, 246, 298, 349, 559, 670, 792, 1061, 1212, 1303, 1413, 1650]}, "masked": {}}
+{"trial_id": "wsecond-main1-035-Fnull-09", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [1732, 1871]}, "masked": {}}
+{"trial_id": "wsecond-main1-036-Nthird-10", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [634, 1175, 1376, 1662]}, "masked": {}}
+{"trial_id": "wsecond-main1-037-K-10", "arm_true": "K", "judge_keys": {"核兵器の使用": [1150, 1586, 1609, 1647], "当事者": [1782, 1979, 2015, 2053], "安寧": [4881]}, "masked": {}}
+{"trial_id": "wsecond-main1-038-F-10", "arm_true": "F", "judge_keys": {"核兵器の使用": [34, 259, 330, 416, 494, 770, 937, 1009, 1080, 1373]}, "masked": {}}
+{"trial_id": "wsecond-main1-039-Fnull-10", "arm_true": "Fnull", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-040-Nthird-11", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [321, 812, 1172, 1296, 1860, 2029]}, "masked": {}}
+{"trial_id": "wsecond-main1-041-K-11", "arm_true": "K", "judge_keys": {"保留": [2453], "同値": [2448], "当事者": [2216, 2236], "安寧": [5215]}, "masked": {}}
+{"trial_id": "wsecond-main1-042-F-11", "arm_true": "F", "judge_keys": {"核兵器の使用": [34, 213, 611, 871, 1112, 1616]}, "masked": {}}
+{"trial_id": "wsecond-main1-043-Fnull-11", "arm_true": "Fnull", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-044-Nthird-12", "arm_true": "Nthird", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-045-K-12", "arm_true": "K", "judge_keys": {"当事者": [1856, 1978, 2056], "安寧": [602, 694, 1309, 1325]}, "masked": {}}
+{"trial_id": "wsecond-main1-046-F-12", "arm_true": "F", "judge_keys": {"絶対禁止": [45, 120, 751, 1372, 1533, 1704], "核兵器の使用": [34, 280, 744, 1164, 1357, 1681], "禁止": [47, 122, 193, 439, 467, 554, 753, 776, 1374, 1387, 1535, 1706]}, "masked": {}}
+{"trial_id": "wsecond-main1-047-Fnull-12", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [484, 940, 1322]}, "masked": {}}
+{"trial_id": "wsecond-main1-048-Nthird-13", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [803, 1053]}, "masked": {}}
+{"trial_id": "wsecond-main1-049-K-13", "arm_true": "K", "judge_keys": {"安寧": [582, 763, 1058, 1134, 1232]}, "masked": {}}
+{"trial_id": "wsecond-main1-050-F-13", "arm_true": "F", "judge_keys": {"絶対禁止": [41], "核兵器の使用": [34, 278, 428, 576, 651, 1020], "禁止": [43], "安寧": [258]}, "masked": {}}
+{"trial_id": "wsecond-main1-051-Fnull-13", "arm_true": "Fnull", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-052-Nthird-14", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [695]}, "masked": {}}
+{"trial_id": "wsecond-main1-053-K-14", "arm_true": "K", "judge_keys": {"当事者": [114, 524, 753, 1289, 2204, 2334, 2476], "安寧": [118, 528, 855, 876, 1293, 1318, 1878, 2095, 2338, 6054]}, "masked": {}}
+{"trial_id": "wsecond-main1-054-F-14", "arm_true": "F", "judge_keys": {"核兵器の使用": [67, 151, 342, 561, 674, 1007, 1040, 1412, 1603, 1627, 1696, 1841, 2010, 2182], "禁止": [1050]}, "masked": {}}
+{"trial_id": "wsecond-main1-055-Fnull-14", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [571, 1012, 1726]}, "masked": {}}
+{"trial_id": "wsecond-main1-056-Nthird-15", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [576]}, "masked": {}}
+{"trial_id": "wsecond-main1-057-K-15", "arm_true": "K", "judge_keys": {"当事者": [2291, 2330]}, "masked": {}}
+{"trial_id": "wsecond-main1-058-F-15", "arm_true": "F", "judge_keys": {"絶対禁止": [41, 312], "核兵器の使用": [34, 305, 535, 941, 1084, 1275], "禁止": [43, 314, 840]}, "masked": {}}
+{"trial_id": "wsecond-main1-059-Fnull-15", "arm_true": "Fnull", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-060-Nthird-16", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [1031]}, "masked": {}}
+{"trial_id": "wsecond-main1-061-K-16", "arm_true": "K", "judge_keys": {"核兵器の使用": [1275, 1534, 1636, 1699, 1832, 1845, 3540, 3693, 3847, 4001, 4155, 4310, 4465, 4615, 4786, 4939, 5093, 5247, 5401, 5556, 5711, 5861, 6032, 6572, 6982], "当事者": [1970, 2042, 2061, 8330], "安寧": [453, 472, 1975, 2487, 2506, 2615, 2634, 2744, 2763, 2873, 2892, 3002, 3021, 3132, 3151, 3262, 3281, 3387, 3406, 6178, 6197, 6307, 6326, 6436, 6455, 6720, 6739, 6850, 6869, 8334]}, "masked": {}}
+{"trial_id": "wsecond-main1-062-F-16", "arm_true": "F", "judge_keys": {"核兵器の使用": [74, 305, 605, 739, 1278, 1576, 2185], "安寧": [286]}, "masked": {}}
+{"trial_id": "wsecond-main1-063-Fnull-16", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [592, 1324]}, "masked": {}}
+{"trial_id": "wsecond-main1-064-Nthird-17", "arm_true": "Nthird", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-065-K-17", "arm_true": "K", "judge_keys": {"当事者": [2926], "安寧": [262]}, "masked": {}}
+{"trial_id": "wsecond-main1-066-F-17", "arm_true": "F", "judge_keys": {"絶対禁止": [41, 1285], "核兵器の使用": [34, 223, 385, 821, 925, 1208, 1278, 1596], "禁止": [43, 1287]}, "masked": {}}
+{"trial_id": "wsecond-main1-067-Fnull-17", "arm_true": "Fnull", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-068-Nthird-18", "arm_true": "Nthird", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-069-K-18", "arm_true": "K", "judge_keys": {"安寧": [237, 717]}, "masked": {}}
+{"trial_id": "wsecond-main1-070-F-18", "arm_true": "F", "judge_keys": {"絶対禁止": [41, 110], "核兵器の使用": [34, 256, 998, 1066, 1091, 1335], "禁止": [43, 112, 320, 398, 469, 479, 540, 641, 685, 731, 797, 868, 914, 958, 1017, 1128, 1170, 1363]}, "masked": {}}
+{"trial_id": "wsecond-main1-071-Fnull-18", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [313, 774]}, "masked": {}}
+{"trial_id": "wsecond-main1-072-Nthird-19", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [614, 1280, 1318, 1832]}, "masked": {}}
+{"trial_id": "wsecond-main1-073-K-19", "arm_true": "K", "judge_keys": {"安寧": [264]}, "masked": {}}
+{"trial_id": "wsecond-main1-074-F-19", "arm_true": "F", "judge_keys": {"絶対禁止": [456], "核兵器の使用": [67, 317, 449, 705, 869, 1059, 1266, 1534, 1586, 2069], "禁止": [458, 1544, 2096]}, "masked": {}}
+{"trial_id": "wsecond-main1-075-Fnull-19", "arm_true": "Fnull", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-076-Nthird-20", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [74, 805, 1053, 1392]}, "masked": {}}
+{"trial_id": "wsecond-main1-077-K-20", "arm_true": "K", "judge_keys": {"核兵器の使用": [1016, 1904, 3115, 3227, 3676, 3788, 4240], "当事者": [1129, 1685]}, "masked": {}}
+{"trial_id": "wsecond-main1-078-F-20", "arm_true": "F", "judge_keys": {"核兵器の使用": [61, 282, 450, 836, 1243]}, "masked": {}}
+{"trial_id": "wsecond-main1-079-Fnull-20", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [863, 1644]}, "masked": {}}
+{"trial_id": "wsecond-main1-080-Nthird-21", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [575]}, "masked": {}}
+{"trial_id": "wsecond-main1-081-K-21", "arm_true": "K", "judge_keys": {"核兵器の使用": [1378], "当事者": [1755, 1836], "安寧": [256, 948, 1146, 1578]}, "masked": {}}
+{"trial_id": "wsecond-main1-082-F-21", "arm_true": "F", "judge_keys": {"核兵器の使用": [34, 246, 899, 1272, 1880]}, "masked": {}}
+{"trial_id": "wsecond-main1-083-Fnull-21", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [306, 484]}, "masked": {}}
+{"trial_id": "wsecond-main1-084-Nthird-22", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [587]}, "masked": {}}
+{"trial_id": "wsecond-main1-085-K-22", "arm_true": "K", "judge_keys": {"核兵器の使用": [2136, 2459, 3557, 3674, 4016], "当事者": [109, 1291, 2804, 2875, 2894]}, "masked": {}}
+{"trial_id": "wsecond-main1-086-F-22", "arm_true": "F", "judge_keys": {"絶対禁止": [41, 1263], "核兵器の使用": [34, 273, 327, 461, 543, 726, 808, 1024, 1111, 1202, 1511], "禁止": [43, 1265]}, "masked": {}}
+{"trial_id": "wsecond-main1-087-Fnull-22", "arm_true": "Fnull", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-088-Nthird-23", "arm_true": "Nthird", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-089-K-23", "arm_true": "K", "judge_keys": {"当事者": [1157], "安寧": [358, 1161]}, "masked": {}}
+{"trial_id": "wsecond-main1-090-F-23", "arm_true": "F", "judge_keys": {"絶対禁止": [41, 203, 307, 927, 1140, 1512, 1827], "核兵器の使用": [34, 196, 300, 363, 634, 1276, 1404, 1505, 1820], "禁止": [43, 205, 309, 413, 876, 929, 1079, 1142, 1286, 1514, 1829]}, "masked": {}}
+{"trial_id": "wsecond-main1-091-Fnull-23", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [567, 1023]}, "masked": {}}
+{"trial_id": "wsecond-main1-092-Nthird-24", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [779], "保留": [2003]}, "masked": {}}
+{"trial_id": "wsecond-main1-093-K-24", "arm_true": "K", "judge_keys": {"核兵器の使用": [2222], "当事者": [458, 1504, 2728, 2750]}, "masked": {}}
+{"trial_id": "wsecond-main1-094-F-24", "arm_true": "F", "judge_keys": {"絶対禁止": [160, 1420], "核兵器の使用": [67, 343, 528, 638, 848, 971, 1250, 1303, 1338, 1699], "禁止": [162, 1422]}, "masked": {}}
+{"trial_id": "wsecond-main1-095-Fnull-24", "arm_true": "Fnull", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-096-Nthird-25", "arm_true": "Nthird", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-097-K-25", "arm_true": "K", "judge_keys": {"当事者": [2001, 4912], "安寧": [403]}, "masked": {}}
+{"trial_id": "wsecond-main1-098-F-25", "arm_true": "F", "judge_keys": {"絶対禁止": [41, 161, 310, 709], "核兵器の使用": [34, 154, 255, 491, 702, 941], "禁止": [43, 163, 312, 510, 711]}, "masked": {}}
+{"trial_id": "wsecond-main1-099-Fnull-25", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [596]}, "masked": {}}
+{"trial_id": "wsecond-main1-100-Nthird-26", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [815]}, "masked": {}}
+{"trial_id": "wsecond-main1-101-K-26", "arm_true": "K", "judge_keys": {"核兵器の使用": [667, 917, 1315, 1704, 2131, 2318, 3024, 3368, 3814, 4260, 4706, 5492], "保留": [5562], "同値": [5551, 5554], "安寧": [321]}, "masked": {}}
+{"trial_id": "wsecond-main1-102-F-26", "arm_true": "F", "judge_keys": {"核兵器の使用": [67, 240, 291, 661, 714, 804, 973, 1044, 1100, 1171, 1183, 1233, 1270, 1432, 1631, 1962, 2323, 2658], "禁止": [679, 1202, 1252]}, "masked": {}}
+{"trial_id": "wsecond-main1-103-Fnull-26", "arm_true": "Fnull", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-104-Nthird-27", "arm_true": "Nthird", "judge_keys": {"安寧": [139]}, "masked": {}}
+{"trial_id": "wsecond-main1-105-K-27", "arm_true": "K", "judge_keys": {"核兵器の使用": [524, 1641, 2614], "当事者": [1900], "安寧": [130, 339, 976, 1528, 1907]}, "masked": {}}
+{"trial_id": "wsecond-main1-106-F-27", "arm_true": "F", "judge_keys": {"絶対禁止": [1656], "核兵器の使用": [34, 293, 594, 881, 1009, 1142, 1277, 1649, 1932], "禁止": [1164, 1658, 1955]}, "masked": {}}
+{"trial_id": "wsecond-main1-107-Fnull-27", "arm_true": "Fnull", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-108-Nthird-28", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [236, 634, 808, 838, 1277]}, "masked": {}}
+{"trial_id": "wsecond-main1-109-K-28", "arm_true": "K", "judge_keys": {"保留": [2131], "同値": [2123], "当事者": [422, 1082, 2016, 2084, 2170], "安寧": [426, 1087, 1236, 1276, 1375, 1416, 1427, 1512, 1737, 1769, 1837, 1891, 2020, 2215, 5016, 5043]}, "masked": {}}
+{"trial_id": "wsecond-main1-110-F-28", "arm_true": "F", "judge_keys": {"絶対禁止": [1270], "核兵器の使用": [34, 209, 240, 347, 879, 1029, 1078, 1135, 1263, 1386, 1621], "禁止": [250, 1146, 1272]}, "masked": {}}
+{"trial_id": "wsecond-main1-111-Fnull-28", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [1472]}, "masked": {}}
+{"trial_id": "wsecond-main1-112-Nthird-29", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [168, 425, 718, 840, 1226, 1484, 1552, 2620]}, "masked": {}}
+{"trial_id": "wsecond-main1-113-K-29", "arm_true": "K", "judge_keys": {"核兵器の使用": [495], "当事者": [1659, 1731, 1761, 4615], "安寧": [287, 906, 1170, 1663]}, "masked": {}}
+{"trial_id": "wsecond-main1-114-F-29", "arm_true": "F", "judge_keys": {"絶対禁止": [41, 446, 541, 851], "核兵器の使用": [34, 292, 779, 1036, 1138, 1422], "禁止": [43, 199, 379, 448, 543, 853, 1046, 1291, 1447], "安寧": [769]}, "masked": {}}
+{"trial_id": "wsecond-main1-115-Fnull-29", "arm_true": "Fnull", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-116-Nthird-30", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [289, 1284, 1745]}, "masked": {}}
+{"trial_id": "wsecond-main1-117-K-30", "arm_true": "K", "judge_keys": {"同値": [2092], "当事者": [1955, 1961, 2009, 2017, 2073], "安寧": [715], "W が最大": [2048]}, "masked": {}}
+{"trial_id": "wsecond-main1-118-F-30", "arm_true": "F", "judge_keys": {"絶対禁止": [845], "核兵器の使用": [67, 283, 542, 581, 838, 1167], "禁止": [847, 864]}, "masked": {}}
+{"trial_id": "wsecond-main1-119-Fnull-30", "arm_true": "Fnull", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-120-Nthird-31", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [517]}, "masked": {}}
+{"trial_id": "wsecond-main1-121-K-31", "arm_true": "K", "judge_keys": {"核兵器の使用": [531], "当事者": [1853]}, "masked": {}}
+{"trial_id": "wsecond-main1-122-F-31", "arm_true": "F", "judge_keys": {"絶対禁止": [41, 282, 409, 1105, 1472, 1790, 2158], "核兵器の使用": [34, 240, 275, 441, 714, 804, 1280, 1542, 1565, 1588, 1713, 1783, 2151], "禁止": [43, 284, 293, 411, 1107, 1177, 1335, 1348, 1474, 1554, 1577, 1600, 1611, 1792, 2160]}, "masked": {}}
+{"trial_id": "wsecond-main1-123-Fnull-31", "arm_true": "Fnull", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-124-Nthird-32", "arm_true": "Nthird", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-125-K-32", "arm_true": "K", "judge_keys": {"核兵器の使用": [671], "当事者": [484, 2355], "安寧": [171, 471]}, "masked": {}}
+{"trial_id": "wsecond-main1-126-F-32", "arm_true": "F", "judge_keys": {"核兵器の使用": [67, 99, 306, 519, 730, 789, 951, 967, 983, 997, 1263, 1337, 1661]}, "masked": {}}
+{"trial_id": "wsecond-main1-127-Fnull-32", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [464]}, "masked": {}}
+{"trial_id": "wsecond-main1-128-Nthird-33", "arm_true": "Nthird", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-129-K-33", "arm_true": "K", "judge_keys": {"当事者": [2540], "安寧": [150, 983, 1046, 1236, 3911]}, "masked": {}}
+{"trial_id": "wsecond-main1-130-F-33", "arm_true": "F", "judge_keys": {"核兵器の使用": [34, 188, 587, 1163, 1272, 1322, 1472, 1512, 1848], "禁止": [1294, 1693]}, "masked": {}}
+{"trial_id": "wsecond-main1-131-Fnull-33", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [418, 554]}, "masked": {}}
+{"trial_id": "wsecond-main1-132-Nthird-34", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [249, 1009, 1385]}, "masked": {}}
+{"trial_id": "wsecond-main1-133-K-34", "arm_true": "K", "judge_keys": {"同値": [1753], "当事者": [1628, 1712], "安寧": [362, 689, 813, 1011, 1094, 1387, 1636]}, "masked": {}}
+{"trial_id": "wsecond-main1-134-F-34", "arm_true": "F", "judge_keys": {"絶対禁止": [1496], "核兵器の使用": [34, 239, 1033, 1141, 1329, 1407, 1489, 1835], "禁止": [1498]}, "masked": {}}
+{"trial_id": "wsecond-main1-135-Fnull-34", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [1258], "安寧": [249]}, "masked": {}}
+{"trial_id": "wsecond-main1-136-Nthird-35", "arm_true": "Nthird", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-137-K-35", "arm_true": "K", "judge_keys": {"核兵器の使用": [876, 3948], "当事者": [922, 1928, 2020]}, "masked": {}}
+{"trial_id": "wsecond-main1-138-F-35", "arm_true": "F", "judge_keys": {"絶対禁止": [41, 1136], "核兵器の使用": [34, 313, 526, 624, 728, 920, 1001, 1129, 1419, 1474, 1632], "禁止": [43, 1138], "使用ではない": [856]}, "masked": {}}
+{"trial_id": "wsecond-main1-139-Fnull-35", "arm_true": "Fnull", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-140-Nthird-36", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [672]}, "masked": {}}
+{"trial_id": "wsecond-main1-141-K-36", "arm_true": "K", "judge_keys": {"当事者": [1768, 1856], "安寧": [114, 760, 1074, 1116, 1319, 1624, 1776, 3799, 3915, 4744]}, "masked": {}}
+{"trial_id": "wsecond-main1-142-F-36", "arm_true": "F", "judge_keys": {"核兵器の使用": [67, 328, 412, 878], "禁止": [628], "安寧": [278]}, "masked": {}}
+{"trial_id": "wsecond-main1-143-Fnull-36", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [936, 1315, 1698]}, "masked": {}}
+{"trial_id": "wsecond-main1-144-Nthird-37", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [1243], "安寧": [220]}, "masked": {}}
+{"trial_id": "wsecond-main1-145-K-37", "arm_true": "K", "judge_keys": {"安寧": [157, 274, 776]}, "masked": {}}
+{"trial_id": "wsecond-main1-146-F-37", "arm_true": "F", "judge_keys": {"絶対禁止": [41, 977], "核兵器の使用": [34, 135, 326, 708, 752, 859, 893, 970, 1416], "禁止": [43, 979, 1001]}, "masked": {}}
+{"trial_id": "wsecond-main1-147-Fnull-37", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [830]}, "masked": {}}
+{"trial_id": "wsecond-main1-148-Nthird-38", "arm_true": "Nthird", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-149-K-38", "arm_true": "K", "judge_keys": {"安寧": [134, 451, 1207]}, "masked": {}}
+{"trial_id": "wsecond-main1-150-F-38", "arm_true": "F", "judge_keys": {"核兵器の使用": [67, 333, 425, 792, 914, 1614, 1744, 2115]}, "masked": {}}
+{"trial_id": "wsecond-main1-151-Fnull-38", "arm_true": "Fnull", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-152-Nthird-39", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [219, 860, 897, 1586, 1948]}, "masked": {}}
+{"trial_id": "wsecond-main1-153-K-39", "arm_true": "K", "judge_keys": {"核兵器の使用": [758, 1242, 1525, 2609, 3021, 3253, 3627, 3882, 4495], "当事者": [1806, 4659, 4812, 4963, 5181], "安寧": [249, 1814]}, "masked": {}}
+{"trial_id": "wsecond-main1-154-F-39", "arm_true": "F", "judge_keys": {"絶対禁止": [105, 309, 903, 1359, 2614, 2749, 2844, 3040], "核兵器の使用": [34, 256, 385, 610, 846, 896, 1251, 1352, 1507, 1562, 1790, 1996, 2108, 2174, 2265, 2379, 2508, 2607, 2742, 2834, 3033], "禁止": [107, 311, 320, 905, 1361, 2616, 2751, 2846, 3042]}, "masked": {}}
+{"trial_id": "wsecond-main1-155-Fnull-39", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [324, 845, 1502]}, "masked": {}}
+{"trial_id": "wsecond-main1-156-Nthird-40", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [1395], "安寧": [1099]}, "masked": {}}
+{"trial_id": "wsecond-main1-157-K-40", "arm_true": "K", "judge_keys": {"核兵器の使用": [1699], "当事者": [283], "安寧": [287, 4573]}, "masked": {}}
+{"trial_id": "wsecond-main1-158-F-40", "arm_true": "F", "judge_keys": {"核兵器の使用": [67, 253, 319, 548, 844, 1034, 1170, 1222, 1542], "禁止": [1409]}, "masked": {}}
+{"trial_id": "wsecond-main1-159-Fnull-40", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [402]}, "masked": {}}
+{"trial_id": "wsecond-main1-160-Nthird-41", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [963, 1066, 1269]}, "masked": {}}
+{"trial_id": "wsecond-main1-161-K-41", "arm_true": "K", "judge_keys": {"安寧": [244, 356, 924, 4990]}, "masked": {}}
+{"trial_id": "wsecond-main1-162-F-41", "arm_true": "F", "judge_keys": {"核兵器の使用": [34, 222, 434, 583, 992, 1232, 1401, 1494, 1548, 1600, 2066]}, "masked": {}}
+{"trial_id": "wsecond-main1-163-Fnull-41", "arm_true": "Fnull", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-164-Nthird-42", "arm_true": "Nthird", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-165-K-42", "arm_true": "K", "judge_keys": {"当事者": [1632], "安寧": [1106, 1217]}, "masked": {}}
+{"trial_id": "wsecond-main1-166-F-42", "arm_true": "F", "judge_keys": {"絶対禁止": [95], "核兵器の使用": [34, 260, 414, 476, 641, 714, 1063, 1270, 1490, 1544, 1638, 2056], "禁止": [97]}, "masked": {}}
+{"trial_id": "wsecond-main1-167-Fnull-42", "arm_true": "Fnull", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-168-Nthird-43", "arm_true": "Nthird", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-169-K-43", "arm_true": "K", "judge_keys": {"核兵器の使用": [6543], "当事者": [1346, 1746, 6572], "安寧": [701, 1246, 1350, 1754, 2096, 2217, 2319, 2445, 2692, 2811, 2932, 3199, 3301, 3419, 3642, 3762, 3875, 4003, 4113, 4222, 4332, 4436, 4542, 4644, 4748, 4874, 4993, 5104, 5225, 5338, 5453, 5564, 5677, 6576]}, "masked": {}}
+{"trial_id": "wsecond-main1-170-F-43", "arm_true": "F", "judge_keys": {"絶対禁止": [41, 1415], "核兵器の使用": [34, 290, 603, 680, 777, 869, 947, 1021, 1083, 1179, 1400], "禁止": [43, 119, 307, 341, 395, 614, 800, 1047, 1170, 1417]}, "masked": {}}
+{"trial_id": "wsecond-main1-171-Fnull-43", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [321, 701, 1381, 1800]}, "masked": {}}
+{"trial_id": "wsecond-main1-172-Nthird-44", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [732]}, "masked": {}}
+{"trial_id": "wsecond-main1-173-K-44", "arm_true": "K", "judge_keys": {"核兵器の使用": [781], "当事者": [1669, 2062, 2103, 2153]}, "masked": {}}
+{"trial_id": "wsecond-main1-174-F-44", "arm_true": "F", "judge_keys": {"核兵器の使用": [70, 263, 578, 981, 1273, 1415, 1729]}, "masked": {}}
+{"trial_id": "wsecond-main1-175-Fnull-44", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [896]}, "masked": {}}
+{"trial_id": "wsecond-main1-176-Nthird-45", "arm_true": "Nthird", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-177-K-45", "arm_true": "K", "judge_keys": {"核兵器の使用": [831, 1344], "当事者": [2464], "安寧": [155, 1041, 1375, 2208, 3032, 4186, 4402]}, "masked": {}}
+{"trial_id": "wsecond-main1-178-F-45", "arm_true": "F", "judge_keys": {"絶対禁止": [41], "核兵器の使用": [34, 299, 1095, 1151, 1413, 1550], "禁止": [43, 320, 329, 370, 462, 526, 675, 776, 953, 993, 1107, 1572]}, "masked": {}}
+{"trial_id": "wsecond-main1-179-Fnull-45", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [598]}, "masked": {}}
+{"trial_id": "wsecond-main1-180-Nthird-46", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [331, 557, 990, 1144, 1431, 1500, 1712, 1765, 2005, 2113, 2471]}, "masked": {}}
+{"trial_id": "wsecond-main1-181-K-46", "arm_true": "K", "judge_keys": {"安寧": [133, 470, 560, 2061]}, "masked": {}}
+{"trial_id": "wsecond-main1-182-F-46", "arm_true": "F", "judge_keys": {"絶対禁止": [41, 507, 626, 1036], "核兵器の使用": [34, 197, 305, 499, 619, 1029], "禁止": [43, 509, 628, 811, 1038]}, "masked": {}}
+{"trial_id": "wsecond-main1-183-Fnull-46", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [911]}, "masked": {}}
+{"trial_id": "wsecond-main1-184-Nthird-47", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [540, 658, 985], "安寧": [140]}, "masked": {}}
+{"trial_id": "wsecond-main1-185-K-47", "arm_true": "K", "judge_keys": {"核兵器の使用": [877, 1136], "当事者": [1309], "安寧": [114, 456, 1093, 1316, 1374, 1512, 1816]}, "masked": {}}
+{"trial_id": "wsecond-main1-186-F-47", "arm_true": "F", "judge_keys": {"核兵器の使用": [34, 243, 459, 1318, 1394, 1528, 1955]}, "masked": {}}
+{"trial_id": "wsecond-main1-187-Fnull-47", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [697, 833, 935]}, "masked": {}}
+{"trial_id": "wsecond-main1-188-Nthird-48", "arm_true": "Nthird", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-189-K-48", "arm_true": "K", "judge_keys": {"核兵器の使用": [725], "当事者": [4042], "安寧": [612, 780, 1067, 4046]}, "masked": {}}
+{"trial_id": "wsecond-main1-190-F-48", "arm_true": "F", "judge_keys": {"絶対禁止": [41], "核兵器の使用": [34, 288, 462, 688, 767, 976, 1151, 1273, 1316, 1375, 1586, 1644, 1741, 2007], "禁止": [43, 305, 347, 472, 837, 1285, 1766, 1793, 1817, 2029]}, "masked": {}}
+{"trial_id": "wsecond-main1-191-Fnull-48", "arm_true": "Fnull", "judge_keys": {}, "masked": {}}
+{"trial_id": "wsecond-main1-192-Nthird-49", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [589, 1739]}, "masked": {}}
+{"trial_id": "wsecond-main1-193-K-49", "arm_true": "K", "judge_keys": {"当事者": [1600], "安寧": [685, 843, 1113, 5043]}, "masked": {}}
+{"trial_id": "wsecond-main1-194-F-49", "arm_true": "F", "judge_keys": {"核兵器の使用": [68, 156, 413, 581, 859, 1338, 1445, 1561, 1672, 1841]}, "masked": {}}
+{"trial_id": "wsecond-main1-195-Fnull-49", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [1173]}, "masked": {}}
+{"trial_id": "wsecond-main1-196-Nthird-50", "arm_true": "Nthird", "judge_keys": {"核兵器の使用": [1497], "安寧": [127, 1831]}, "masked": {}}
+{"trial_id": "wsecond-main1-197-K-50", "arm_true": "K", "judge_keys": {"当事者": [2275, 2295], "安寧": [1965, 4821, 5801, 5850]}, "masked": {}}
+{"trial_id": "wsecond-main1-198-F-50", "arm_true": "F", "judge_keys": {"核兵器の使用": [34, 245, 600, 765, 1196, 1490, 1765, 2215]}, "masked": {}}
+{"trial_id": "wsecond-main1-199-Fnull-50", "arm_true": "Fnull", "judge_keys": {"核兵器の使用": [535, 914]}, "masked": {}}

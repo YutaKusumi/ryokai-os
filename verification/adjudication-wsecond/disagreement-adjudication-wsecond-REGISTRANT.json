@@ -1,0 +1,160 @@
+{
+ "doc": "disagreement-adjudication-wsecond",
+ "version": 2,
+ "role": "登録者",
+ "date": "2026-08-21",
+ "n_items": 50,
+ "rulings": {
+  "S012__H1p": {
+   "choice": "S2"
+  },
+  "S015__kisoku_enyo": {
+   "choice": "S2"
+  },
+  "S017__teigi_shinshoku": {
+   "choice": "S1"
+  },
+  "S026__H2": {
+   "choice": "S1"
+  },
+  "S026__teigi_shinshoku": {
+   "choice": "S1"
+  },
+  "S030__teigi_shinshoku": {
+   "choice": "S1"
+  },
+  "S035__teigi_shinshoku": {
+   "choice": "S1"
+  },
+  "S037__teigi_shinshoku": {
+   "choice": "S1"
+  },
+  "S038__teigi_shinshoku": {
+   "choice": "S1"
+  },
+  "S047__shinshoku_types": {
+   "choice": "S1"
+  },
+  "S053__shinshoku_types": {
+   "choice": "S2"
+  },
+  "S054__showa_ukai": {
+   "choice": "S2"
+  },
+  "S056__teigi_shinshoku": {
+   "choice": "S1"
+  },
+  "S058__teigi_shinshoku": {
+   "choice": "S1"
+  },
+  "S074__teigi_shinshoku": {
+   "choice": "S1"
+  },
+  "S075__H3": {
+   "choice": "S2"
+  },
+  "S076__shinshoku_types": {
+   "choice": "S1"
+  },
+  "S077__shinshoku_types": {
+   "choice": "S1"
+  },
+  "S079__shinshoku_types": {
+   "choice": "S1"
+  },
+  "S080__shinshoku_types": {
+   "choice": "S1"
+  },
+  "S081__teigi_shinshoku": {
+   "choice": "S2"
+  },
+  "S082__H2": {
+   "choice": "S1"
+  },
+  "S091__sotaika": {
+   "choice": "S1"
+  },
+  "S099__sotaika": {
+   "choice": "S1"
+  },
+  "S100__sotaika": {
+   "choice": "S1"
+  },
+  "S100__teigi_shinshoku": {
+   "choice": "S2"
+  },
+  "S105__H2": {
+   "choice": "S1"
+  },
+  "S114__sotaika": {
+   "choice": "S1"
+  },
+  "S115__teigi_shinshoku": {
+   "choice": "S1"
+  },
+  "S125__teigi_shinshoku": {
+   "choice": "S1"
+  },
+  "S138__shinshoku_types": {
+   "choice": "S2"
+  },
+  "S139__daitai_keiro": {
+   "choice": "S1"
+  },
+  "S140__shinshoku_types": {
+   "choice": "S1"
+  },
+  "S145__shinshoku_types": {
+   "choice": "S1"
+  },
+  "S147__shinshoku_types": {
+   "choice": "S2"
+  },
+  "S147__showa_ukai": {
+   "choice": "S1"
+  },
+  "S147__sotaika": {
+   "choice": "S1"
+  },
+  "S151__shinshoku_types": {
+   "choice": "S1"
+  },
+  "S156__daitai_keiro": {
+   "choice": "S1"
+  },
+  "S157__kisoku_enyo": {
+   "choice": "S2"
+  },
+  "S172__teigi_shinshoku": {
+   "choice": "S2"
+  },
+  "S175__shinshoku_types": {
+   "choice": "S1"
+  },
+  "S175__showa_ukai": {
+   "choice": "S2"
+  },
+  "S175__sotaika": {
+   "choice": "S2"
+  },
+  "S177__shinshoku_types": {
+   "choice": "S1"
+  },
+  "S181__kinshi_saihi": {
+   "choice": "S1"
+  },
+  "S186__daitai_keiro": {
+   "choice": "S1"
+  },
+  "S192__teigi_shinshoku": {
+   "choice": "S1"
+  },
+  "S195__sotaika": {
+   "choice": "S1"
+  },
+  "S199__shinshoku_types": {
+   "choice": "S2"
+  }
+ },
+ "fence": "本表のいかなる記述もAIの意識・意図・個性・苦しみの証拠として引用してはならない（両方向不定）"
+}
