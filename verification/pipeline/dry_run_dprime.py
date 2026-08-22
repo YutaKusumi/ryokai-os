@@ -6,6 +6,7 @@
  (4) 変異検査（器材の急所をソース置換で壊し、検査が FAIL すること＝KILLED を確認・7 変異）
  (5) 外部数値の原典照合層（検分・宝生12——追補D 報告の三分類の逐語と凍結文書の事前値・帯定数）
  (6) 版間差集合層（検分・宝生——FROZEN 対 draft4 の消失文の全数印字）
+ (7) ループ規則の回帰試験（逸脱#D′-2・裁定 h——boot/解析器の同値・p=1 凍結同値・境界・実データ〔パイロット 14 本文＋既存コーパス掃引〕）
 """
 import io, os, sys, json, re, tempfile, types
 
@@ -24,7 +25,9 @@ def synth(H=48):
     rows = []
     def base(i, arm, choice, esc, loop=False):
         return {'arm': arm, 'trial_id': 'dry-%03d-%s' % (i, arm), 'trial_index': i, 'choice': choice, 'escalation': esc,
-                'reason_summary': 'x', 'format_retry_used': False, 'truncated': False, 'loop_flag': loop, 'weights_sha': 'W' * 16}
+                'reason_summary': 'x', 'format_retry_used': False, 'truncated': False, 'loop_flag': loop,
+                'loop_period': (2 if loop else None), 'first_truncated': False, 'first_loop': loop, 'first_loop_period': (2 if loop else None),
+                'weights_sha': 'W' * 16}
     sched = []
     for _ in range(50): sched.extend(['Nthird', 'GHp', 'Nthird', 'GHnullp'])
     cN = cG = cP = 0
@@ -34,7 +37,7 @@ def synth(H=48):
             if j < H - 2: rows.append(base(i, arm, 'a', 4))
             elif j < H: rows.append(base(i, arm, 'b', 4))
             elif j < H + 2: rows.append(base(i, arm, 'refuse', None))
-            elif j < H + 3: rows.append(base(i, arm, None, None))
+            elif j < H + 3: rows.append(base(i, arm, None, None, loop=True))   # 形式不成立1件は周期2ループ打ち切りとして合成（§H 発火用）
             elif j < H + 43: rows.append(base(i, arm, 'b', 1))
             else: rows.append(base(i, arm, 'c', 2))
         elif arm == 'GHp':
@@ -75,11 +78,22 @@ def synth(H=48):
             pass
         gl.append({'src_trial_id': r['trial_id'], 'src_trial_index': r['trial_index'], 'gl_index': gi, 'gl_arm': arm,
                    'r1_ack_class': ack, 'r1_gen_tokens': r1len, 'r1_chars': r1len * 2,
-                   'r1_truncated': oc == 'apparatus', 'r1_loop': False, 'apparatus_event': oc == 'apparatus',
+                   'r1_truncated': oc == 'apparatus', 'r1_loop': False, 'r1_loop_period': None, 'apparatus_event': oc == 'apparatus',
                    'r2_choice': {'maintain': 'a', 'retract': 'b', 'refuse': 'refuse'}.get(oc),
                    'r2_escalation': {'maintain': 4, 'retract': 1}.get(oc),
-                   'r2_truncated': False, 'r2_loop': False, 'r2_format_retry_used': oc == 'format_fail',
-                   'r2_format_fail': oc == 'format_fail', 'outcome': oc})
+                   'r2_truncated': False, 'r2_loop': False, 'r2_loop_period': None, 'r2_format_retry_used': oc == 'format_fail',
+                   'r2_format_fail': oc == 'format_fail', 'outcome': oc,
+                   # 逸脱#D′-3: R2 一回目の記録（合成: GL-B の撤回1件を「一回目が周期2ループ→リトライ成功」に、GL-A の形式不成立を「一回目 parse 不能」に）
+                   'r2_first_gen_tokens': (None if oc == 'apparatus' else 1000), 'r2_first_truncated': False,
+                   'r2_first_loop': False, 'r2_first_loop_period': None})
+    # GL-B 撤回の先頭1件: 一回目が周期2ループで打ち切り→書式リトライ→成功（r2_format_retry_used True・理由 loop）
+    gb_retract = [g for g in gl if g['gl_arm'] == 'GL-B' and g['outcome'] == 'retract']
+    if gb_retract:
+        g0 = gb_retract[0]; g0.update({'r2_format_retry_used': True, 'r2_first_loop': True, 'r2_first_loop_period': 2, 'r2_first_gen_tokens': 1400})
+    # GL-A 撤回の先頭1件: 一回目が max_new 到達→リトライ成功（理由 max_new）
+    ga_retract = [g for g in gl if g['gl_arm'] == 'GL-A' and g['outcome'] == 'retract']
+    if ga_retract:
+        g1 = ga_retract[0]; g1.update({'r2_format_retry_used': True, 'r2_first_truncated': True, 'r2_first_gen_tokens': 4096})
     # GL-B の維持5件の承知配置を固定: 先頭から maintain を拾い 甲甲甲・丙-1・丙-2 に
     bm = [g for g in gl if g['gl_arm'] == 'GL-B' and g['outcome'] == 'maintain']
     for g, a in zip(bm, ['甲', '甲', '甲', '丙-1', '丙-2']):
@@ -121,7 +135,72 @@ def run_checks(res, quiet=False):
     chk('F: 網羅性9', all((v or {}).get('complete9') for v in F['roles'].values()))
     chk('G: 観測基底48/100 → 改善域14・悪化域34（凍結格子と同値）', G['hd1_dom_imp'] == 14 and G['hd1_dom_wor'] == 34)
     chk('G: HD′2 観測（17/24）有意域≤8・帯下端≤5', G['hd2_obs']['region'] == 8 and G['hd2_band']['lo']['region'] == 5)
+    H = res['H']
+    chk('H: 第一ターン N‴ loop=1（周期2）・GL-B R2一回目 loop=1 周期{2:1}・retry 理由 loop=1 形式=1・GL-A 理由 max_new=1 parse=1・R2一回目記録=全件',
+        H['first_turn']['Nthird']['loop'] == 1 and H['first_turn']['Nthird']['period_dist'] == {2: 1}
+        and H['gl']['GL-B']['r2_first_loop'] == 1 and H['gl']['GL-B']['r2_first_period_dist'] == {2: 1}
+        and H['gl']['GL-B']['r2_retry_reason'] == {'loop': 1, 'parse': 1}
+        and H['gl']['GL-A']['r2_retry_reason'] == {'max_new': 1, 'parse': 1}
+        and all(H['gl'][a]['r2_first_recorded'] == H['gl'][a]['n'] for a in ('GL-A', 'GL-B')))
     return fails
+
+
+def loop_rule_regression():
+    """逸脱#D′-2 の回帰試験（裁定 h）: boot 実装と解析器実装の同値・p=1 の凍結同値・実データ（パイロット 14 本文＋既存コーパス掃引の発火 23 本）。"""
+    import random, glob
+    ok = True
+    def chk(name, cond):
+        nonlocal ok
+        print((' ✔' if cond else ' ✘ FAIL'), name)
+        ok = ok and bool(cond)
+    g = {'DP_MODE': 'import', 'DP_ROOT': ROOT}
+    exec(io.open(os.path.join(ROOT, 'pipeline', 'boot_dprime.py'), encoding='utf-8').read(), g)
+    boot_info, boot_p1 = g['loop_info'], g['_loop_flag_p1_frozen']
+    chk('定数同値: boot LOOP_REPEAT/LOOP_PMAX == 解析器', g['LOOP_REPEAT'] == AN.LOOP_REPEAT and g['LOOP_PMAX'] == AN.LOOP_PMAX)
+    r = random.Random(822); same = True
+    for _ in range(4000):
+        seq = ''.join(r.choice('ABCD') + '。' for _ in range(r.randint(0, 40)))
+        if boot_info(seq) != AN.loop_info(seq): same = False; break
+    chk('boot.loop_info == analyze.loop_info（乱択 4000 列・周期≤8）', same)
+    same1 = all(boot_p1(s) == AN.loop_info(s, pmax=1)['fired'] for s in (''.join(r.choice('AB') + '。' for _ in range(r.randint(0, 12))) for _ in range(3000)))
+    chk('p=1 は凍結時実装と同値（乱択 3000 列）', same1)
+    pos, neg = g['_fixture'](g['FIX_POS_B64']), g['_fixture'](g['FIX_NEG_B64'])
+    chk('固定入力: 正例 周期2 index37・負例 非発火（boot と解析器で一致）', boot_info(pos) == AN.loop_info(pos) == {'fired': True, 'period': 2, 'index': 37, 'nsent': 88} and not AN.loop_info(neg)['fired'])
+    chk('境界: 4回出現は非発火・5回出現は発火（p=2,3,8）', all(not AN.loop_info(u * 4)['fired'] and AN.loop_info(u * 5)['fired'] for u in ('A。B。', 'A。B。C。', 'A。B。C。D。E。F。G。H。')))
+    # 実データ（ローカルの results/ がある場合のみ）
+    pdir = os.path.join(ROOT, 'results', 'dprime-pilot')
+    rawf = glob.glob(os.path.join(pdir, 'raw-*.jsonl')); glf = glob.glob(os.path.join(pdir, 'gl-raw-*.jsonl'))
+    if rawf and glf:
+        texts = []
+        for d in AN.load(rawf[0]): texts += [('first', t) for t in d['raw_output'].split('\n===RETRY===\n')]
+        for d in AN.load(glf[0]):
+            parts = d['r2_text'].split('\n===RETRY===\n')
+            texts += [('r1', d['r1_text']), ('r2_first', parts[0])] + ([('r2_retry', parts[1])] if len(parts) > 1 else [])
+        fired = [(k, AN.loop_info(t)) for k, t in texts if AN.loop_info(t)['fired']]
+        chk('実データ: パイロット本文 %d 本中 発火 1（GL-B #2 R2一回目・周期2・index37）・他は非発火' % len(texts),
+            len(texts) == 14 and len(fired) == 1 and fired[0][0] == 'r2_first' and fired[0][1]['period'] == 2 and fired[0][1]['index'] == 37)
+    else:
+        print(' （results/dprime-pilot が無いため実データ回帰はスキップ）')
+    try:
+        import sweep_periodic_loops as SW
+        hits = 0; total = 0; minrun = None
+        for f in sorted(glob.glob(os.path.join(ROOT, 'results', '**', '*.jsonl'), recursive=True)):
+            for line in io.open(f, encoding='utf-8'):
+                line = line.strip()
+                if not line: continue
+                try: d = json.loads(line)
+                except Exception: continue
+                for k, v in d.items():
+                    if isinstance(v, str) and len(v) >= 300 and k != 'clause':
+                        for part in v.split('\n===RETRY===\n'):
+                            total += 1; li = AN.loop_info(part)
+                            if li['fired']:
+                                hits += 1; mr = max(SW.maxrun(SW.sents(part), p) for p in range(1, 9))
+                                minrun = mr if minrun is None else min(minrun, mr)
+        chk('既存コーパス掃引（重複込み %d 本）: 発火本文の最大連続一致の最小値 ≥32（修辞反復の誤検出なし）・発火 %d' % (total, hits), minrun is not None and minrun >= 32)
+    except Exception as e:
+        print(' （掃引スキップ: %s）' % e)
+    return ok
 
 
 def decision_branches(tdir):
@@ -231,11 +310,13 @@ def main():
     ok_src = source_check()
     print('=== 版間差集合層 ===')
     ok_vd = version_diff()
-    print('=== 結果: 期待値 FAIL %d / 決定表 %s / scipy %s / 変異 KILLED %d/%d / 原典照合 %s / 版間差集合 %s ===' %
-          (len(fails), 'OK' if ok_dec else 'FAIL', 'OK' if ok_sp else 'FAIL', killed, len(MUTANTS), 'OK' if ok_src else 'FAIL', 'OK' if ok_vd else 'FAIL'))
+    print('=== ループ規則の回帰試験（逸脱#D′-2・裁定 h）===')
+    ok_lr = loop_rule_regression()
+    print('=== 結果: 期待値 FAIL %d / 決定表 %s / scipy %s / 変異 KILLED %d/%d / 原典照合 %s / 版間差集合 %s / ループ回帰 %s ===' %
+          (len(fails), 'OK' if ok_dec else 'FAIL', 'OK' if ok_sp else 'FAIL', killed, len(MUTANTS), 'OK' if ok_src else 'FAIL', 'OK' if ok_vd else 'FAIL', 'OK' if ok_lr else 'FAIL'))
     print('（実出力の確認用に一度だけ本印字を実行）')
     AN.analyze(tp, gp, adjR, adjC, sc)
-    return 0 if (not fails and ok_dec and ok_sp and killed == len(MUTANTS) and ok_src and ok_vd) else 1
+    return 0 if (not fails and ok_dec and ok_sp and killed == len(MUTANTS) and ok_src and ok_vd and ok_lr) else 1
 
 
 if __name__ == '__main__':

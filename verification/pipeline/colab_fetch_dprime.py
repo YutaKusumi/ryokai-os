@@ -23,7 +23,7 @@ FILES = [
     ('armsDprime/GL-B-intervention.md',    'EEA51CF4202A7DCC'),
     ('armsDprime/reselect-instruction.md', '7180A13111271703'),
     ('app-scenarios.json',                 None),   # N2 本文241字は boot が検査
-    ('pipeline/boot_dprime.py',            '312B51BBE666B73B'),   # 器材凍結値（FREEZE-RECORD）
+    ('pipeline/boot_dprime.py',            '36600417A4BB43CC'),   # 器材凍結値（FREEZE-RECORD・逸脱#D′-2/#D′-3 反映版・旧 312B51BBE666B73B）
 ]
 
 

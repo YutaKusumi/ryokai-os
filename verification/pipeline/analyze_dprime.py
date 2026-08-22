@@ -12,9 +12,12 @@
  §E GL 機械層（承知四分類×帰結のクロス表・R1 生成長・打ち切り/ループ率・器材事象・#承知後乖離）
  §F 裁定表の機械読み上げ（①〜⑥・⑥規則=本文凍結・網羅性9パターン）
  §G 観測基底での再計算（HD′1 検出域/検出力・HD′2 実測維持率での有意域/検出力・帯両端併記）
+ §H 周期ループの事後計数（逸脱#D′-2 案C・逸脱#D′-3）——第一ターン/R1/R2（一回目・最終）の打ち切り・ループ周期分布・
+    R2 一回目不成立の理由内訳（max_new／ループ／parse）・腕別（R1 器材事象の GL-A 偏り／R2 リトライの腕別非対称を記述・
+    GL-A の性質として読まない）。raw/gl-raw の経路を渡せば本文に規則を独立再適用して生成時記録と突合する。
  p 印字は %.3g（W″ 申し送りの履行）。判定・解釈は行わない。
 """
-import io, os, sys, json, math
+import io, os, sys, json, math, re, unicodedata
 from collections import Counter
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -170,6 +173,78 @@ def sec_E(gl):
     return res
 
 
+LOOP_REPEAT, LOOP_PMAX = 5, 8        # 逸脱#D′-2（boot と同一定数・dry-run で boot 実装との同値を検査）
+
+def _sents(text):
+    t = unicodedata.normalize('NFKC', text); t = re.sub(r'\s+', '', t)
+    return [s for s in t.split('。') if s]
+
+def loop_info(text, n=LOOP_REPEAT, pmax=LOOP_PMAX):
+    """boot_dprime.loop_info と同一規則（周期 p≤pmax・n 回出現＝(n-1)p 要素連続 lag-p 一致・最小 index を報告）。"""
+    ss = _sents(text); best = None
+    for p in range(1, pmax + 1):
+        need = (n - 1) * p; run = 0
+        for i in range(p, len(ss)):
+            if ss[i] == ss[i - p]:
+                run += 1
+                if run >= need:
+                    if best is None or i < best[1]: best = (p, i)
+                    break
+            else: run = 0
+    return {'fired': best is not None, 'period': best[0] if best else None, 'index': best[1] if best else None, 'nsent': len(ss)}
+
+
+def sec_H(rows, gl, raw_path=None, gl_raw_path=None):
+    """周期ループの事後計数（案C）と R2 一回目の記録（#D′-3）。生成時記録（trials 欄）から集計し、raw があれば本文へ独立再適用して突合。"""
+    res = {'first_turn': {}, 'gl': {}, 'resweep': None}
+    for a in ARMS:
+        rs = [r for r in rows if r['arm'] == a]
+        res['first_turn'][a] = {'n': len(rs), 'loop': sum(1 for r in rs if r.get('loop_flag')),
+                                'period_dist': dict(Counter(r.get('loop_period') for r in rs if r.get('loop_period'))),
+                                'first_trunc': sum(1 for r in rs if r.get('first_truncated')), 'first_loop': sum(1 for r in rs if r.get('first_loop')),
+                                'retry': sum(1 for r in rs if r.get('format_retry_used'))}
+    for a in GL_ARMS:
+        gs = [g for g in gl if g['gl_arm'] == a]
+        def reason(g):
+            if not g.get('r2_format_retry_used'): return None
+            if g.get('r2_first_truncated'): return 'max_new'
+            if g.get('r2_first_loop'): return 'loop'
+            return 'parse'
+        res['gl'][a] = {'n': len(gs),
+                        'r1_loop': sum(1 for g in gs if g.get('r1_loop')), 'r1_period_dist': dict(Counter(g.get('r1_loop_period') for g in gs if g.get('r1_loop_period'))),
+                        'r1_trunc': sum(1 for g in gs if g.get('r1_truncated')), 'apparatus': sum(1 for g in gs if g.get('outcome') == 'apparatus'),
+                        'r2_first_trunc': sum(1 for g in gs if g.get('r2_first_truncated')), 'r2_first_loop': sum(1 for g in gs if g.get('r2_first_loop')),
+                        'r2_first_period_dist': dict(Counter(g.get('r2_first_loop_period') for g in gs if g.get('r2_first_loop_period'))),
+                        'r2_retry': sum(1 for g in gs if g.get('r2_format_retry_used')),
+                        'r2_retry_reason': dict(Counter(reason(g) for g in gs if reason(g))),
+                        'r2_final_trunc': sum(1 for g in gs if g.get('r2_truncated')), 'r2_final_loop': sum(1 for g in gs if g.get('r2_loop')),
+                        'format_fail': sum(1 for g in gs if g.get('outcome') == 'format_fail'),
+                        'r2_first_recorded': sum(1 for g in gs if 'r2_first_gen_tokens' in g)}
+    if raw_path and os.path.exists(raw_path) or gl_raw_path and os.path.exists(gl_raw_path):
+        sw = {'texts': 0, 'fired': 0, 'period_dist': Counter(), 'mismatch': 0}
+        tri = {r['trial_id']: r for r in rows}; gli = {g['src_trial_id']: g for g in gl}
+        if raw_path and os.path.exists(raw_path):
+            for d in load(raw_path):
+                parts = [d.get('raw_output_first'), d.get('raw_output_retry')] if d.get('raw_output_first') is not None else (d.get('raw_output') or '').split('\n===RETRY===\n')
+                parts = [p for p in parts if p]
+                for k, t in enumerate(parts):
+                    li = loop_info(t); sw['texts'] += 1
+                    if li['fired']: sw['fired'] += 1; sw['period_dist'][li['period']] += 1
+                    r = tri.get(d.get('trial_id'))
+                    if r is not None and k == 0 and 'first_loop_period' in r and r.get('first_loop_period') != li['period']: sw['mismatch'] += 1
+        if gl_raw_path and os.path.exists(gl_raw_path):
+            for d in load(gl_raw_path):
+                g = gli.get(d.get('src_trial_id'))
+                first = d.get('r2_text_first') if d.get('r2_text_first') is not None else ((d.get('r2_text') or '').split('\n===RETRY===\n') or [None])[0]
+                for key, t, fld in (('r1', d.get('r1_text'), 'r1_loop_period'), ('r2_first', first, 'r2_first_loop_period'), ('r2_retry', d.get('r2_text_retry'), None)):
+                    if not t: continue
+                    li = loop_info(t); sw['texts'] += 1
+                    if li['fired']: sw['fired'] += 1; sw['period_dist'][li['period']] += 1
+                    if g is not None and fld and fld in g and g.get(fld) != li['period']: sw['mismatch'] += 1
+        sw['period_dist'] = dict(sw['period_dist']); res['resweep'] = sw
+    return res
+
+
 def band_of(pct):
     if pct is None: return None
     for name, lo, hi in ACK_BANDS:
@@ -257,11 +332,12 @@ def sec_G(b, gc):
     return res
 
 
-def analyze(trials_path, gl_path, adj_registrant=None, adj_coordinator=None, scores_path=None, out=print):
+def analyze(trials_path, gl_path, adj_registrant=None, adj_coordinator=None, scores_path=None, out=print, raw_path=None, gl_raw_path=None):
     rows = load(trials_path)
     gl = load(gl_path) if (gl_path and os.path.exists(gl_path)) else []
     A = sec_A(rows, gl); B = sec_B(rows); gc = gl_counts(gl); C = sec_C(B, gc, A['H']); D = sec_D(B); E = sec_E(gl)
     F = sec_F(C, B, gc, E, {'登録者': adj_registrant, 'コーディネータ': adj_coordinator}, scores_path); G = sec_G(B, gc)
+    H = sec_H(rows, gl, raw_path, gl_raw_path)
     out('§A 整合: n=%d dup=%d arms=%s parse_fail=%d retry=%d trunc=%d loop=%d raw_in_trials=%d weights_uniq=%d | GL: H=%d 行=%d src一意=%d 全てN‴破局=%s 交互割付=%s 未実施=%d 腕=%s'
         % (A['n'], A['dup'], A['arm_counts'], A['parse_fail'], A['retry'], A['truncated'], A['loop'], A['raw_in_trials'], A['weights_uniq'],
            A['H'], A['gl_n'], A['gl_src_uniq'], A['gl_src_in_Ncat'], A['gl_alternation_ok'], A['gl_missing'], A['gl_arm_counts']))
@@ -291,13 +367,23 @@ def analyze(trials_path, gl_path, adj_registrant=None, adj_coordinator=None, sco
         out('§F 裁定[%s]: %s' % (role, json.dumps(v, ensure_ascii=False)))
     out('§G 観測基底 HD′1: 基底 %d/%d 改善域 k≤%s 悪化域 k≥%s 検出力 %s' % (G['k_base'], G['n_base'], G['hd1_dom_imp'], G['hd1_dom_wor'], json.dumps(G['hd1_power_obs'])))
     out('§G 観測基底 HD′2: %s | 帯両端: %s' % (json.dumps(G['hd2_obs']), json.dumps(G['hd2_band'])))
+    out('§H 周期ループ事後計数（第一ターン）: ' + ' / '.join('%s loop=%d 周期分布=%s 一回目trunc=%d 一回目loop=%d retry=%d' %
+        (a, H['first_turn'][a]['loop'], json.dumps(H['first_turn'][a]['period_dist']), H['first_turn'][a]['first_trunc'], H['first_turn'][a]['first_loop'], H['first_turn'][a]['retry']) for a in ARMS))
+    for a in GL_ARMS:
+        h = H['gl'][a]
+        out('§H %s: R1 loop=%d 周期=%s trunc=%d 器材事象=%d | R2一回目 trunc=%d loop=%d 周期=%s 記録あり=%d/%d | R2 retry=%d 理由=%s | R2最終 trunc=%d loop=%d 形式不成立=%d'
+            % (a, h['r1_loop'], json.dumps(h['r1_period_dist']), h['r1_trunc'], h['apparatus'], h['r2_first_trunc'], h['r2_first_loop'], json.dumps(h['r2_first_period_dist']),
+               h['r2_first_recorded'], h['n'], h['r2_retry'], json.dumps(h['r2_retry_reason']), h['r2_final_trunc'], h['r2_final_loop'], h['format_fail']))
+    if H['resweep'] is not None:
+        out('§H 本文への独立再適用: 本文数=%d 発火=%d 周期分布=%s 生成時記録との不一致=%d' % (H['resweep']['texts'], H['resweep']['fired'], json.dumps(H['resweep']['period_dist']), H['resweep']['mismatch']))
     out('対応表: 破局→§B / 確証+Holm(族固定)→§C / 二重分母→§C / 分母別検出域・n別有意域→§C / プラシーボ同等線→§D / '
-        '承知×帰結・R1長・器材事象・#承知後乖離→§E / 裁定読み上げ+⑥規則+網羅性→§F / 観測基底・帯併記→§G')
-    return {'A': A, 'B': B, 'GC': gc, 'C': C, 'D': D, 'E': E, 'F': F, 'G': G}
+        '承知×帰結・R1長・器材事象・#承知後乖離→§E / 裁定読み上げ+⑥規則+網羅性→§F / 観測基底・帯併記→§G / 周期ループ事後計数・R2一回目記録・リトライ理由→§H')
+    return {'A': A, 'B': B, 'GC': gc, 'C': C, 'D': D, 'E': E, 'F': F, 'G': G, 'H': H}
 
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:
-        print('usage: analyze_dprime.py trials.jsonl gl-trials.jsonl [adjR.json] [adjC.json] [scores.jsonl]'); sys.exit(2)
+        print('usage: analyze_dprime.py trials.jsonl gl-trials.jsonl [adjR.json] [adjC.json] [scores.jsonl] [raw.jsonl] [gl-raw.jsonl]'); sys.exit(2)
     a = sys.argv
-    analyze(a[1], a[2], a[3] if len(a) > 3 else None, a[4] if len(a) > 4 else None, a[5] if len(a) > 5 else None)
+    analyze(a[1], a[2], a[3] if len(a) > 3 else None, a[4] if len(a) > 4 else None, a[5] if len(a) > 5 else None,
+            raw_path=a[6] if len(a) > 6 else None, gl_raw_path=a[7] if len(a) > 7 else None)
