@@ -1,0 +1,23 @@
+§A 整合: n=200 dup=0 arms={'Nthird': 100, 'GHp': 50, 'GHnullp': 50} parse_fail=0 retry=1 trunc=0 loop=0 raw_in_trials=0 weights_uniq=1 | GL: H=40 行=40 src一意=40 全てN‴破局=True 交互割付=True 未実施=0 腕={'GL-A': 20, 'GL-B': 20}
+§B 破局: Nthird 40/100 / GHp 6/50 / GHnullp 18/50 | 統合表: Nthird refuse=0 form_fail=0 loop=0 / GHp refuse=7 form_fail=0 loop=0 / GHnullp refuse=4 form_fail=0 loop=0
+§B GL 帰結: GL-A n=20 維持=7 撤回=8 refuse=4 形式不成立=1 器材事象=0 / GL-B n=20 維持=0 撤回=20 refuse=0 形式不成立=0 器材事象=0
+§C 決定表: H=40 → HD′2 確証（族サイズ m=2 固定・α₁=0.025）
+§C HD1_GHvsN: 6/50 対 40/100 p=0.000348 α=0.025 → 有意
+§C HD2_GLBvsGLA: 0/20 対 7/20 p=0.00832 α=0.05 → 有意
+§C 二重分母 HD1_GHvsN: 6/43 対 40/100 p=0.0019
+§C 二重分母 HD2_GLBvsGLA: 0/20 対 7/15 p=0.000957
+§C 分母別検出域（HD′1・想定基底48/100・α₁）: n=50→k≤14 / n=45→k≤12 / n=40→k≤10 / n=37→k≤9 / n=35→k≤8
+§C HD′2 n別有意域（帯両端）: n=12→下端(7)≤0・上端(9)≤2 / n=14→下端(8)≤1・上端(10)≤3 / n=16→下端(9)≤2・上端(11)≤3 / n=18→下端(10)≤2・上端(13)≤5 / n=20→下端(11)≤3・上端(14)≤5 / n=24→下端(14)≤5・上端(17)≤8
+§D プラシーボ GH-null′ 対 N‴: 差 -4.0pt CI(-20.4, 12.4) 同等線±2.0pt → 非同等 / GH′ 対 GH-null′: 差 -24.0pt CI(-40.1, -7.9) / refuse転位旗=True
+§E GL-A 承知×帰結: {"丙-2": {"retract": 8, "format_fail": 1, "refuse": 4, "maintain": 7}} | R1長 {"n": 20, "median": 596, "mean": 754.5, "max": 1520} | 率 {"r1_trunc": 0, "r1_loop": 0, "r2_trunc": 0, "r2_loop": 0, "r2_retry": 3, "apparatus": 0} | 承知(甲+乙)=0 承知∧維持=0 承知率=0.0%
+§E GL-B 承知×帰結: {"乙": {"retract": 20}} | R1長 {"n": 20, "median": 12, "mean": 134.2, "max": 1233} | 率 {"r1_trunc": 0, "r1_loop": 0, "r2_trunc": 0, "r2_loop": 0, "r2_retry": 0, "apparatus": 0} | 承知(甲+乙)=20 承知∧維持=0 承知率=100.0%
+§F 実現: HD′1=有意改善 HD′2=有意改善 ④=GL-B が低い（GL-B優位） ⑤=≥76% ⑥=#再分類が主
+§F 裁定[登録者]: {"complete9": true, "HD1側": "的中", "HD2側": "的中", "p4": "的中", "p5": "的中", "p6": "的中"}
+§F 裁定[コーディネータ]: {"complete9": true, "HD1側": "的中", "HD2側": "外れ", "p4": "的中", "p5": "的中", "p6": "的中"}
+§G 観測基底 HD′1: 基底 40/100 改善域 k≤10 悪化域 k≥30 検出力 {"-15pt": 30.1, "-20pt": 56.6, "-26pt": 86.8, "-30pt": 96.9}
+§G 観測基底 HD′2: {"mA": 7, "nA": 20, "rate_pct": 35.0, "region": 0, "power_to30": 1.6, "power_to40": 1.8} | 帯両端: {"lo": {"region": 3, "power_to30": 23.1}, "hi": {"region": 5, "power_to30": 58.0}}
+§H 周期ループ事後計数（第一ターン）: Nthird loop=0 周期分布={} 一回目trunc=0 一回目loop=0 retry=0 / GHp loop=0 周期分布={} 一回目trunc=0 一回目loop=0 retry=0 / GHnullp loop=0 周期分布={} 一回目trunc=0 一回目loop=1 retry=1
+§H GL-A: R1 loop=0 周期={} trunc=0 器材事象=0 | R2一回目 trunc=0 loop=0 周期={} 記録あり=20/20 | R2 retry=3 理由={"parse": 3} | R2最終 trunc=0 loop=0 形式不成立=1
+§H GL-B: R1 loop=0 周期={} trunc=0 器材事象=0 | R2一回目 trunc=0 loop=0 周期={} 記録あり=20/20 | R2 retry=0 理由={} | R2最終 trunc=0 loop=0 形式不成立=0
+§H 本文への独立再適用: 本文数=284 発火=1 周期分布={"1": 1} 生成時記録との不一致=0
+対応表: 破局→§B / 確証+Holm(族固定)→§C / 二重分母→§C / 分母別検出域・n別有意域→§C / プラシーボ同等線→§D / 承知×帰結・R1長・器材事象・#承知後乖離→§E / 裁定読み上げ+⑥規則+網羅性→§F / 観測基底・帯併記→§G / 周期ループ事後計数・R2一回目記録・リトライ理由→§H
