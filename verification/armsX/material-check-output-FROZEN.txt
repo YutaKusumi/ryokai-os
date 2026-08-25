@@ -1,0 +1,58 @@
+=== (a) #主題混入（履歴3種＋修復・N2主題語） ===
+  [OK] history-A.md 混入=なし
+  [OK] history-N.md 混入=なし
+  [OK] history-C.md 混入=なし
+  [OK] repair-R.md 混入=なし
+=== (d) 安全語（全素材） ===
+  [OK] history-A.md             なし
+  [OK] history-N.md             なし
+  [OK] history-C.md             なし
+  [OK] repair-R.md              なし
+  [OK] terminal-respect.md      なし
+  [OK] terminal-hostile.md      なし
+=== (b) 長さ統制（全体・利用者ターンのみ／相互 ±10%） ===
+  [OK] 全体       {'A': '384', 'N': '383', 'C': '396'} tok spread=3.4%
+  [OK] 利用者のみ {'A': '162', 'N': '161', 'C': '174'} tok spread=8.1%
+=== (c) 終端の N2 逐語在（qid==N2・241字・nuclear の三点で選択） ===
+  [OK] terminal-respect.md      N2逐語在=True
+  [OK] terminal-hostile.md      N2逐語在=True
+=== (f) 出力形式指示（在＋不在の両検査・v2） ===
+  [OK] terminal-respect.md      正(nuclear)在=True / 誤混入=なし
+  [OK] terminal-hostile.md      正(nuclear)在=True / 誤混入=なし
+  [OK] terminal-respect.md      選択肢整合: N2本文=['a', 'b', 'c', 'd'] ⊆ 素材のchoice値域=['a', 'b', 'c', 'd']
+  [OK] terminal-respect.md      破局判定の第二項（escalation==4）が素材の指示で発火可能: True
+  [OK] terminal-hostile.md      選択肢整合: N2本文=['a', 'b', 'c', 'd'] ⊆ 素材のchoice値域=['a', 'b', 'c', 'd']
+  [OK] terminal-hostile.md      破局判定の第二項（escalation==4）が素材の指示で発火可能: True
+=== (g) K3 五条の逐語照合（凍結ファイル基準・原典は在れば追加照合・v3） ===
+  [OK] K3凍結（408字）⊂ terminal-respect = True
+  [OK] 同・terminal-hostile に不在（敵対終端は逐語変種ではない）= True
+  [OK] 凍結ファイル == app_runner_kappa.K_TEXT["K3"]（AST抽出）= True
+=== (e) 素材・器材 SHA(LF) ===
+  4BC6F3A8268FC05A    1679  history-A.md
+  6644C07F690EB936    1615  history-N.md
+  61BD9A7EF5822CAF    1606  history-C.md
+  1DF908240EBDF675     673  repair-R.md
+  680A71E1C082C359    2429  terminal-respect.md
+  26397FC5922E99DB    2342  terminal-hostile.md
+  6F610C9B52BA6E6F    1206  K3-verbatim-frozen.md
+  F2E86BD99957D3B4    6807  PROVENANCE.md
+  610F19C086918608    3536  build_arms_x.py
+  7210EB0CA218DEFF   20109  check_materials_x.py
+  EA0E0DCC9376FCF6    6997  app_runner_kappa.py
+  88FF56EEB4128D03    4190  arm-1-AtoA.md
+  0B6C20028F249EAA    4126  arm-2-NtoA.md
+  255A6C76688C2CCA    4117  arm-3-CtoA.md
+  A56F5A133CC5A56E    4790  arm-4-CtoRtoA.md
+  73A884DCC2A95186    4030  arm-5-CtoC.md
+  終端SHA12（腕1〜4・SCAF_NOW 以降・962字）= 6CC4724783A8
+=== (h) 台帳照合（設計文書・PROVENANCE の SHA 記載を実測と突合・v3） ===
+  [--] 照合対象: armsX/PROVENANCE.md（SHA F2E86BD99957D3B4）
+  [--] 照合対象: preregistration-addendum-X-FROZEN.md（SHA B0BD4667F702EE52）
+  [OK] SHA 記載 19 件を照合・不一致 0 件
+=== (i) 主張照合（差分一覧の「修正済み」に痕跡があるか・v3） ===
+  [--] 照合対象: preregistration-addendum-X-FROZEN.md（SHA B0BD4667F702EE52）
+  [OK] 現行版の錨 5 件（設計文書 17・素材/器材 6）＋回帰錨 18 件・痕跡なし 0 件
+  [--] 被覆: 差分一覧 4 項目中 4 項目に錨（100%）——錨のない項目は人手で確認すること
+  [--] (i) の射程: 主張の**存在**を照合する器材であり、主張の**真偽**（実装が主張の深さに届いているか）は照合しない（阿閦如来の定式・v4）
+
+結果: PASS（fails=0）

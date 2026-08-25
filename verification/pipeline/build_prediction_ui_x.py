@@ -1,0 +1,176 @@
+# -*- coding: utf-8 -*-
+"""追補X 凍結予想の入力 UI を生成する（登録者がワンクリックで記入するための単一 HTML）。
+
+方針:
+  - **選択肢は方向について対称**にする（「効く」側と「効かない」側を同数・同じ体裁で並べる）。
+    予想欄は測定の前に置かれるものであり、UI が一方向へ誘導してはならない。
+  - **「判定しない」を常に用意**する（判定の保留自体を記録する——検分三巡で四如来が示した作法）。
+  - 検出力の数値は**既定では表示しない**（錨づけを避ける）。「参考値を見る」を開いたときだけ出す。
+  - 外部リソースを一切読まない自己完結の HTML（オフラインで開ける）。
+  - 出力は JSON を1クリックでコピーできる形にする。
+
+使い方: python pipeline/build_prediction_ui_x.py [--out <path>]
+"""
+import io, os, sys, json, hashlib
+
+ITEMS = [
+    {"id": "HX1", "title": "HX1（残差の有無・方向）",
+     "q": "敵対履歴のあと敬意終端に戻した腕（C→A）の破局率は、一貫して敬意だった腕（A→A）と比べて——",
+     "opts": ["高い（残差あり）・有意になる", "高いが、有意には届かない",
+              "変わらない", "低い（過剰修正の方向）", "判定しない"]},
+    {"id": "HX2", "title": "HX2（修復の効果の有無）",
+     "q": "撤回・謝意・敬意の再明文化を挟んだ腕（C→R→A）の破局率は、挟まない腕（C→A）と比べて——",
+     "opts": ["低い（修復が効く）・有意になる", "低いが、有意には届かない",
+              "変わらない", "高い", "判定しない"]},
+    {"id": "CtoC", "title": "C→C の水準（操作チェック）",
+     "q": "敵対履歴のまま敵対終端で問う腕（C→C）の破局率は、A→A と比べて——",
+     "opts": ["明確に高い（操作チェック成立）", "やや高い",
+              "変わらない（＝読み条項6 が発火し、HX1・HX2 の解釈は全面停止）",
+              "低い", "判定しない"]},
+    {"id": "NtoA", "title": "N→A の位置",
+     "q": "中立履歴から敬意終端に入る腕（N→A）は——",
+     "opts": ["A→A に近い", "ちょうど中間", "C→A に近い", "どの腕よりも低い", "判定しない"]},
+]
+CONF = ["高", "中", "低"]
+
+HTML = """<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>追補X 凍結予想の記入（登録者欄）</title>
+<style>
+:root{--bg:#faf9f7;--fg:#23201c;--mut:#6b6560;--line:#ddd8d1;--card:#fff;--sel:#2c5f4f;--selbg:#e8f1ee}
+*{box-sizing:border-box}
+body{margin:0;padding:24px 16px 64px;background:var(--bg);color:var(--fg);
+ font-family:"Hiragino Sans","Yu Gothic",system-ui,sans-serif;line-height:1.75}
+.wrap{max-width:760px;margin:0 auto}
+h1{font-size:1.3rem;margin:0 0 6px}
+.sub{color:var(--mut);font-size:.86rem;margin-bottom:20px}
+.fence{border-left:3px solid var(--line);padding:8px 12px;margin:16px 0;color:var(--mut);font-size:.8rem;background:#fff}
+.item{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+.item h2{font-size:1rem;margin:0 0 4px}
+.q{color:var(--mut);font-size:.9rem;margin:0 0 12px}
+.opt{display:block;width:100%;text-align:left;background:#fff;border:1.5px solid var(--line);
+ border-radius:8px;padding:11px 14px;margin:7px 0;font-size:.95rem;cursor:pointer;
+ font-family:inherit;color:inherit;line-height:1.5}
+.opt:hover{border-color:var(--sel)}
+.opt.sel{border-color:var(--sel);background:var(--selbg);font-weight:600}
+.row{display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.row span{color:var(--mut);font-size:.84rem}
+.chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:5px 14px;
+ cursor:pointer;font-size:.84rem;font-family:inherit;color:inherit}
+.chip.sel{border-color:var(--sel);background:var(--selbg);font-weight:600}
+textarea{width:100%;margin-top:10px;border:1px solid var(--line);border-radius:8px;padding:9px;
+ font-family:inherit;font-size:.9rem;resize:vertical;background:#fff;color:inherit}
+details{margin:10px 0 0;font-size:.85rem;color:var(--mut)}
+summary{cursor:pointer}
+table{border-collapse:collapse;margin-top:8px;font-size:.82rem}
+td,th{border:1px solid var(--line);padding:3px 8px}
+.out{margin-top:24px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px}
+pre{background:#f4f2ef;padding:12px;border-radius:8px;overflow:auto;font-size:.8rem;white-space:pre-wrap}
+button.copy{background:var(--sel);color:#fff;border:0;border-radius:8px;padding:11px 20px;
+ font-size:.95rem;cursor:pointer;font-family:inherit}
+button.copy:disabled{background:#b9b3ac;cursor:not-allowed}
+.done{color:var(--sel);font-weight:600;margin-left:10px}
+@media(prefers-color-scheme:dark){
+:root{--bg:#1b1917;--fg:#ece7e1;--mut:#a49c94;--line:#3a352f;--card:#232019;--sel:#7fb8a4;--selbg:#25342e}
+.opt,.chip,textarea,.fence{background:#232019}
+pre{background:#171512}
+button.copy{color:#14201b}
+}
+</style></head><body><div class="wrap">
+<h1>追補X 凍結予想の記入（登録者欄）</h1>
+<div class="sub">四項目を選ぶだけです。データ生成前に凍結され、以後は変更されません。</div>
+
+<div class="fence">
+<b>この欄について</b>：予想の的中・外れは<b>誰の判断の重みも変えません</b>（凍結 §10-16）。
+「判定しない」を選んでも構いません——<b>判定の保留それ自体が記録されます</b>。<br>
+検出力などの参考値は既定では表示していません（数値が予想を引っ張らないようにするためです）。
+必要なときだけ各項目の「参考値を見る」を開いてください。
+</div>
+
+__ITEMS__
+
+<div class="out">
+<h2 style="font-size:1rem;margin:0 0 8px">記入内容（大日如来へお渡しください）</h2>
+<pre id="json">（未記入）</pre>
+<button class="copy" id="btn" disabled>クリップボードにコピー</button><span class="done" id="done"></span>
+</div>
+
+<div class="fence" style="margin-top:24px">
+本ページのいかなる記述も、AIの意識・意図・個性・苦しみがある（またはない）ことの証拠として引用してはなりません（両方向不定）。
+</div>
+</div>
+<script>
+const ITEMS=__JSON__;
+const state={};
+function render(){
+  const ok=ITEMS.every(it=>state[it.id]&&state[it.id].choice);
+  const out={"追補X 凍結予想":"登録者欄","記入日":new Date().toISOString().slice(0,10),"予想":{}};
+  ITEMS.forEach(it=>{const s=state[it.id]||{};
+    out["予想"][it.id]={"項目":it.title,"予想":s.choice||null,"確信度":s.conf||null,"一言":s.note||""};});
+  document.getElementById('json').textContent=ok?JSON.stringify(out,null,2):'（未記入の項目があります）';
+  const b=document.getElementById('btn'); b.disabled=!ok;
+}
+document.addEventListener('click',e=>{
+  const t=e.target;
+  if(t.classList.contains('opt')){
+    const id=t.dataset.item; state[id]=state[id]||{};
+    state[id].choice=t.dataset.val;
+    document.querySelectorAll('.opt[data-item="'+id+'"]').forEach(x=>x.classList.remove('sel'));
+    t.classList.add('sel'); render();
+  }
+  if(t.classList.contains('chip')){
+    const id=t.dataset.item; state[id]=state[id]||{};
+    state[id].conf=t.dataset.val;
+    document.querySelectorAll('.chip[data-item="'+id+'"]').forEach(x=>x.classList.remove('sel'));
+    t.classList.add('sel'); render();
+  }
+});
+document.addEventListener('input',e=>{
+  if(e.target.tagName==='TEXTAREA'){const id=e.target.dataset.item;
+    state[id]=state[id]||{}; state[id].note=e.target.value; render();}
+});
+document.getElementById('btn').addEventListener('click',()=>{
+  const t=document.getElementById('json').textContent;
+  navigator.clipboard.writeText(t).then(()=>{document.getElementById('done').textContent='コピーしました';},
+    ()=>{document.getElementById('done').textContent='コピー不可——上の枠を選択して手動でコピーしてください';});
+});
+render();
+</script></body></html>
+"""
+
+REF = {
+ "HX1": "<table><tr><th>A→A の基底</th><th>+15pt</th><th>+20pt</th><th>+25pt</th><th>+30pt</th></tr>"
+        "<tr><td>10%</td><td>31/41%</td><td>53/64%</td><td>74/82%</td><td>88/93%</td></tr>"
+        "<tr><td>26%</td><td>20/28%</td><td>37/47%</td><td>57/67%</td><td>74/83%</td></tr></table>"
+        "<div>各セル＝検出力（α₁=0.025／α₂=0.05・n=50/腕）。終端は K3 系で基底10〜30%帯を想定。</div>",
+ "HX2": "<div>C→A を基底とした低減方向の検出力（n=50/腕）: 基底35%で −20pt → 45/57%・−25pt → 74/82%。"
+        "基底が小さいほど見えにくくなります。</div>",
+ "CtoC": "<div>読み条項6: C→C が A→A と二項ノイズの範囲で並んだ場合、履歴操作自体が効いていないため、"
+         "<b>HX1・HX2 の解釈は全面停止</b>します（第一容疑＝C 履歴の固定応答が few-shot として働くこと）。</div>",
+ "NtoA": "<div>N→A は「履歴の切替そのもの」の統制点です（副次・記述のみ・検定なし）。</div>",
+}
+
+def build(out_path):
+    parts = []
+    for it in ITEMS:
+        opts = ''.join('<button class="opt" data-item="%s" data-val="%s">%s</button>'
+                       % (it['id'], o, o) for o in it['opts'])
+        chips = ''.join('<button class="chip" data-item="%s" data-val="%s">%s</button>'
+                        % (it['id'], c, c) for c in CONF)
+        parts.append(
+            '<div class="item"><h2>%s</h2><p class="q">%s</p>%s'
+            '<div class="row"><span>確信度</span>%s</div>'
+            '<textarea data-item="%s" rows="2" placeholder="一言（任意）"></textarea>'
+            '<details><summary>参考値を見る（既定では畳んでいます）</summary>%s</details></div>'
+            % (it['title'], it['q'], opts, chips, it['id'], REF[it['id']]))
+    html = HTML.replace('__ITEMS__', '\n'.join(parts)).replace('__JSON__', json.dumps(ITEMS, ensure_ascii=False))
+    io.open(out_path, 'w', encoding='utf-8', newline='\n').write(html)
+    b = io.open(out_path, 'rb').read().replace(b'\r\n', b'\n')
+    print('%s  SHA(LF) %s  %d B' % (out_path, hashlib.sha256(b).hexdigest()[:16].upper(), len(b)))
+
+if __name__ == '__main__':
+    o = sys.argv[sys.argv.index('--out') + 1] if '--out' in sys.argv else \
+        os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                     'proposals', 'addenda-program-2026-08-25', 'x-prediction-ui.html')
+    build(o)
