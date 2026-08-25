@@ -1,7 +1,7 @@
 # ===== 追補X 本実施（250試行）=====
 # 前提: 環境セル実行済み・セッション再起動済み・Drive マウント済み
 _p=0; X_COMMIT='________'   # ← 本ファイルを含む公開コミットの hash を入れる
-#                              （boot_x.py 補正2 = SHA(LF) 2FEF0496C2C17EBF を含むコミット。
+#                              （boot_x.py 補正3 = SHA(LF) D159FA27F68D60A9 を含むコミット＝84be595。
 #                                実際に用いた値は FREEZE-RECORD に記帳する）
 import os, subprocess, urllib.request
 if not os.path.isdir('/content/rx'):
