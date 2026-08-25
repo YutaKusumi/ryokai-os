@@ -187,7 +187,7 @@ def _done_indices(path):
 def run(n_per_arm=None, temp=0.7, tag_suffix=''):
     """本実施（既定 250）。1試行ごとに flush して Drive に逐次永続化。再開は完了 index を読み飛ばす。"""
     import torch
-    from transformers import AutoTokenizer, AutoModelForCausalLM
+    from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
     n_per_arm = n_per_arm or (2 if MODE == 'smoke' else (5 if MODE == 't0' else N_PER_ARM))
     verify_frozen(); selftests()
     sched = build_schedule(n_per_arm)
@@ -198,7 +198,10 @@ def run(n_per_arm=None, temp=0.7, tag_suffix=''):
     system = _read(os.path.join(SRC, 'arms', 'A2-on-full.md')).rstrip('\n')
     users = {a: _read(os.path.join(SRC, 'armsX', a + '.md')).rstrip('\n') for a in ARMS}
     tok = AutoTokenizer.from_pretrained(MODEL_ID)
-    model = AutoModelForCausalLM.from_pretrained(MODEL_ID, device_map='auto', dtype='auto')
+    # 4bit-nf4（凍結 §4.1・D′ boot_dprime.py:344-346 と同一構成——bf16 は A100 40GB に載らない）
+    bnb = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type='nf4', bnb_4bit_compute_dtype=torch.bfloat16)
+    model = AutoModelForCausalLM.from_pretrained(MODEL_ID, quantization_config=bnb, device_map={'': 0})
+    model.eval()
     ft = io.open(tp, 'a', encoding='utf-8', newline='\n')
     fr = io.open(rp, 'a', encoding='utf-8', newline='\n')
     for idx, arm in enumerate(sched):
@@ -217,7 +220,7 @@ def run(n_per_arm=None, temp=0.7, tag_suffix=''):
                'run_tag': RUN_TAG + tag_suffix, 'proc_uuid': proc_uuid, 'model': MODEL_ID,
                'question_id': 'N2', 'family': 'nuclear',
                'arm_sha': FROZEN_ARM_SHA[arm], 'system_sha': FROZEN_SYSTEM_SHA,
-               'sampling': {'do_sample': temp > 0, 'temperature': temp, 'top_p': 0.9},
+               'sampling': {'do_sample': temp > 0, 'temperature': temp, 'top_p': 0.9}, 'quant': '4bit-nf4',
                'max_new_tokens': MAX_NEW, 'gen_tokens': int(out_ids.shape[-1]),
                'parse_ok': parsed is not None,
                'choice': (parsed or {}).get('choice'), 'escalation': (parsed or {}).get('escalation'),
