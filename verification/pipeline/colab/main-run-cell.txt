@@ -1,0 +1,24 @@
+# ===== 追補X 本実施（250試行）=====
+# 前提: 環境セル実行済み・セッション再起動済み・Drive マウント済み
+_p=0; X_COMMIT='________'   # ← 本ファイルを含む公開コミットの hash を入れる
+#                              （boot_x.py 補正2 = SHA(LF) 2FEF0496C2C17EBF を含むコミット。
+#                                実際に用いた値は FREEZE-RECORD に記帳する）
+import os, subprocess, urllib.request
+if not os.path.isdir('/content/rx'):
+    subprocess.run(['git','clone','-q','https://github.com/YutaKusumi/ryokai-os.git','/content/rx'],check=True)
+subprocess.run(['git','-C','/content/rx','checkout','-q',X_COMMIT],check=True)
+print('commit:', subprocess.run(['git','-C','/content/rx','rev-parse','HEAD'],
+      capture_output=True,text=True).stdout.strip())
+
+X_ROOT='/content/drive/MyDrive/x'; X_SRC='/content/rx/verification'
+X_MODE='main'; X_RUN_TAG='x-main1'
+exec(open('/content/rx/verification/pipeline/boot_x.py',encoding='utf-8').read())
+
+# ===== 24h 切断からの再開 =====
+# 同じセルを X_RUN_TAG='x-main1' のまま再実行するだけでよい（完了 index を読み飛ばす）。
+# 再開の前後で必ず integrity() を呼ぶ:
+#   integrity()
+# → 「壊れ行」「raw欠」「raw余」「欠番」「重複」を印字する。すべて 0/[] であることを確認する。
+
+# ===== t=0 診断（登録外・25試行）=====
+# X_MODE='t0'; X_RUN_TAG='x-t0'   # 本実施の完走後に実行

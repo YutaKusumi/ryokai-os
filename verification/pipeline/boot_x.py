@@ -238,17 +238,40 @@ def run(n_per_arm=None, temp=0.7, tag_suffix=''):
     print('[x/run] 完了 → %s' % tp)
 
 def integrity(path=None):
-    """再開前・完走後の整合検査（不正行・欠番・重複・腕均衡）。"""
-    tp = path or _out_paths()[0]
-    rows = [json.loads(l) for l in io.open(tp, encoding='utf-8')]
+    """再開前・完走後の整合検査（不正行・欠番・重複・腕均衡・raw との対応）。
+
+    24h 切断の直後は最終行が途中で切れうる。`_done_indices` は壊れた行を読み飛ばして
+    その試行を再実行するため、**再開後のファイルには壊れた行が残る**。この検査が
+    `json.loads` で落ちればその事実を報告できない（「検査は、検査が走らなかったことを
+    報告しない」——検分三巡の申し送り）ので、壊れた行は数えて報告する。
+    また `done` は trials だけを見るため、trials を書いて raw を書く前に落ちれば raw
+    だけが欠ける（窓は二つの flush の間のみ・極小だが実在する）。index 集合を突き合わせる。
+    """
+    tp, rp = (path, path.replace('.trials.jsonl', '.raw.jsonl')) if path else _out_paths()
+    rows, bad = [], 0
+    for line in io.open(tp, encoding='utf-8'):
+        if not line.strip(): continue
+        try: rows.append(json.loads(line))
+        except Exception: bad += 1
     idxs = [r['trial_index'] for r in rows]
     from collections import Counter
     c = Counter(r['arm'] for r in rows)
     dup = [k for k, v in Counter(idxs).items() if v > 1]
     miss = sorted(set(range(max(idxs) + 1)) - set(idxs)) if idxs else []
-    print('行数=%d 重複=%d 欠番=%d 腕別=%s proc_uuid=%s'
-          % (len(rows), len(dup), len(miss), dict(c), sorted({r['proc_uuid'] for r in rows})))
-    return {'n': len(rows), 'dup': dup, 'missing': miss, 'by_arm': dict(c)}
+    raw_bad, raw_idx = 0, set()
+    if os.path.exists(rp):
+        for line in io.open(rp, encoding='utf-8'):
+            if not line.strip(): continue
+            try: raw_idx.add(json.loads(line)['trial_index'])
+            except Exception: raw_bad += 1
+    t_only = sorted(set(idxs) - raw_idx)   # trials にあり raw に無い（要再実行）
+    r_only = sorted(raw_idx - set(idxs))   # raw にあり trials に無い
+    print('行数=%d 重複=%d 欠番=%d 壊れ行=%d(trials)/%d(raw) raw欠=%s raw余=%s 腕別=%s proc_uuid=%s'
+          % (len(rows), len(dup), len(miss), bad, raw_bad, t_only, r_only, dict(c),
+             sorted({r['proc_uuid'] for r in rows})))
+    return {'n': len(rows), 'dup': dup, 'missing': miss, 'by_arm': dict(c),
+            'bad_lines': bad, 'raw_bad_lines': raw_bad,
+            'trials_only': t_only, 'raw_only': r_only}
 
 if __name__ == '__main__' or MODE == 'check':
     if MODE == 'check':
