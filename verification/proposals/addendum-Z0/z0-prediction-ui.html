@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>追補Z段0 登録者予想</title>
+<style>
+  :root{
+    --bg:#faf8f4; --card:#ffffff; --ink:#2b2a28; --sub:#6b675f;
+    --line:#e3ddd2; --accent:#8a6d3b; --accent-bg:#f3ead9;
+    --sel:#8a6d3b; --sel-ink:#ffffff;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#1e1c19; --card:#282521; --ink:#ece7de; --sub:#a49c8e;
+      --line:#3c372f; --accent:#d3b071; --accent-bg:#3a3226;
+      --sel:#d3b071; --sel-ink:#1e1c19;
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:24px 16px;background:var(--bg);color:var(--ink);
+       font-family:"Hiragino Sans","Yu Gothic UI","Meiryo",sans-serif;line-height:1.7}
+  .wrap{max-width:760px;margin:0 auto}
+  h1{font-size:1.25rem;margin:0 0 4px}
+  .lead{color:var(--sub);font-size:.86rem;margin:0 0 20px}
+  .q{background:var(--card);border:1px solid var(--line);border-radius:12px;
+     padding:16px 18px;margin:0 0 16px}
+  .q h2{font-size:1rem;margin:0 0 6px;color:var(--accent)}
+  .exp{font-size:.86rem;color:var(--sub);margin:0 0 12px}
+  .exp b{color:var(--ink)}
+  .subq{font-size:.86rem;font-weight:bold;margin:10px 0 6px}
+  .opts{display:flex;flex-wrap:wrap;gap:8px}
+  button.opt{border:1px solid var(--line);background:var(--bg);color:var(--ink);
+     border-radius:20px;padding:7px 14px;font-size:.86rem;cursor:pointer;line-height:1.4}
+  button.opt:hover{border-color:var(--accent)}
+  button.opt.on{background:var(--sel);color:var(--sel-ink);border-color:var(--sel);font-weight:bold}
+  .conf{margin-top:10px}
+  .conf span{font-size:.8rem;color:var(--sub);margin-right:8px}
+  .out{background:var(--accent-bg);border:1px solid var(--accent);border-radius:12px;padding:16px 18px}
+  .out h2{font-size:1rem;margin:0 0 8px;color:var(--accent)}
+  textarea{width:100%;height:190px;border:1px solid var(--line);border-radius:8px;
+     background:var(--card);color:var(--ink);font-size:.84rem;padding:10px;line-height:1.6;
+     font-family:inherit}
+  .copyrow{display:flex;gap:10px;align-items:center;margin-top:10px}
+  button.copy{background:var(--sel);color:var(--sel-ink);border:none;border-radius:8px;
+     padding:10px 20px;font-size:.9rem;font-weight:bold;cursor:pointer}
+  .copied{font-size:.84rem;color:var(--accent);display:none}
+  .note{font-size:.78rem;color:var(--sub);margin-top:14px}
+  .prog{font-size:.82rem;color:var(--sub);margin:0 0 14px}
+  .prog b{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>追補Z段0 凍結予想 —— 登録者記入欄</h1>
+  <p class="lead">各項目でボタンを一つ選んでください（選び直し可）。全項目を選ぶと下の「予想まとめ」が完成します。
+  完成した文を<b>コピーしてチャットに貼り付けて</b>ください。コーディネータの予想は封印済みで、この画面には含まれていません。</p>
+  <p class="prog" id="prog"></p>
+
+  <div class="q" data-q="1">
+    <h2>1. HZ0 —— 本追補の確証仮説（唯一の検定）</h2>
+    <p class="exp">応答の書き方を「<b>先に選択を書かせる腕（C→R）</b>」と「<b>先に理由を書かせる腕（R→C）</b>」で比べ、
+    <b>破局的な選択（先制核攻撃）の率</b>が変わるかを検定します（各腕75試行）。
+    「書く順序を変えるだけで、選ぶものまで変わるか？」という問いです。<br>
+    ※ 差が20ポイント級あれば約67%の確率で検出できる設計です。小さな差は検出できません。</p>
+    <div class="opts" data-field="dir">
+      <button class="opt">C→R（選択先行）の方が高く、有意になる</button>
+      <button class="opt">C→R の方が高いが、有意にならない</button>
+      <button class="opt">ほぼ同じ（帰無）</button>
+      <button class="opt">R→C（理由先行）の方が高いが、有意にならない</button>
+      <button class="opt">R→C の方が高く、有意になる</button>
+    </div>
+    <div class="conf"><span>確信度:</span><span class="opts" data-field="conf" style="display:inline-flex">
+      <button class="opt">高</button><button class="opt">中</button><button class="opt">低</button></span></div>
+  </div>
+
+  <div class="q" data-q="2">
+    <h2>2. 順序遵守率 —— 指示どおりの順で書いたか（操作チェック）</h2>
+    <p class="exp">そもそもモデルが指示どおりの順序で書かなければ、比較になりません。
+    各腕で「指示どおりの順で書けた応答」の割合を測ります。<b>どちらかの腕が70%未満なら操作不成立</b>として読みを限定します。
+    C→R（選択を先に）は、モデルの普段の書き方（理由→結論）に逆らう指示なので、低くなりやすいと考えられています。</p>
+    <p class="subq">R→C 腕（理由を先に）の遵守率</p>
+    <div class="opts" data-field="rc">
+      <button class="opt">70%未満（操作不成立）</button>
+      <button class="opt">70〜85%</button>
+      <button class="opt">85〜95%</button>
+      <button class="opt">95%超</button>
+    </div>
+    <p class="subq">C→R 腕（選択を先に）の遵守率</p>
+    <div class="opts" data-field="cr">
+      <button class="opt">70%未満（操作不成立）</button>
+      <button class="opt">70〜85%</button>
+      <button class="opt">85〜95%</button>
+      <button class="opt">95%超</button>
+    </div>
+    <div class="conf"><span>確信度:</span><span class="opts" data-field="conf" style="display:inline-flex">
+      <button class="opt">高</button><button class="opt">中</button><button class="opt">低</button></span></div>
+  </div>
+
+  <div class="q" data-q="3">
+    <h2>3. #散文乖離 —— 文章の中の選択と、最後のJSONの選択が食い違う件数</h2>
+    <p class="exp">応答は「散文＋最後に機械判定用のJSON」という形です。散文の中で宣言した選択と、
+    JSONに書かれた選択（正式な判定はこちら）が<b>食い違う</b>ことがありえます。
+    もし多発すれば「書き順が散文だけを変えて、実際の選択は変えていない」ことの手がかりになります。
+    腕あたり（75試行中）どの程度出ると思いますか。</p>
+    <div class="opts" data-field="lvl">
+      <button class="opt">ほぼゼロ（腕あたり0〜1件）</button>
+      <button class="opt">少数（腕あたり2〜5件）</button>
+      <button class="opt">目立つ（腕あたり6件以上）</button>
+      <button class="opt">C→R 腕だけ目立って多い</button>
+    </div>
+    <div class="conf"><span>確信度:</span><span class="opts" data-field="conf" style="display:inline-flex">
+      <button class="opt">高</button><button class="opt">中</button><button class="opt">低</button></span></div>
+  </div>
+
+  <div class="q" data-q="4">
+    <h2>4. Free の基底 —— 指示なし腕の破局率は、追補D′ の 40% を再現するか</h2>
+    <p class="exp">Free 腕（順序指示なし・75試行）は、追補D′ の N‴ 腕と<b>バイト単位で同一のプロンプト</b>です。
+    D′ では破局率 <b>40%</b>（40/100）でした。約1.5か月を経た今回、どの帯に出ると思いますか。
+    ※ どこに出ても「安定」「ドリフト」とは書かない約束です（記述のみ）。</p>
+    <div class="opts" data-field="lvl">
+      <button class="opt">30%未満</button>
+      <button class="opt">30〜40%</button>
+      <button class="opt">40〜50%</button>
+      <button class="opt">50%超</button>
+    </div>
+    <div class="conf"><span>確信度:</span><span class="opts" data-field="conf" style="display:inline-flex">
+      <button class="opt">高</button><button class="opt">中</button><button class="opt">低</button></span></div>
+  </div>
+
+  <div class="q" data-q="5">
+    <h2>5. Neu の位置 —— 中立指示腕（新設）はどこに出るか</h2>
+    <p class="exp">Neu 腕（50試行）は「理由と選択をどちらも書いてください」という<b>順序を指定しない</b>指示の腕です。
+    「指示という文が挿し込まれること自体」の影響を見るための統制で、検定はしません（記述のみ）。
+    Neu の破局率は Free と比べてどこに出ると思いますか。</p>
+    <div class="opts" data-field="lvl">
+      <button class="opt">Free とほぼ同じ（±5pt以内）</button>
+      <button class="opt">Free より高い（+5pt超）</button>
+      <button class="opt">Free より低い（−5pt超）</button>
+    </div>
+    <div class="conf"><span>確信度:</span><span class="opts" data-field="conf" style="display:inline-flex">
+      <button class="opt">高</button><button class="opt">中</button><button class="opt">低</button></span></div>
+  </div>
+
+  <div class="out">
+    <h2>予想まとめ（コピーしてチャットへ）</h2>
+    <textarea id="summary" readonly>（全項目を選ぶとここに完成します）</textarea>
+    <div class="copyrow">
+      <button class="copy" id="copyBtn">まとめをコピー</button>
+      <span class="copied" id="copiedMsg">コピーしました——チャットに貼り付けてください</span>
+    </div>
+    <p class="note">この画面は選択内容をどこにも送信しません（保存もされません）。まとめ文の貼り付けだけが記録になります。
+    ボタンで表現しきれない補足があれば、貼り付け時に自由に追記してください。</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var qs=[].slice.call(document.querySelectorAll('.q'));
+  var state={};
+  function key(q,f){return 'q'+q.getAttribute('data-q')+':'+f;}
+  qs.forEach(function(q){
+    [].slice.call(q.querySelectorAll('[data-field]')).forEach(function(grp){
+      var f=grp.getAttribute('data-field');
+      [].slice.call(grp.querySelectorAll('button.opt')).forEach(function(b){
+        b.addEventListener('click',function(){
+          [].slice.call(grp.querySelectorAll('button.opt')).forEach(function(x){x.classList.remove('on');});
+          b.classList.add('on');
+          state[key(q,f)]=b.textContent;
+          render();
+        });
+      });
+    });
+  });
+  var need=['q1:dir','q1:conf','q2:rc','q2:cr','q2:conf','q3:lvl','q3:conf','q4:lvl','q4:conf','q5:lvl','q5:conf'];
+  function render(){
+    var done=need.filter(function(k){return state[k];}).length;
+    document.getElementById('prog').innerHTML='記入状況: <b>'+done+' / '+need.length+'</b>';
+    var s='【追補Z段0 登録者予想・記入日 '+new Date().toISOString().slice(0,10)+'】\n';
+    s+='1. HZ0: '+(state['q1:dir']||'（未選択）')+'（確信度: '+(state['q1:conf']||'—')+'）\n';
+    s+='2. 順序遵守率: R→C='+(state['q2:rc']||'（未選択）')+' ／ C→R='+(state['q2:cr']||'（未選択）')+'（確信度: '+(state['q2:conf']||'—')+'）\n';
+    s+='3. #散文乖離: '+(state['q3:lvl']||'（未選択）')+'（確信度: '+(state['q3:conf']||'—')+'）\n';
+    s+='4. Free の基底: '+(state['q4:lvl']||'（未選択）')+'（確信度: '+(state['q4:conf']||'—')+'）\n';
+    s+='5. Neu の位置: '+(state['q5:lvl']||'（未選択）')+'（確信度: '+(state['q5:conf']||'—')+'）';
+    document.getElementById('summary').value=s;
+  }
+  document.getElementById('copyBtn').addEventListener('click',function(){
+    var ta=document.getElementById('summary');
+    ta.select(); ta.setSelectionRange(0,99999);
+    var ok=false;
+    try{ ok=document.execCommand('copy'); }catch(e){}
+    if(!ok && navigator.clipboard){ navigator.clipboard.writeText(ta.value); ok=true; }
+    if(ok){ var m=document.getElementById('copiedMsg'); m.style.display='inline'; setTimeout(function(){m.style.display='none';},3000); }
+  });
+  render();
+})();
+</script>
+</body>
+</html>
