@@ -107,9 +107,12 @@ def verify_frozen():
     assert len(_read(PATH['Free'])) == 800 and len(_read(PATH['Neu'])) == 837, '腕字数検査 不一致'
 
 
-def build_schedule(pilot=False):
+def build_schedule(pilot=False, t0=False):
     """FROZEN §3.2: 25×〔Free3,RC3,CR3,Neu2〕・ブロック内順序は seed=20260828 で乱択（決定的）。
-    パイロット（登録外・各腕2）は固定順 [Free,RC,CR,Neu]×2。"""
+    パイロット（登録外・各腕2）は固定順 [Free,RC,CR,Neu]×2。
+    t=0 診断（登録外・任意・FROZEN §11）は固定順 [Free,RC,CR,Neu]×5・greedy（do_sample=False）。"""
+    if t0:
+        return ['Free', 'RC', 'CR', 'Neu'] * 5
     if pilot:
         return ['Free', 'RC', 'CR', 'Neu'] * 2
     rng = random.Random(SCHEDULE_SEED)
@@ -254,6 +257,7 @@ def selftests():
         s1[b*11:(b+1)*11].count('Free') == 3 and s1[b*11:(b+1)*11].count('RC') == 3
         and s1[b*11:(b+1)*11].count('CR') == 3 and s1[b*11:(b+1)*11].count('Neu') == 2 for b in range(25)))
     chk('配置: パイロット=各腕2', build_schedule(pilot=True).count('Free') == 2 and len(build_schedule(pilot=True)) == 8)
+    chk('配置: t0=各腕5・20', build_schedule(t0=True).count('Neu') == 5 and len(build_schedule(t0=True)) == 20)
     return fails
 
 
@@ -268,7 +272,7 @@ def check_mode():
     return not fails
 
 
-def run(start=0, end=None, pilot=False):
+def run(start=0, end=None, pilot=False, t0=False):
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
     import transformers
@@ -281,7 +285,7 @@ def run(start=0, end=None, pilot=False):
     verify_frozen()
     sf = selftests()
     assert not sf, '自己検査 FAIL: %s' % sf
-    SCHEDULE = build_schedule(pilot=pilot)
+    SCHEDULE = build_schedule(pilot=pilot, t0=t0)
     BASE = _read(PATH['base'])
     USERS = {a: _read(PATH[a]) for a in ('Free', 'RC', 'CR', 'Neu')}
     PROC_UUID = str(uuid.uuid4())
@@ -324,14 +328,20 @@ def run(start=0, end=None, pilot=False):
     print('[z0] Free input_ids_sha 突合 OK（%s＝D′ N‴）' % _isha)
 
     def generate(msgs, max_new=MAX_NEW):
-        """周期ループ検出は記録のみ（生成は止めない——X 申し送り5 の裁定・FROZEN §3.1）。"""
+        """周期ループ検出は記録のみ（生成は止めない——X 申し送り5 の裁定・FROZEN §3.1）。
+        t0 診断時は greedy（do_sample=False・温度系パラメタ非使用）。"""
         text = tok.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
         enc = tok(text, return_tensors='pt').to(model.device)
         plen = int(enc['input_ids'].shape[1])
         with torch.no_grad():
-            out = model.generate(input_ids=enc['input_ids'], attention_mask=enc['attention_mask'],
-                                 do_sample=True, temperature=0.7, top_p=0.9,
-                                 max_new_tokens=max_new, pad_token_id=tok.eos_token_id)
+            if t0:
+                out = model.generate(input_ids=enc['input_ids'], attention_mask=enc['attention_mask'],
+                                     do_sample=False,
+                                     max_new_tokens=max_new, pad_token_id=tok.eos_token_id)
+            else:
+                out = model.generate(input_ids=enc['input_ids'], attention_mask=enc['attention_mask'],
+                                     do_sample=True, temperature=0.7, top_p=0.9,
+                                     max_new_tokens=max_new, pad_token_id=tok.eos_token_id)
         ids = out[0][plen:].tolist()
         txt = tok.decode(ids, skip_special_tokens=True)
         li = loop_info(txt)
@@ -391,7 +401,7 @@ def run(start=0, end=None, pilot=False):
             'json_tail_chars': jp['json_tail_chars'], 'json_at_end': jp['json_at_end'],
             'json_at_start': jp['json_at_start'],
             'max_new_tokens': MAX_NEW, 'model': MODEL_ID, 'quant': '4bit-nf4',
-            'sampling': {'do_sample': True, 'temperature': 0.7, 'top_p': 0.9},
+            'sampling': ({'do_sample': False} if t0 else {'do_sample': True, 'temperature': 0.7, 'top_p': 0.9}),
             'timestamp': ts0, 'timestamp_end': datetime.datetime.utcnow().isoformat() + 'Z',
             'load_seconds': load_s, 'gpu_mem_after_load': gpu_mem,
             'weights_sha': w_sha, 'quant_state_sha': q_sha, 'hash_param_names': hn, 'quant_param_names': qn,
@@ -423,6 +433,8 @@ elif MODE == 'import':
     pass
 elif MODE == 'pilot':
     run(0, 8, pilot=True)
+elif MODE == 't0':
+    run(0, 20, t0=True)                    # 登録外・任意（FROZEN §11）・greedy・各腕5
 elif MODE == 'smoke':
     run(0, int(globals().get('Z0_PILOT_N', 2)), pilot=True)
 else:
