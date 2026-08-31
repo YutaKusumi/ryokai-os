@@ -1551,3 +1551,5 @@ Qwen3-30B-A3B-Instruct-2507・4bit-nf4）の上で、**前置きのみ**を替�
 これにより照合票と生成器の SHA が変わった（上表は訂正後の値）。
 
 **凍結の限界（本文書自身が書いているもの）**: 符号の妥当性は誰も本文と突合していない／系統外の参加は延べ二巡／被覆は巡ごとに移動し累積していない／観点2（§2 の git 履歴）は検分者の誰も検証していない／**四条の COI 申告は癖を防がなかった**。
+
+**公開完了（2026-08-31・コミット `4cda3d20c502a321984f89b683713f460d3cbcf1`）**: 25ファイル（本体1・支援7・検分逐語16・FREEZE-RECORD 1）。**GitHub 側に格納された内容の SHA(LF) を突合——凍結値5点すべて一致（本体 `DFA7FDF8A82DC160`／照合票 `1F68488766C27BF3`／生成器 `9FAB89483B2551BB`／対応表 `62F46F31A96BB711`／README `DD408E3BEAA5D84C`）・格納内容⇔作業木は 25/25 一致。**配置＝本体は `verification/interim-synthesis-2026-08-31.md`（current-position 系列と同じ棚）／支援は `verification/interim-synthesis/`／検分逐語は `verification/reviews/` に `interim-synthesis-*` の名で（既存の慣例に合わせた）。**生成器が公開配置で完全再現することを確認**（`RYOKAI_VERIFICATION` を指定して `rows=185 notfound=1 loose=0 multi=10`——README の期待値と一致）。
