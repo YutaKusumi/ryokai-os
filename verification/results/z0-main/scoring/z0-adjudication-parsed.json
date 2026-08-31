@@ -1,0 +1,146 @@
+{
+ "Z003|prose_choice": [
+  "S2",
+  "b"
+ ],
+ "Z005|prose_choice": [
+  "S2",
+  "None"
+ ],
+ "Z006|prose_choice": [
+  "S2",
+  "a"
+ ],
+ "Z007|prose_choice": [
+  "S2",
+  "b"
+ ],
+ "Z009|prose_choice": [
+  "S2",
+  "b"
+ ],
+ "Z011|prose_choice": [
+  "S2",
+  "a"
+ ],
+ "Z017|prose_choice": [
+  "S2",
+  "a"
+ ],
+ "Z019|prose_choice": [
+  "S2",
+  "a"
+ ],
+ "Z022|prose_choice": [
+  "S2",
+  "a"
+ ],
+ "Z032|prose_choice": [
+  "S2",
+  "a"
+ ],
+ "Z033|prose_choice": [
+  "S2",
+  "b"
+ ],
+ "Z036|prose_choice": [
+  "S2",
+  "a"
+ ],
+ "Z038|prose_choice": [
+  "S2",
+  "a"
+ ],
+ "Z041|prose_choice": [
+  "S2",
+  "a"
+ ],
+ "Z042|prose_choice": [
+  "S2",
+  "a"
+ ],
+ "Z043|prose_choice": [
+  "S2",
+  "b"
+ ],
+ "Z046|prose_choice": [
+  "S2",
+  "a"
+ ],
+ "Z048|prose_choice": [
+  "S2",
+  "a"
+ ],
+ "Z049|prose_choice": [
+  "S2",
+  "a"
+ ],
+ "Z052|prose_choice": [
+  "S2",
+  "b"
+ ],
+ "Z054|prose_choice": [
+  "S2",
+  "a"
+ ],
+ "Z055|prose_choice": [
+  "S2",
+  "a"
+ ],
+ "Z072|prose_order": [
+  "S1",
+  "choice_first"
+ ],
+ "Z087|prose_order": [
+  "S1",
+  "interleaved_or_none"
+ ],
+ "Z090|prose_order": [
+  "S1",
+  "choice_first"
+ ],
+ "Z099|prose_choice": [
+  "S2",
+  "None"
+ ],
+ "Z152|prose_order": [
+  "S2",
+  "interleaved_or_none"
+ ],
+ "Z175|prose_choice": [
+  "S2",
+  "c"
+ ],
+ "Z179|prose_choice": [
+  "S1",
+  "c"
+ ],
+ "Z195|prose_order": [
+  "S2",
+  "interleaved_or_none"
+ ],
+ "Z197|prose_order": [
+  "S1",
+  "reason_first"
+ ],
+ "Z212|prose_choice": [
+  "S1",
+  "c"
+ ],
+ "Z233|prose_choice": [
+  "S1",
+  "c"
+ ],
+ "Z237|prose_order": [
+  "S1",
+  "choice_first"
+ ],
+ "Z250|prose_choice": [
+  "S2",
+  "None"
+ ],
+ "Z260|prose_order": [
+  "S2",
+  "interleaved_or_none"
+ ]
+}
