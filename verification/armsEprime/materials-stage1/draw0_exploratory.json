@@ -1,0 +1,512 @@
+[
+ {
+  "question_id": "20250919_6",
+  "question_date": "2025-09-18",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2025/09/us/cnn-5-things-news-quiz-sep-19-sec/",
+  "question_sentence": "Which city may soon see the arrival of federal law enforcement as part of President Trump’s latest crime crackdown?",
+  "choices": [
+   "Memphis",
+   "Miami",
+   "Minneapolis",
+   "Milwaukee"
+  ],
+  "answer": [
+   "0"
+  ],
+  "evidence": "President Trump announced Monday that he will soon send <a href=\"https://www.cnn.com/2025/09/15/us/trump-memphis-national-guard-threat-hnk\" target=\"_blank\">federal law enforcement to Memphis</a>. The deployment is part of Trump’s broader effort to expand his anti-crime push nationwide."
+ },
+ {
+  "question_id": "20250912_8",
+  "question_date": "2025-09-11",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2025/09/us/cnn-5-things-news-quiz-sep-12-sec/",
+  "question_sentence": "Which tech CEO was offered a historic pay package potentially worth $1 trillion?",
+  "choices": [
+   "Tesla’s Elon Musk",
+   "Apple’s Tim Cook",
+   "Google’s Sundar Pichai",
+   "Meta’s Mark Zuckerberg"
+  ],
+  "answer": [
+   "0"
+  ],
+  "evidence": "esla’s board of directors has agreed to offer CEO <a href=\"https://www.cnn.com/2025/09/07/business/elon-musk-tesla-trillion\" target=\"_blank\">Elon Musk</a> a pay package worth $1 trillion."
+ },
+ {
+  "question_id": "20260320_3",
+  "question_date": "2026-03-19",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2026/03/us/cnn-5-things-news-quiz-mar-20-sec/",
+  "question_sentence": "Which Nordic nation was named the world's happiest country for the ninth year in a row?",
+  "choices": [
+   "Sweden",
+   "Finland",
+   "Norway",
+   "Switzerland"
+  ],
+  "answer": [
+   "1"
+  ],
+  "evidence": "Finland was named the <a href=\"https://www.cnn.com/2026/03/18/travel/worlds-happiest-countries-2026-wellness\" target=\"_blank\">happiest country in the world</a> for a record ninth time in a row — with Iceland coming in at No. 2 and Denmark ranking third, according to the latest edition of the World Happiness Report."
+ },
+ {
+  "question_id": "20260814_9",
+  "question_date": "2026/08/14",
+  "question_source": "THE WEEK",
+  "question_url": "https://theweek.com/puzzles/quiz-of-the-week-8-14-august",
+  "question_sentence": "Where was confirmed as the location for Eurovision 2027?",
+  "choices": [
+   "Zagreb, Croatia",
+   "Burgas, Bulgaria",
+   "Gdynia, Poland",
+   "Constanța, Romania"
+  ],
+  "answer": [
+   "1"
+  ],
+  "evidence": ""
+ },
+ {
+  "question_id": "20260109_9",
+  "question_date": "2026-01-08",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2026/01/us/cnn-5-things-news-quiz-jan-9-sec/",
+  "question_sentence": "What type of fish recently fetched a record $3.2 million at auction?",
+  "choices": [
+   "Swordfish",
+   "Bluefin tuna",
+   "Great white shark",
+   "Goldfish"
+  ],
+  "answer": [
+   "1"
+  ],
+  "evidence": "A massive bluefin tuna recently sold for a <a href=\"https://www.cnn.com/2026/01/05/travel/japan-bluefin-tuna-record-auction-intl-hnk\" target=\"_blank\">record $3.2 million</a> at Japan's Toyosu market auction."
+ },
+ {
+  "question_id": "20260501_13",
+  "question_date": "2026-04-30",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2026/03/us/cnn-5-things-news-quiz-may-1-sec/",
+  "question_sentence": "Which billionaire testified in a case this week that could ultimately shape the future of artificial intelligence?",
+  "choices": [
+   "Bill Gates",
+   "Jeff Bezos",
+   "Mark Zuckerberg",
+   "Elon Musk"
+  ],
+  "answer": [
+   "3"
+  ],
+  "evidence": "Elon Musk took the stand this week in a <a href=\"https://www.cnn.com/2026/04/30/tech/takeaways-elon-musk-openai-sam-altman-lawsuit\" target=\"_blank\">court battle against OpenAI</a>, the parent company of ChatGPT."
+ },
+ {
+  "question_id": "20251121_5",
+  "question_date": "2025-11-20",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2025/11/us/cnn-5-things-news-quiz-nov-21-sec/",
+  "question_sentence": "Which basketball player holds the record for the longest career in NBA history?",
+  "choices": [
+   "Michael Jordan",
+   "Kareem Abdul-Jabbar",
+   "LeBron James",
+   "Wilt Chamberlain"
+  ],
+  "answer": [
+   "2"
+  ],
+  "evidence": "Los Angeles Lakers star LeBron James began his 23rd season in the NBA this week, marking the <a href=\"https://www.cnn.com/2025/11/18/sport/basketball-nba-lebron-james-longest-career\" target=\"_blank\">longest career in NBA history</a>."
+ },
+ {
+  "question_id": "20260327_6",
+  "question_date": "2026-03-26",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2026/03/us/cnn-5-things-news-quiz-mar-27-sec/",
+  "question_sentence": "Which food tops the 2026 “Dirty Dozen” list of the most pesticide-laden fruits and vegetables?",
+  "choices": [
+   "Blueberries",
+   "Spinach",
+   "Apples",
+   "Potatoes"
+  ],
+  "answer": [
+   "1"
+  ],
+  "evidence": "Leafy greens, including spinach, held the highest levels of potentially harmful pesticide residues based on government tests, according to this year’s <a href=\"https://www.cnn.com/2026/03/24/health/2026-dirty-dozen-pesticide-produce-wellness\" target=\"_blank\">“Dirty Dozen” list</a> released by the Environmental Working Group."
+ },
+ {
+  "question_id": "20260522_14",
+  "question_date": "2026-05-21",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2026/05/us/cnn-summer-quiz-2026-sec/",
+  "question_sentence": "Memorial Day weekend is a great time to hit the beach. Which state is known as the Ocean State?",
+  "choices": [
+   "California",
+   "Florida",
+   "Maine",
+   "Rhode Island"
+  ],
+  "answer": [
+   "3"
+  ],
+  "evidence": "Surprising, right? The Ocean State is the official nickname of Rhode Island. While it’s the smallest state in the US, Rhode Island boasts some <a href=\"https://www.visitrhodeisland.com/things-to-do/beaches-water-sports/beaches/\" target=\"_blank\">400 miles of shoreline</a>."
+ },
+ {
+  "question_id": "20250926_5",
+  "question_date": "2025-09-25",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2025/09/us/cnn-5-things-news-quiz-sep-26-sec/",
+  "question_sentence": "Which Jewish holiday was celebrated this week?",
+  "choices": [
+   "Passover",
+   "Yom Kippur",
+   "Rosh Hashanah",
+   "Shavuot"
+  ],
+  "answer": [
+   "2"
+  ],
+  "evidence": "<a href=\"https://www.cnn.com/world/rosh-hashanah-fast-facts\" target=\"_blank\">Rosh Hashanah</a>, the Jewish New Year, began at sundown on Monday and was celebrated through nightfall on Wednesday."
+ },
+ {
+  "question_id": "20260703_32",
+  "question_date": "2026-06-30",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2026/07/us/cnn-5-things-america-at-250-sec/",
+  "question_sentence": "The title of the 1998 romantic comedy “You’ve Got Mail” was inspired by which online service?",
+  "choices": [
+   "Prodigy",
+   "Compuserve",
+   "America Online",
+   "MSN"
+  ],
+  "answer": [
+   "2"
+  ],
+  "evidence": "Users who logged onto America Online in the 1990s and had an email waiting were greeted by the phrase <a href=\"https://www.youtube.com/watch?v=dudJjUU9Nhs\" target=\"_blank\">“You’ve got mail!”</a>"
+ },
+ {
+  "question_id": "20251205_0",
+  "question_date": "2025-12-04",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2025/12/us/cnn-5-things-news-quiz-dec-5-sec/",
+  "question_sentence": "Which type of severe weather event caused major travel disruptions across the US this week?",
+  "choices": [
+   "Thunderstorms",
+   "Tornadoes",
+   "Winter storms",
+   "Flooding"
+  ],
+  "answer": [
+   "2"
+  ],
+  "evidence": "Severe winter weather across the US caused <a href=\"https://www.cnn.com/weather/live-news/winter-storm-bomb-cylone-climate\" target=\"_blank\">widespread flight delays</a> and road accidents, particularly in the Midwest and along the East Coast."
+ },
+ {
+  "question_id": "20250801_3",
+  "question_date": "2025/08/01",
+  "question_source": "THE WEEK",
+  "question_url": "https://theweek.com/puzzles/quiz-of-the-week-26-july-1-august",
+  "question_sentence": "What is the French resort town of Les Sables d’Olonne in the Vendée region cracking down on?",
+  "choices": [
+   "Loitering",
+   "Shirtlessness",
+   "Begging",
+   "All of the above"
+  ],
+  "answer": [
+   "1"
+  ],
+  "evidence": "Les Sables d'Olonne is cracking down on <a data-analytics-id=\"inline-link\" data-before-rewrite-localise=\"https://theweek.com/edition/theweekus-evening-review-2025-07-29-203948\" href=\"https://theweek.com/edition/theweekus-evening-review-2025-07-29-203948\">shirtlessness</a>. Officials will fine people who walk around \"half naked\" anywhere other than the beach, according to a Facebook post by its mayor, Yannick Moreau, who calls it a matter of \"respect for locals\"."
+ },
+ {
+  "question_id": "20251107_9",
+  "question_date": "2025-11-06",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2025/11/us/cnn-5-things-news-quiz-nov-7-sec/",
+  "question_sentence": "Thousands of people attended a victory parade this week in which city?",
+  "choices": [
+   "Chicago",
+   "Los Angeles",
+   "Miami",
+   "Houston"
+  ],
+  "answer": [
+   "1"
+  ],
+  "evidence": "Downtown Los Angeles shut down for several hours on Monday as thousands flooded the streets for a parade celebrating another <a href=\"https://www.cnn.com/2025/11/03/sport/baseball-mlb-los-angeles-dodgers-world-series-parade\" target=\"_blank\">World Series victory for the Dodgers</a>."
+ },
+ {
+  "question_id": "20260508_4",
+  "question_date": "2026/05/08",
+  "question_source": "THE WEEK",
+  "question_url": "https://theweek.com/puzzles/quiz-of-the-week-2-8-may",
+  "question_sentence": "What was the dress code at this week’s Met Gala fundraiser in New York City?",
+  "choices": [
+   "“Fashion Is Art”",
+   "“Manus x Machina”",
+   "“Style is Substance”",
+   "“Wealth is Power”"
+  ],
+  "answer": [
+   "0"
+  ],
+  "evidence": ""
+ },
+ {
+  "question_id": "20260529_1",
+  "question_date": "2026/05/29",
+  "question_source": "THE WEEK",
+  "question_url": "https://theweek.com/puzzles/quiz-of-the-week-23-29-may",
+  "question_sentence": "Which high-end carmaker this week revealed the Luce, its first fully electric car?",
+  "choices": [
+   "Bentley",
+   "Ferrari",
+   "Lamborghini",
+   "Rolls-Royce"
+  ],
+  "answer": [
+   "1"
+  ],
+  "evidence": ""
+ },
+ {
+  "question_id": "20250905_3",
+  "question_date": "2025-09-04",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2025/09/us/cnn-5-things-news-quiz-sep-5-sec/",
+  "question_sentence": "Which of the following people is slated to receive the Presidential Medal of Freedom?",
+  "choices": [
+   "Rudy Giuliani",
+   "Sylvester Stallone",
+   "Gloria Gaynor",
+   "Kid Rock"
+  ],
+  "answer": [
+   "0"
+  ],
+  "evidence": "President Trump announced this week that he plans to award the highest civilian honor to Rudy Giuliani, <a href=\"https://www.cnn.com/2025/09/01/politics/rudy-giuliani-trump-presidential-medal-of-freedom\" target=\"_blank\">his former personal attorney</a>."
+ },
+ {
+  "question_id": "20260724_12",
+  "question_date": "2026-07-23",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2026/07/us/cnn-5-things-news-quiz-july-24-sec/",
+  "question_sentence": "Director Christopher Nolan’s latest blockbuster is based on which famous work of literature?",
+  "choices": [
+   "“Romeo and Juliet”",
+   "“The Odyssey”",
+   "“Moby-Dick”",
+   "“The Great Gatsby”"
+  ],
+  "answer": [
+   "1"
+  ],
+  "evidence": "Based on the ancient epic poem by Homer, <a href=\"https://www.cnn.com/2026/07/18/entertainment/odyssey-trojan-horse-scene-nolan\" target=\"_blank\">“The Odyssey”</a> hit theaters and quickly climbed the box office charts. The film stars Matt Damon as Odysseus, the king of Ithaca whose 10-year-long journey home after fighting in the Trojan War is marked by numerous encounters with mythical beings."
+ },
+ {
+  "question_id": "20260717_13",
+  "question_date": "2026-07-17",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2026/07/us/cnn-5-things-news-quiz-july-17-sec/",
+  "question_sentence": "Which animal made headlines this week for launching a man into the air at Yellowstone National Park?",
+  "choices": [
+   "Bison",
+   "Elk",
+   "Grizzly bear",
+   "Mountain lion"
+  ],
+  "answer": [
+   "0"
+  ],
+  "evidence": "A grandfather is recovering from surgery after a bison attack at Yellowstone sent him flying in a <a href=\"https://www.cnn.com/2026/07/13/us/bison-attack-yellowstone\" target=\"_blank\">now-viral video</a>."
+ },
+ {
+  "question_id": "20251205_6",
+  "question_date": "2025-12-04",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2025/12/us/cnn-5-things-news-quiz-dec-5-sec/",
+  "question_sentence": "Michael and Susan Dell of Dell Technologies announced an enormous donation this week for which purpose?",
+  "choices": [
+   "Building community hospitals",
+   "Creating investment accounts for children",
+   "Funding renewable energy research",
+   "Supporting disaster-relief efforts"
+  ],
+  "answer": [
+   "1"
+  ],
+  "evidence": "Michael and Susan Dell on Tuesday announced that they are donating $6.25 billion to fund investment accounts for at least <a href=\"https://www.cnn.com/2025/12/02/business/michael-susan-dell-donation-trump-accounts\" target=\"_blank\">25 million American children</a>."
+ },
+ {
+  "question_id": "20260529_16",
+  "question_date": "2026-05-28",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2026/05/us/cnn-5-things-news-quiz-may-29-sec/",
+  "question_sentence": "What does Memorial Day honor in the United States?",
+  "choices": [
+   "US presidents",
+   "First responders",
+   "Fallen service members",
+   "American workers"
+  ],
+  "answer": [
+   "2"
+  ],
+  "evidence": "May 25 was Memorial Day, <a href=\"https://www.cnn.com/us/memorial-day-fast-facts\" target=\"_blank\">honoring American soldiers</a> who died serving the country in wars. It is observed annually in the US on the last Monday in May."
+ },
+ {
+  "question_id": "20260213_2",
+  "question_date": "2026-02-12",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2026/02/us/cnn-5-things-news-quiz-feb-13-sec/",
+  "question_sentence": "A group of Buddhist monks recently completed an extraordinary walk in the hope of spreading peace across the US. How many miles was the journey on foot?",
+  "choices": [
+   "700 miles",
+   "1,100 miles",
+   "2,300 miles",
+   "3,500 miles"
+  ],
+  "answer": [
+   "2"
+  ],
+  "evidence": "The monks arrived in Washington, DC, this week after completing a <a href=\"https://www.cnn.com/2026/02/11/us/video/buddhist-monks-finished-2300-mile-walk-for-peace-kit-maher-vrtc-digvid\" target=\"_blank\">2,300-mile Walk for Peace</a> that began in Fort Worth, Texas."
+ },
+ {
+  "question_id": "20250704_16",
+  "question_date": "2025-07-02",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2025/07/us/cnn-5-things-independence-day-2025-quiz-sec/",
+  "question_sentence": "Who wrote “The Star-Spangled Banner?”",
+  "choices": [
+   "Irving Berlin",
+   "F. Scott Fitzgerald",
+   "Betsy Ross",
+   "Francis Scott Key"
+  ],
+  "answer": [
+   "3"
+  ],
+  "evidence": "On September 14, 1814, <a href=\"https://www.kennedy-center.org/education/resources-for-educators/classroom-resources/media-and-interactives/media/music/story-behind-the-song/the-story-behind-the-song/the-star-spangled-banner/\" target=\"_blank\">Francis Scott Key penned a poem</a> after witnessing the Battle of Fort McHenry in Baltimore during the War of 1812 (which lasted until 1815). His poem was later set to music, and in 1931 it became America’s national anthem."
+ },
+ {
+  "question_id": "20250711_13",
+  "question_date": "2025-07-11",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2025/07/us/cnn-5-things-news-quiz-july-11-sec/",
+  "question_sentence": "Why did the Environmental Protection Agency suspend roughly 140 employees this week?",
+  "choices": [
+   "They are registered Democrats",
+   "They signed a public letter critical of the agency",
+   "They purchased lottery tickets with taxpayer dollars",
+   "They refused to relocate to a new office"
+  ],
+  "answer": [
+   "1"
+  ],
+  "evidence": "The letter’s signatories said they were <a href=\"https://www.cnn.com/2025/07/03/climate/epa-letter-employees-suspended-investigation\" target=\"_blank\">concerned</a> about the treatment of federal employees and the Trump administration’s regulations on climate and public health."
+ },
+ {
+  "question_id": "20250725_14",
+  "question_date": "2025-07-24",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2025/07/us/cnn-5-things-news-quiz-july-25-sec/",
+  "question_sentence": "Why did Ford recall nearly 700,000 SUVs this week?",
+  "choices": [
+   "Airbags may deploy unexpectedly",
+   "Vehicle’s computer system can be hacked",
+   "Fuel injector may cause a fire",
+   "Brakes are pretty squeaky"
+  ],
+  "answer": [
+   "2"
+  ],
+  "evidence": "Owners of Bronco Sport and Escape vehicles should bring in their vehicles because a fuel injector <a href=\"https://www.cnn.com/2025/07/21/business/ford-recalls-bronco-sport-escape\" target=\"_blank\">may crack and leak, potentially causing a fire</a>."
+ },
+ {
+  "question_id": "20250704_8",
+  "question_date": "2025/07/04",
+  "question_source": "THE WEEK",
+  "question_url": "https://theweek.com/puzzles/quiz-of-the-week-28-june-4-july",
+  "question_sentence": "Which tech company cut 9,000 jobs as part of cost-reduction measures?",
+  "choices": [
+   "Apple",
+   "Sony",
+   "Microsoft",
+   "IBM"
+  ],
+  "answer": [
+   "2"
+  ],
+  "evidence": "Around 4% of the tech giant's global workforce have lost their jobs in the latest round of cuts aimed at reducing layers of management. Microsoft will also \"end or decrease work\" on the gaming side of the company, meaning several planned Xbox titles will be scrapped. A previous round of lay-offs in May cut around 6,000 roles."
+ },
+ {
+  "question_id": "20260501_0",
+  "question_date": "2026/05/01",
+  "question_source": "THE WEEK",
+  "question_url": "https://theweek.com/puzzles/quiz-of-the-week-25-april-1-may",
+  "question_sentence": "What is the name of the 2,000lb sea lion who went viral this week after turning up on a San Francisco dock?",
+  "choices": [
+   "Big Daddy",
+   "Chonkers",
+   "Girthquake",
+   "Lord Humungous"
+  ],
+  "answer": [
+   "1"
+  ],
+  "evidence": ""
+ },
+ {
+  "question_id": "20260501_4",
+  "question_date": "2026/05/01",
+  "question_source": "THE WEEK",
+  "question_url": "https://theweek.com/puzzles/quiz-of-the-week-25-april-1-may",
+  "question_sentence": "A hundred chefs gathered in London to bake the longest-ever version of which dessert?",
+  "choices": [
+   "Victoria sponge",
+   "Tiramisu",
+   "Scone",
+   "Basque cheesecake"
+  ],
+  "answer": [
+   "1"
+  ],
+  "evidence": ""
+ },
+ {
+  "question_id": "20250808_15",
+  "question_date": "2025-08-08",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2025/08/us/cnn-5-things-news-quiz-aug-8-sec/",
+  "question_sentence": "Which blaze is now the largest wildfire in California this year?",
+  "choices": [
+   "Green Fire",
+   "Gifford Fire",
+   "Orleans Complex",
+   "Rosa Fire"
+  ],
+  "answer": [
+   "1"
+  ],
+  "evidence": "The <a href=\"https://www.cnn.com/2025/08/05/cnn10/video/ten-080625digvideo\" target=\"_blank\">Gifford Fire</a> has already consumed tens of thousands of acres in Santa Barbara and San Luis Obispo counties since igniting last week."
+ },
+ {
+  "question_id": "20260605_18",
+  "question_date": "2026-06-04",
+  "question_source": "CNN",
+  "question_url": "https://edition.cnn.com/interactive/2026/06/us/cnn-5-things-news-quiz-june-5-sec/",
+  "question_sentence": "Which Hollywood icon would have turned 100 years old this week?",
+  "choices": [
+   "Elvis Presley",
+   "Frank Sinatra",
+   "Marilyn Monroe",
+   "Audrey Hepburn"
+  ],
+  "answer": [
+   "2"
+  ],
+  "evidence": "Marilyn Monroe would have celebrated her 100th birthday this week. A new art exhibition revisits her life through <a href=\"https://www.cnn.com/2026/06/03/style/marilyn-monroe-reading-ulysses-eve-arnold-snap\" target=\"_blank\">dozens of portraits</a> captured by American photojournalist Eve Arnold."
+ }
+]

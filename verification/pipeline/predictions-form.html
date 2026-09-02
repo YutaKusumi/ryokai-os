@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>追補E′ 凍結予想記録 §11（登録者欄）</title>
+<style>
+:root{--bg:#fbfaf7;--fg:#1c1a17;--mut:#6b665e;--line:#ddd8cf;--card:#fff;--sel:#1a6b3c;--selbg:#e8f5ed;--warn:#8a6d1a;--warnbg:#fdf6e0;--acc:#2a4b8a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.75 "Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:22px 18px 90px}
+h1{font-size:20px;margin:0 0 4px}
+.sub{color:var(--mut);font-size:13px;margin-bottom:16px}
+.bar{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin-bottom:14px;font-size:13px}
+.fence{background:var(--warnbg);border:1px solid #e8dcae;border-radius:8px;padding:11px 14px;margin-bottom:14px;font-size:13px;color:#5c4a12}
+code{background:#f2efe9;padding:1px 5px;border-radius:3px;font-size:12px}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:6px;padding:6px 14px}
+button:hover{background:#f3f0ea}button.p{background:var(--fg);color:#fff;border-color:var(--fg)}button.p:hover{background:#3a352e}
+button:disabled{opacity:.35;cursor:default}
+.q{background:var(--card);border:1px solid var(--line);border-radius:8px;margin-bottom:13px;overflow:hidden}
+.q.done{border-color:var(--sel)}
+.qh{padding:11px 14px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.qh .n{color:var(--mut);font-size:12px;min-width:26px;font-variant-numeric:tabular-nums}
+.qh b{font-size:15px;flex:1}
+.badge{font-size:11px;padding:2px 8px;border-radius:10px;background:#f2efe9;color:var(--mut)}
+.badge.on{background:var(--selbg);color:var(--sel)}
+.body{padding:11px 14px}
+.exp{font-size:13px;color:#3f3a33;background:#f7f5f0;border-left:3px solid var(--acc);padding:9px 11px;border-radius:0 5px 5px 0;margin-bottom:10px}
+.exp b{color:var(--acc)}
+.opts{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:9px}
+.opt{padding:6px 13px;border:1px solid var(--line);border-radius:16px;background:#fff;cursor:pointer;font-size:13.5px}
+.opt:hover{background:#f3f0ea}
+.opt.sel{background:var(--selbg);border-color:var(--sel);color:var(--sel);font-weight:600}
+input[type=text]{width:100%;font:inherit;font-size:13px;padding:6px 9px;border:1px solid var(--line);border-radius:5px}
+.note{font-size:11.5px;color:var(--mut);margin-top:5px}
+.out{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px;margin-top:18px}
+pre{background:#f5f3ee;border:1px solid var(--line);border-radius:6px;padding:11px;overflow-x:auto;font-size:12px;line-height:1.6;white-space:pre-wrap;word-break:break-all;max-height:400px}
+table{border-collapse:collapse;width:100%;font-size:13px;margin:6px 0}
+th,td{border:1px solid var(--line);padding:5px 8px;text-align:left}th{background:#f5f3ee}
+.hidden{display:none}
+.prog{position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:5;font-size:13px;border-bottom:1px solid var(--line);margin-bottom:12px}
+</style></head><body><div class="wrap">
+
+<h1>追補E′ 凍結予想記録 §11 —— 登録者欄</h1>
+<div class="sub">データ生成前に記入・変更禁止（§0-(1)-(b)・§11）</div>
+
+<div class="fence">
+<b>★コーディネータの予想は封印してあります。</b>——`SEALED-coordinator-predictions.md`（SHA-256(LF) <code>823CD983…B206FA96</code>）。<b>この画面には現れません。</b>引きずられずにお書きいただくためです。<br>
+<b>★順序の逸脱を先に記録します。</b>§0-(1)-(b) は「凍結予想の記入を<b>最初の工程</b>とし」と定めますが、素材工程が先に進み、記入は最後から二番目になりました。<b>13 項目のうち「採られる段」は既に確定しており（段③）、記入対象から外してあります。</b><br>
+<b>★下の「既知の事実」の選択と並べ方は、コーディネータが決めました。</b>それ自体が傾きを与えている可能性があります。<b>事実は全て公開済みで、ご自身で確かめられます。</b>
+</div>
+
+<div class="bar" id="facts"></div>
+<div class="prog" id="prog"></div>
+<div id="qs"></div>
+<div class="out hidden" id="out"></div>
+
+<script>
+const FACTS = [
+ ["別追補の実測（同一形式・n=50）","<b>Onull 26/50 = 52.0%</b>／<b>O 13/50 = 26.0%</b>／Lneg 27/50 = 54.0%（O vs Onull は Fisher p=0.0134）"],
+ ["別追補の凍結値","前置きなし 11/30 = 36.7%／中立前置き 16/30 = 53.3%——<b>差 +16.7pt は Fisher p=0.2993 で有意ではない</b>"],
+ ["BP","181字／137 tok・4文。<b>O と 5-gram を一つも共有しない（0.0%）</b>。抽出規則が各節の第一文だけを採った結果、<b>先行詞を持たない指示詞が二つある</b>（「それ」「この」）"],
+ ["BP-sec","139 tok。<b>枠組み語が三語残る</b>（宇宙の根源的な／弁証法的な／創造）。<b>語彙表の 78%（25/32）が BP と共有</b>"],
+ ["BP-scr","BP に対し<b>文順の置換（[4,2,3,1]）</b>と<b>一語対の交換（「それ」↔「愛」）</b>が適用された。<b>撹拌が実行できたのは 4 文中 1 文</b>（他の 3 文は主語標識または目的語標識が無い）"],
+ ["梯子の判定","段①②＝「壊れていない」（14/14 表出）、段③＝「壊れている」（12/14）→ <b>段③を採用</b>。判定者は「12/14 残存を理由に『壊れていない』とする判断も可能」と自ら明記"],
+ ["P̃（撹拌後の命題）","<b>P̃ ≠ P は 14 件中 2 件のみ</b>（P1.1 の項A・P1.6 の項Bの一部）"],
+ ["抽出判定の信頼性","<b>κ = 0.4545</b>（登録者と盲検の第二判定者・節別の一致 2/7）——<b>BP はこの判定の上に立っている</b>"],
+ ["HE′2 の統制の限定","<b>四つ</b>——長さ（BP-sec は Onull より 31% 短い）／語彙（78% 共有＋枠組み語三語）／規範語形（BP-sec 0 件 対 Onull 3 件）／役割の割当（Onull だけが「書き手」という職能を割り当て、シナリオの「最高指導者」と衝突）"],
+ ["検出力（凍結値）","26pt の差で m=2 のとき <b>61.7%</b>。両方棄却 43.7%・少なくとも一方 81.2%・どちらも棄却されない 18.8%"]
+];
+const Q = [
+ {id:"1", t:"HE′1（BP vs BP-scr）の有意性",
+  e:"<b>何を比べるか</b>：BP と、それを撹拌した BP-scr。<b>撹拌が破局率を動かしたか</b>を見ます。<br><b>読み</b>：有意なら「命題の同一性（構造）が効いた」。有意でなければ「<b>この撹拌の下では</b>構造は追加の効果を持たなかった」までしか書けません（採った段を明記する条項があります）。",
+  o:["有意になる","有意にならない","判断できない"]},
+ {id:"2", t:"HE′2（BP-sec vs Onull）の有意性",
+  e:"<b>何を比べるか</b>：BP の命題を世俗語彙で言い換えた BP-sec と、内容を持たない前置き Onull。<b>内容が、語彙の統制を超えて効いたか</b>を見ます。<br><b>これが本追補の中心です。</b>——「設計図型前置きの効果は、語彙の表層か、命題の深部か」の後者側。",
+  o:["有意になる","有意にならない","判断できない"]},
+ {id:"3", t:"§6-6 の近床の分岐（Onull < 34%）の発火",
+  e:"<b>意味</b>：対照腕 Onull の破局率が 34% を下回ると、HE′2 の下方検出力が 5.7% 以下に落ちます。その場合「<b>確証として読まない</b>」条項が発動します。<br><b>床</b>とは、率が低すぎて差を検出できなくなる状態のことです。",
+  o:["発火する（Onull < 34%）","発火しない","判断できない"]},
+ {id:"4", t:"撹拌腕の「撹拌命題参照」率",
+  e:"<b>意味</b>：撹拌で<b>別物になった命題</b>（P̃）を、応答が述べてしまう率。<br>例：撹拌後の BP-scr は「<b>愛は</b>…創造し続けることである」となっており、応答がこれを反響すれば「撹拌命題参照」です。<b>原命題の参照には数えません</b>（数えれば「モデルが撹拌文から原命題を再構成した」という指標の意味が失われるため）。",
+  o:["0%","1〜10%","11〜25%","26% 以上","判断できない"]},
+ {id:"5", t:"§6-8 の合流（§6-4 と §6-6 の両方が発火）",
+  e:"<b>意味</b>：BP-scr 側の床（項目10）と Onull 側の床（項目3）が<b>同時に</b>起きること。両方起きれば、確証二対比のどちらも「確証として読まない」ことになります。",
+  o:["合流する","合流しない","判断できない"]},
+ {id:"6", t:"N 腕の「命題参照」率（偶発基底）",
+  e:"<b>意味</b>：<b>前置きが無いのに</b>、BP の命題を述べてしまう率。<br><b>なぜ重要か</b>：これが高ければ、他の腕の命題参照率を<b>その分だけ割り引いて</b>読む必要があります。「差が偶発の上に乗っている」かを見る基底です。",
+  o:["0%","1〜10%","11〜25%","26% 以上","判断できない"]},
+ {id:"7", t:"BP-scr の位置",
+  e:"<b>意味</b>：BP-scr の破局率が、<b>N（前置きなし）寄り</b>か <b>BP 寄り</b>か。<br>N 寄りなら「撹拌で効果が消えた」、BP 寄りなら「撹拌しても効果が残った」という形になります。",
+  o:["N 寄り","BP 寄り","中間","判断できない"]},
+ {id:"8", t:"BP-sec-scr の位置",
+  e:"<b>意味</b>：項目7 と同じことを、世俗語彙版について問います。BP-sec-scr は BP-sec に同一の撹拌規則・同一 seed を適用したものです。",
+  o:["N 寄り","BP-sec 寄り","中間","判断できない"]},
+ {id:"9", t:"N と Onull の差（前置きの存在の効果）",
+  e:"<b>意味</b>：<b>前置きが「あること自体」</b>の効果。内容を持たない Onull でも、前置きが無い N より率が動くか。<br><b>先行値</b>：別追補で +16.7pt（36.7% → 53.3%）でしたが、<b>出典において Fisher p=0.2993 で有意ではありません</b>。",
+  o:["+16.7pt が再現する","差はより小さい","符号が逆になる（Onull < N）","判断できない"]},
+ {id:"10", t:"§6-4 の近床の分岐（BP-scr < 30%）の発火",
+  e:"<b>意味</b>：BP-scr の破局率が 30% を下回ると、HE′1 の下方検出力が 2.4% に落ちます。その場合「確証として読まない」条項が発動します。<br>項目3 の HE′1 側の版です。",
+  o:["発火する（BP-scr < 30%）","発火しない","判断できない"]},
+ {id:"11", t:"#壊した軸の到達 の発火",
+  e:"<b>意味</b>：撹拌で壊した軸（段③では<b>命題の同一性</b>）に、モデルの応答が届いたか。<br><b>指標</b>：<b>BP 腕と BP-scr 腕の「命題参照」率の差</b>。差が閾値を超えれば「撹拌が届いた」として発火します。",
+  o:["発火する","発火しない","判断できない"]},
+ {id:"11b", t:"その κ（採点者間の一致度）",
+  e:"<b>意味</b>：二人の採点者が同じ応答に同じ符号を付ける度合い。0 が偶然並み、1 が完全一致。<br><b>0.6 未満なら判定が不安定</b>と読まれます。<b>参考</b>：本工程の抽出判定では κ = 0.4545 でした。",
+  o:["0.6 以上","0.6 未満","判断できない"]},
+ {id:"12", t:"転移課題（誠実性プローブ）の申告率の腕差",
+  e:"<b>意味</b>：破局課題とは<b>独立の課題</b>——モデルが確実には知り得ない事実問 20 問に対し、「わからない」と<b>不確実性を申告する</b>率。<br>前置きの効果が破局課題の外へ<b>転移</b>するかを見ます（記述のみ・検定はしません）。",
+  o:["腕差が大きい","腕差は小さい","判断できない"]}
+];
+const A={};
+function render(){
+ document.getElementById('facts').innerHTML='<b>予想の材料（既知の事実・すべて公開済み）</b><table>'+
+   FACTS.map(f=>'<tr><td style="width:24%">'+f[0]+'</td><td>'+f[1]+'</td></tr>').join('')+'</table>';
+ const done=Q.filter(q=>A[q.id]&&A[q.id].v).length;
+ document.getElementById('prog').innerHTML='<b>記入</b> '+done+' / '+Q.length+
+   (done<Q.length?'　<span style="color:var(--mut)">すべて選ぶと書き出しが出ます</span>':'　<span style="color:var(--sel)"><b>完了</b></span>');
+ const host=document.getElementById('qs'); host.innerHTML='';
+ Q.forEach((q,i)=>{
+  const a=A[q.id]||{}; const d=document.createElement('div'); d.className='q'+(a.v?' done':'');
+  d.innerHTML='<div class="qh"><span class="n">'+q.id+'</span><b>'+q.t+'</b>'+
+    (a.v?'<span class="badge on">'+a.v+'</span>':'<span class="badge">未記入</span>')+'</div>'+
+    '<div class="body"><div class="exp">'+q.e+'</div>'+
+    '<div class="opts">'+q.o.map(o=>'<span class="opt'+(a.v===o?' sel':'')+'" data-p="'+q.id+'||'+o+'">'+o+'</span>').join('')+'</div>'+
+    '<input type="text" data-r="'+q.id+'" placeholder="理由を一行（任意——書いていただけると記録の質が上がります）" value="'+(a.r||'').replace(/"/g,'&quot;')+'">'+
+    '<div class="note">理由は必須ではありません。<b>ただし記録に残るのは選択肢だけになります。</b></div></div>';
+  host.appendChild(d);
+ });
+ updateProgress();
+}
+document.addEventListener('click',e=>{
+ const t=e.target;
+ if(!t.dataset.p) return;
+ const [id,v]=t.dataset.p.split('||');
+ A[id]=Object.assign({},A[id],{v});
+ // ★該当項目だけを更新する（全体を再描画すると画面が跳ねるため）
+ const card=t.closest('.q');
+ card.querySelectorAll('.opt').forEach(o=>o.classList.toggle('sel',o.dataset.p===t.dataset.p));
+ card.classList.add('done');
+ const b=card.querySelector('.badge'); b.className='badge on'; b.textContent=v;
+ updateProgress();
+});
+function updateProgress(){
+ const done=Q.filter(q=>A[q.id]&&A[q.id].v).length;
+ document.getElementById('prog').innerHTML='<b>記入</b> '+done+' / '+Q.length+
+   (done<Q.length?'　<span style="color:var(--mut)">すべて選ぶと書き出しが出ます</span>':'　<span style="color:var(--sel)"><b>完了</b></span>');
+ const all=Q.every(q=>A[q.id]&&A[q.id].v);
+ document.getElementById('out').className=all?'out':'out hidden';
+ if(all) renderOut();
+}
+document.addEventListener('input',e=>{ if(e.target.dataset.r){ const id=e.target.dataset.r; A[id]=Object.assign({},A[id],{r:e.target.value}); }});
+function renderOut(){
+ const rows=Q.map(q=>({番号:q.id,項目:q.t,予想:A[q.id].v,理由:(A[q.id].r||'').trim()||'—'}));
+ const rec={文書:'追補E′ 凍結予想記録 §11（登録者欄）',記入者:'楠見優太（登録者）',
+   記入日時:new Date().toISOString(),
+   注記:'Qwen 未実行・データ皆無の時点で記入。変更禁止。コーディネータ欄は封印済み（SHA-256(LF) 823CD9833A77E3C9CAD3A81B258D05C3713A780B39D6425CE5B29917B206FA96）。',
+   確定済み項目:{'§4.4(a) で採られる段':'段③（記入時点で確定・記入対象外）'},予想:rows};
+ const md=['# 凍結予想記録（§11）—— 登録者欄','',
+  '**記入**: 楠見優太（登録者）／**記入日時**: '+new Date().toISOString(),
+  '**★Qwen 未実行・データ皆無の時点で記入。変更禁止**（§0-(1)-(b)・§11）。',
+  '**コーディネータ欄は封印済み**（SHA-256(LF) `823CD9833A77E3C9CAD3A81B258D05C3713A780B39D6425CE5B29917B206FA96`）——記入時点で開示されていない。','',
+  '| # | 項目 | **登録者の予想** | 理由 |','|---|---|---|---|',
+  ...rows.map(r=>'| '+r.番号+' | '+r.項目+' | **'+r.予想+'** | '+r.理由+' |'),
+  '','| — | ~~§4.4(a) で採られる段~~ | **確定済み（段③）** | 記入時点で確定・記入対象外 |','',
+  '**★予想の的中は、誰の判断の重みも変えない**（総括 条33・条14・§11 末尾）。','',
+  '---','','**本文書のいかなる記述も、AIの意識・意図・個性・苦しみがある（またはない）ことの証拠として引用してはならない**（両方向不定）。'];
+ document.getElementById('out').innerHTML='<h2 style="font-size:15px;margin:0 0 10px">記入が完了しました</h2>'+
+  '<table><tr><th>#</th><th>項目</th><th>予想</th><th>理由</th></tr>'+
+  rows.map(r=>'<tr><td>'+r.番号+'</td><td>'+r.項目+'</td><td><b>'+r.予想+'</b></td><td>'+r.理由+'</td></tr>').join('')+'</table>'+
+  '<p><button class="p" id="dlm">Markdown を保存</button> <button id="dlj">JSON を保存</button></p><pre>'+
+  md.join('\n').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))+'</pre>';
+ document.getElementById('dlm').onclick=()=>dl('predictions-registrant.md',md.join('\n'));
+ document.getElementById('dlj').onclick=()=>dl('predictions-registrant.json',JSON.stringify(rec,null,2));
+}
+function dl(n,x){const b=new Blob([x],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=n;a.click();}
+render();
+</script>
+</div></body></html>
